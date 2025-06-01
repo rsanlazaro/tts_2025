@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<head>
+    <title>PDF report</title>
+    <style>
+        body {
+            margin: 2rem;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .signature {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            margin-top: 4rem;
+            margin-left: 30rem;
+        }
+
+        .line {
+            width: 15rem;
+            border-bottom: 1px solid black;
+        }
+
+        .name {
+            margin-top: 0.5rem;
+            width: 15rem;
+            text-align: center;
+        }
+
+        h2 {
+            width: 100%;
+            text-align: center;
+            background-color: #CDE1F4;
+            font-size: 1.25rem;
+            padding: 0.25rem;
+        }
+
+        .column {
+            float: left;
+            width: 47%;
+            padding: 10px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .data {
+            color: red;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .question {
+            display: inline-block;
+        }
+
+        .answer {
+            display: inline-block;
+            background-color: #CDE1F4;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Historia clínica </h1>
+    <p> Nombre completo: ' . $form_name . '<br>
+        Fecha de nacimiento: ' . $form_date . '<br>
+        Edad: ' . $form_age . " años" . '<br>
+        Estado civil: ' . $form_status . '<br>
+        Ocupación: ' . $form_employment . '<br>
+        Lugar de nacimiento: ' . $form_birth_place . '</p>
+    <h2>Datos de la gestante </h2>
+    <div class="row">
+        <div class="column">
+            <div class="data">
+                <div class="question"> Altura: </div>
+                <div class="answer">' . $form_height . " m" . ' </div>
+            </div>
+            <div class="data">
+                Peso: <div class="answer"> ' . $form_weight . " kg" . ' </div>
+            </div>
+            <div class="data">Mano predominante: <div class="answer"> ' . $form_hand . '</div> </div>
+            <div class="data">Tipo de sangre: <div class="answer"> ' . $form_blood . '</div> </div>
+            <div class="data">Tiene implante: <div class="answer"> ' . $form_implant . '</div> </div>
+            <div class="data">Tiene DIU: <div class="answer"> ' . $form_diu . '</div> </div>
+            <div class="data">Notas adicionales de riesgo: <div class="answer"> ' . $form_risk_notes . '</div> </div>
+            <div class="data">Tiene anemia: <div class="answer"> ' . $form_anemy . '</div> </div>
+            <div class="data">Tiene diabetes: <div class="answer"> ' . $form_diabetes . '</div> </div>
+            <div class="data">Tuvo alguna transfusión: <div class="answer"> ' . $form_transfusion . '</div> </div>
+            <div class="data">Tiene hipertensión: <div class="answer"> ' . $form_hipertension . '</div> </div>
+            <div class="data">Tiene cáncer: <div class="answer"> ' . $form_cancer . '</div> </div>
+            <div class="data">Tiene dislexia: <div class="answer"> ' . $form_dislexia . '</div> </div>
+            <div class="data">Tiene lesión en la cadera: <div class="answer"> ' . $form_waist . '</div> </div>
+            <div class="data">Tiene migraña: <div class="answer"> ' . $form_migraine . '</div> </div>
+            </p>
+        </div>
+        <div class="column">
+            Fuma:
+            <div class="answer"> ' . $form_smoke . '</div> <br>
+            Con qué frecuencia fuma: <div class="answer"> ' . $form_smoke_times . '</div> <br>
+            Cuántos cigarros fuma: <div class="answer"> ' . $form_smoke_qty . '</div> <br>
+            Toma alcohol: <div class="answer"> ' . $form_alcohol . '</div> <br>
+            Con qué frecuencia toma alcohol: <div class="answer"> ' . $form_alcohol_freq . '</div> <br>
+            Tuvo fractura: <div class="answer"> ' . $form_fracture . '</div> <br>
+            Detalles de la fractura: <div class="answer"> ' . $form_fracture_info . '</div> <br>
+            Tuvo cirugía: <div class="answer"> ' . $form_cirugía . '</div> <br>
+            Detalles de la cirugía: <div class="answer"> ' . $form_surgery_info . '</div>
+        </div>
+    </div>
+    <h2>Datos de los embarazos</h2>
+    <p> Número de embarazos: ' . $num_pregnants . '<br>
+    </p>'
+    . $pregnants .
+    '<p>
+    <h2>Datos de los abortos</h2>
+    <p> Número de abortos: ' . $num_aborts . '<br>
+    </p>'
+    . $aborts .
+    '<h2>Datos de los familiares</h2>
+    <div class="two-row">'
+        . $family .
+        '</div>
+    <div class="signature">
+        <div class="line"></div>
+        <div class="name">Firma de la gestante</div>
+        <div class="name">' . date("l, F j, Y") . '</div>
+    </div>
+</body>
+
+</html>

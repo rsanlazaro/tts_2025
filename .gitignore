@@ -1,0 +1,8 @@
+node_modules/
+src/
+# package-lock.json
+vendor/
+Extras/
+bower_components/
+gulpfile.js
+includes/env
