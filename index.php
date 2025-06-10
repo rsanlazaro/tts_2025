@@ -15,31 +15,11 @@ include 'includes/templates/header_end.php';
 $remembered_username = isset($_COOKIE['remembered_username']) ? $_COOKIE['remembered_username'] : '';
 ?>
 
-<main class="login">
-    <img src="build/img/logos/TTS.webp" alt="TTS logo">
-    <div class="login-form">
-        <?php if (isset($_GET['error'])) { ?>
-            <p class="error"><?php echo $_GET['error']; ?></p>
-        <?php } ?>
-        <form action="validate.php" method="POST">
-            <div class="col-md-12">
-                <input class="form-control" type="text" name="username" placeholder="Usuario" value="<?php echo htmlspecialchars($remembered_username); ?>" required />
-            </div>
-            <div class="col-md-12">
-                <input class="form-control" type="password" name="password" placeholder="Contraseña" required />
-            </div>
-            <label class="form-check-label">
-                <input type="checkbox" name="remember_me" <?php if (isset($remembered_username)) {
-                                                                echo 'checked';
-                                                            } ?>>
-                Remember Me
-            </label><br>
-            <div class="form-btn d-flex justify-content-center">
-                <button class="btn btn-pink btn-send" type="submit">
-                    <div>Login</div>
-                </button>
-            </div>
-        </form>
+<main class="main">
+    <div class="d-flex justify-content-between links">
+        <div class="baby-cloud-component"> <img src="build/img/icons/babySite.webp"> <a href="views/babySites/login.php" class="btn-white">Baby site</a></div>
+        <div class="baby-cloud-component"> <img src="build/img/icons/agency.webp"> <a href="views/babyCloud/login.php" class="btn-white">Agency</a></div>
+        <div class="baby-cloud-component"> <img src="build/img/icons/babyCloud.webp"> <a href="views/babyCloud/login.php" class="btn-white">Baby Cloud</a></div>
     </div>
 </main>
 

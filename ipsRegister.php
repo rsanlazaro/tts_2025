@@ -675,535 +675,530 @@ function tableStage2(
 
 ?>
 
-<main class="ips-register table-container">
-    <div class="tab-content mt-3" id="myTabContent">
-        <div class="tab-pane fade show active" id="register" role="tabpanel" aria-labelledby="register-tab">
-            <div class="lab-pagination">
-                <div class="content table-responsive table-full-width table-scroll">
-                    <table class="table table-hover myTable tableIps" id="myTable">
-                        <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section1" aria-expanded="true" style="cursor: pointer;">
-                            <tr class="thead">
-                                <th colspan="14">Fase 1 - Crio Embrio</th>
-                            </tr>
-                        </thead>
-                        <tbody id="section1" class="collapse show">
-                            <colgroup class="table-colgroup">
-                                <col style="width: 5rem;">
-                                <col style="width: 30rem;">
-                                <col style="width: 10rem;">
-                                <col style="width: 12.5rem;">
-                                <col style="width: 10rem;">
-                                <col style="width: 10rem;">
-                                <col style="width: 10rem;">
-                                <col style="width: 10rem;">
-                                <col style="width: 5rem;">
-                                <col style="width: 10rem;">
-                                <col style="width: 5rem;">
-                                <col style="width: 10rem;">
-                                <col style="width: 5rem;">
-                                <col style="width: 10rem;">
-                            </colgroup>
-                            <tr class="thead">
-                                <?php
-                                headerStage($Stage_1->titles);
-                                ?>
-                            </tr>
-                            <?php
-                            tableStage(
-                                $Stage_1->stage_count_1,
-                                $Stage_1->add_1,
-                                $Stage_1->description_1,
-                                $Stage_1->info_general_1,
-                                $Stage_1->state_1,
-                                $Stage_1->underway_1,
-                                $Stage_1->info_1_1,
-                                $Stage_1->info_2_1,
-                                $Stage_1->uploading_1_1,
-                                $Stage_1->enable_1_1,
-                                $Stage_1->uploading_2_1,
-                                $Stage_1->enable_2_1,
-                                $Stage_1->uploading_3_1,
-                                $Stage_1->enable_3_1,
-                                $Stage_1->enableView_1
-                            );
-                            tableStage(
-                                $Stage_1->stage_count_2,
-                                $Stage_1->add_2,
-                                $Stage_1->description_2,
-                                $Stage_1->info_general_2,
-                                $Stage_1->state_2,
-                                $Stage_1->underway_2,
-                                $Stage_1->info_1_2,
-                                $Stage_1->info_2_2,
-                                $Stage_1->uploading_1_2,
-                                $Stage_1->enable_1_2,
-                                $Stage_1->uploading_2_2,
-                                $Stage_1->enable_2_2,
-                                $Stage_1->uploading_3_2,
-                                $Stage_1->enable_3_2,
-                                $Stage_1->enableView_2
-                            );
-                            ?>
-                        </tbody>
-                        <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section2" aria-expanded="true" style="cursor: pointer;">
-                            <tr class="thead">
-                                <th colspan="14">Fase 2.1 - Intentos de embarazo</th>
-                            </tr>
-                        </thead>
-                        <tbody id="section2" class="collapse show">
-                            <tr class="thead">
-                                <?php
-                                headerStage($Stage_2->titles);
-                                ?>
-                            </tr>
-                            <?php
-                            tableStage(
-                                $Stage_2->stage_count_1,
-                                $Stage_2->add_1,
-                                $Stage_2->description_1,
-                                $Stage_2->info_general_1,
-                                $Stage_2->state_1,
-                                $Stage_2->underway_1,
-                                $Stage_2->info_1_1,
-                                $Stage_2->info_2_1,
-                                $Stage_2->uploading_1_1,
-                                $Stage_2->enable_1_1,
-                                $Stage_2->uploading_2_1,
-                                $Stage_2->enable_2_1,
-                                $Stage_2->uploading_3_1,
-                                $Stage_2->enable_3_1,
-                                $Stage_2->enableView_1
-                            );
-                            tableStage(
-                                $Stage_2->stage_count_2,
-                                $Stage_2->add_2,
-                                $Stage_2->description_2,
-                                $Stage_2->info_general_2,
-                                $Stage_2->state_2,
-                                $Stage_2->underway_2,
-                                $Stage_2->info_1_2,
-                                $Stage_2->info_2_2,
-                                $Stage_2->uploading_1_2,
-                                $Stage_2->enable_1_2,
-                                $Stage_2->uploading_2_2,
-                                $Stage_2->enable_2_2,
-                                $Stage_2->uploading_3_2,
-                                $Stage_2->enable_3_2,
-                                $Stage_2->enableView_2
-                            );
-                            tableStage(
-                                $Stage_2->stage_count_3,
-                                $Stage_2->add_3,
-                                $Stage_2->description_3,
-                                $Stage_2->info_general_3,
-                                $Stage_2->state_3,
-                                $Stage_2->underway_3,
-                                $Stage_2->info_1_3,
-                                $Stage_2->info_2_3,
-                                $Stage_2->uploading_1_3,
-                                $Stage_2->enable_1_3,
-                                $Stage_2->uploading_2_3,
-                                $Stage_2->enable_2_3,
-                                $Stage_2->uploading_3_3,
-                                $Stage_2->enable_3_3,
-                                $Stage_2->enableView_3
-                            );
-                            tableStage(
-                                $Stage_2->stage_count_4,
-                                $Stage_2->add_4,
-                                $Stage_2->description_4,
-                                $Stage_2->info_general_4,
-                                $Stage_2->state_4,
-                                $Stage_2->underway_4,
-                                $Stage_2->info_1_4,
-                                $Stage_2->info_2_4,
-                                $Stage_2->uploading_1_4,
-                                $Stage_2->enable_1_4,
-                                $Stage_2->uploading_2_4,
-                                $Stage_2->enable_2_4,
-                                $Stage_2->uploading_3_4,
-                                $Stage_2->enable_3_4,
-                                $Stage_2->enableView_4
-                            );
-                            tableStage(
-                                $Stage_2->stage_count_5,
-                                $Stage_2->add_5,
-                                $Stage_2->description_5,
-                                $Stage_2->info_general_5,
-                                $Stage_2->state_5,
-                                $Stage_2->underway_5,
-                                $Stage_2->info_1_5,
-                                $Stage_2->info_2_5,
-                                $Stage_2->uploading_1_5,
-                                $Stage_2->enable_1_5,
-                                $Stage_2->uploading_2_5,
-                                $Stage_2->enable_2_5,
-                                $Stage_2->uploading_3_5,
-                                $Stage_2->enable_3_5,
-                                $Stage_2->enableView_5
-                            );
-                            ?>
-                        </tbody>
-                        <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section3" aria-expanded="true" style="cursor: pointer;">
-                            <tr class="thead">
-                                <th colspan="14">Fase 3 - Confirmación embarazo - Primer trimestre</th>
-                            </tr>
-                        </thead>
-                        <tbody id="section3" class="collapse show">
-                            <tr class="thead">
-                                <?php
-                                headerStage($Stage_3->titles);
-                                ?>
-                            </tr>
-                            <?php
-                            tableStage2(
-                                $Stage_3->stage_count_1,
-                                $Stage_3->add_1,
-                                $Stage_3->description_1,
-                                $Stage_3->info_general_1,
-                                $Stage_3->state_1,
-                                $Stage_3->underway_1,
-                                $Stage_3->info_1_1,
-                                $Stage_3->uploading_1_1,
-                                $Stage_3->enable_1_1,
-                                $Stage_3->uploading_2_1,
-                                $Stage_3->enable_2_1,
-                                $Stage_3->uploading_3_1,
-                                $Stage_3->enable_3_1,
-                                $Stage_3->enableView_1
-                            );
-                            tableStage2(
-                                $Stage_3->stage_count_2,
-                                $Stage_3->add_2,
-                                $Stage_3->description_2,
-                                $Stage_3->info_general_2,
-                                $Stage_3->state_2,
-                                $Stage_3->underway_2,
-                                $Stage_3->info_1_2,
-                                $Stage_3->uploading_1_2,
-                                $Stage_3->enable_1_2,
-                                $Stage_3->uploading_2_2,
-                                $Stage_3->enable_2_2,
-                                $Stage_3->uploading_3_2,
-                                $Stage_3->enable_3_2,
-                                $Stage_3->enableView_2
-                            );
-                            tableStage2(
-                                $Stage_3->stage_count_3,
-                                $Stage_3->add_3,
-                                $Stage_3->description_3,
-                                $Stage_3->info_general_3,
-                                $Stage_3->state_3,
-                                $Stage_3->underway_3,
-                                $Stage_3->info_1_3,
-                                $Stage_3->uploading_1_3,
-                                $Stage_3->enable_1_3,
-                                $Stage_3->uploading_2_3,
-                                $Stage_3->enable_2_3,
-                                $Stage_3->uploading_3_3,
-                                $Stage_3->enable_3_3,
-                                $Stage_3->enableView_3
-                            );
-                            ?>
-                        </tbody>
-                        <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section4" aria-expanded="true" style="cursor: pointer;">
-                            <tr class="thead">
-                                <th colspan="14">Fase 4 - Seguimiento del embarazo - Segundo Trimestre</th>
-                            </tr>
-                        </thead>
-                        <tbody id="section4" class="collapse show">
-                            <?php
-                            tableStage2(
-                                $Stage_4->stage_count_1,
-                                $Stage_4->add_1,
-                                $Stage_4->description_1,
-                                $Stage_4->info_general_1,
-                                $Stage_4->state_1,
-                                $Stage_4->underway_1,
-                                $Stage_4->info_1_1,
-                                $Stage_4->uploading_1_1,
-                                $Stage_4->enable_1_1,
-                                $Stage_4->uploading_2_1,
-                                $Stage_4->enable_2_1,
-                                $Stage_4->uploading_3_1,
-                                $Stage_4->enable_3_1,
-                                $Stage_4->enableView_1
-                            );
-                            tableStage2(
-                                $Stage_4->stage_count_2,
-                                $Stage_4->add_2,
-                                $Stage_4->description_2,
-                                $Stage_4->info_general_2,
-                                $Stage_4->state_2,
-                                $Stage_4->underway_2,
-                                $Stage_4->info_1_2,
-                                $Stage_4->uploading_1_2,
-                                $Stage_4->enable_1_2,
-                                $Stage_4->uploading_2_2,
-                                $Stage_4->enable_2_2,
-                                $Stage_4->uploading_3_2,
-                                $Stage_4->enable_3_2,
-                                $Stage_4->enableView_2
-                            );
-                            tableStage2(
-                                $Stage_4->stage_count_3,
-                                $Stage_4->add_3,
-                                $Stage_4->description_3,
-                                $Stage_4->info_general_3,
-                                $Stage_4->state_3,
-                                $Stage_4->underway_3,
-                                $Stage_4->info_1_3,
-                                $Stage_4->uploading_1_3,
-                                $Stage_4->enable_1_3,
-                                $Stage_4->uploading_2_3,
-                                $Stage_4->enable_2_3,
-                                $Stage_4->uploading_3_3,
-                                $Stage_4->enable_3_3,
-                                $Stage_4->enableView_3
-                            );
-                            tableStage2(
-                                $Stage_4->stage_count_4,
-                                $Stage_4->add_4,
-                                $Stage_4->description_4,
-                                $Stage_4->info_general_4,
-                                $Stage_4->state_4,
-                                $Stage_4->underway_4,
-                                $Stage_4->info_1_4,
-                                $Stage_4->uploading_1_4,
-                                $Stage_4->enable_1_4,
-                                $Stage_4->uploading_2_4,
-                                $Stage_4->enable_2_4,
-                                $Stage_4->uploading_3_4,
-                                $Stage_4->enable_3_4,
-                                $Stage_4->enableView_4
-                            );
-                            ?>
-                        </tbody>
-                        <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section5" aria-expanded="true" style="cursor: pointer;">
-                            <tr class="thead">
-                                <th colspan="14">Fase 5 - Seguimiento del embarazo - Tercer Trimestre > Parto</th>
-                            </tr>
-                        </thead>
-                        <tbody id="section5" class="collapse show">
-                            <?php
-                            tableStage2(
-                                $Stage_5->stage_count_1,
-                                $Stage_5->add_1,
-                                $Stage_5->description_1,
-                                $Stage_5->info_general_1,
-                                $Stage_5->state_1,
-                                $Stage_5->underway_1,
-                                $Stage_5->info_1_1,
-                                $Stage_5->uploading_1_1,
-                                $Stage_5->enable_1_1,
-                                $Stage_5->uploading_2_1,
-                                $Stage_5->enable_2_1,
-                                $Stage_5->uploading_3_1,
-                                $Stage_5->enable_3_1,
-                                $Stage_5->enableView_1
-                            );
-                            tableStage2(
-                                $Stage_5->stage_count_2,
-                                $Stage_5->add_2,
-                                $Stage_5->description_2,
-                                $Stage_5->info_general_2,
-                                $Stage_5->state_2,
-                                $Stage_5->underway_2,
-                                $Stage_5->info_1_2,
-                                $Stage_5->uploading_1_2,
-                                $Stage_5->enable_1_2,
-                                $Stage_5->uploading_2_2,
-                                $Stage_5->enable_2_2,
-                                $Stage_5->uploading_3_2,
-                                $Stage_5->enable_3_2,
-                                $Stage_5->enableView_2
-                            );
-                            tableStage2(
-                                $Stage_5->stage_count_3,
-                                $Stage_5->add_3,
-                                $Stage_5->description_3,
-                                $Stage_5->info_general_3,
-                                $Stage_5->state_3,
-                                $Stage_5->underway_3,
-                                $Stage_5->info_1_3,
-                                $Stage_5->uploading_1_3,
-                                $Stage_5->enable_1_3,
-                                $Stage_5->uploading_2_3,
-                                $Stage_5->enable_2_3,
-                                $Stage_5->uploading_3_3,
-                                $Stage_5->enable_3_3,
-                                $Stage_5->enableView_3
-                            );
-                            tableStage2(
-                                $Stage_5->stage_count_4,
-                                $Stage_5->add_4,
-                                $Stage_5->description_4,
-                                $Stage_5->info_general_4,
-                                $Stage_5->state_4,
-                                $Stage_5->underway_4,
-                                $Stage_5->info_1_4,
-                                $Stage_5->uploading_1_4,
-                                $Stage_5->enable_1_4,
-                                $Stage_5->uploading_2_4,
-                                $Stage_5->enable_2_4,
-                                $Stage_5->uploading_3_4,
-                                $Stage_5->enable_3_4,
-                                $Stage_5->enableView_4
-                            );
-                            tableStage2(
-                                $Stage_5->stage_count_5,
-                                $Stage_5->add_5,
-                                $Stage_5->description_5,
-                                $Stage_5->info_general_5,
-                                $Stage_5->state_5,
-                                $Stage_5->underway_5,
-                                $Stage_5->info_1_5,
-                                $Stage_5->uploading_1_5,
-                                $Stage_5->enable_1_5,
-                                $Stage_5->uploading_2_5,
-                                $Stage_5->enable_2_5,
-                                $Stage_5->uploading_3_5,
-                                $Stage_5->enable_3_5,
-                                $Stage_5->enableView_5
-                            );
-                            tableStage2(
-                                $Stage_5->stage_count_6,
-                                $Stage_5->add_6,
-                                $Stage_5->description_6,
-                                $Stage_5->info_general_6,
-                                $Stage_5->state_6,
-                                $Stage_5->underway_6,
-                                $Stage_5->info_1_6,
-                                $Stage_5->uploading_1_6,
-                                $Stage_5->enable_1_6,
-                                $Stage_5->uploading_2_6,
-                                $Stage_5->enable_2_6,
-                                $Stage_5->uploading_3_6,
-                                $Stage_5->enable_3_6,
-                                $Stage_5->enableView_6
-                            );
-                            tableStage2(
-                                $Stage_5->stage_count_7,
-                                $Stage_5->add_7,
-                                $Stage_5->description_7,
-                                $Stage_5->info_general_7,
-                                $Stage_5->state_7,
-                                $Stage_5->underway_7,
-                                $Stage_5->info_1_7,
-                                $Stage_5->uploading_1_7,
-                                $Stage_5->enable_1_7,
-                                $Stage_5->uploading_2_7,
-                                $Stage_5->enable_2_7,
-                                $Stage_5->uploading_3_7,
-                                $Stage_5->enable_3_7,
-                                $Stage_5->enableView_7
-                            );
-                            tableStage2(
-                                $Stage_5->stage_count_8,
-                                $Stage_5->add_8,
-                                $Stage_5->description_8,
-                                $Stage_5->info_general_8,
-                                $Stage_5->state_8,
-                                $Stage_5->underway_8,
-                                $Stage_5->info_1_8,
-                                $Stage_5->uploading_1_8,
-                                $Stage_5->enable_1_8,
-                                $Stage_5->uploading_2_8,
-                                $Stage_5->enable_2_8,
-                                $Stage_5->uploading_3_8,
-                                $Stage_5->enable_3_8,
-                                $Stage_5->enableView_8
-                            );
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-        <!-- Favicon -->
-        <script src="https://kit.fontawesome.com/b8332e4c7c.js" crossorigin="anonymous"></script>
-        <!-- Animation -->
-        <script>
-            function toggle(id, state, stage, row = 0, row_num = 0, row_max = 0) {
+<main class="ips-register">
+    <div class="content table-responsive table-full-width table-scroll table-container">
+        <table class="table table-hover myTable" id="myTable">
+            <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section1" aria-expanded="true" style="cursor: pointer;">
+                <tr class="thead">
+                    <th colspan="14">Fase 1 - Crio Embrio</th>
+                </tr>
+            </thead>
+            <tbody id="section1" class="collapse show">
+                <colgroup class="table-colgroup">
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                </colgroup>
+                <tr class="thead">
+                    <?php
+                    headerStage($Stage_1->titles);
+                    ?>
+                </tr>
+                <?php
+                tableStage(
+                    $Stage_1->stage_count_1,
+                    $Stage_1->add_1,
+                    $Stage_1->description_1,
+                    $Stage_1->info_general_1,
+                    $Stage_1->state_1,
+                    $Stage_1->underway_1,
+                    $Stage_1->info_1_1,
+                    $Stage_1->info_2_1,
+                    $Stage_1->uploading_1_1,
+                    $Stage_1->enable_1_1,
+                    $Stage_1->uploading_2_1,
+                    $Stage_1->enable_2_1,
+                    $Stage_1->uploading_3_1,
+                    $Stage_1->enable_3_1,
+                    $Stage_1->enableView_1
+                );
+                tableStage(
+                    $Stage_1->stage_count_2,
+                    $Stage_1->add_2,
+                    $Stage_1->description_2,
+                    $Stage_1->info_general_2,
+                    $Stage_1->state_2,
+                    $Stage_1->underway_2,
+                    $Stage_1->info_1_2,
+                    $Stage_1->info_2_2,
+                    $Stage_1->uploading_1_2,
+                    $Stage_1->enable_1_2,
+                    $Stage_1->uploading_2_2,
+                    $Stage_1->enable_2_2,
+                    $Stage_1->uploading_3_2,
+                    $Stage_1->enable_3_2,
+                    $Stage_1->enableView_2
+                );
+                ?>
+            </tbody>
+            <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section2" aria-expanded="true" style="cursor: pointer;">
+                <tr class="thead">
+                    <th colspan="14">Fase 2.1 - Intentos de embarazo</th>
+                </tr>
+            </thead>
+            <tbody id="section2" class="collapse show">
+                <tr class="thead">
+                    <?php
+                    headerStage($Stage_2->titles);
+                    ?>
+                </tr>
+                <?php
+                tableStage(
+                    $Stage_2->stage_count_1,
+                    $Stage_2->add_1,
+                    $Stage_2->description_1,
+                    $Stage_2->info_general_1,
+                    $Stage_2->state_1,
+                    $Stage_2->underway_1,
+                    $Stage_2->info_1_1,
+                    $Stage_2->info_2_1,
+                    $Stage_2->uploading_1_1,
+                    $Stage_2->enable_1_1,
+                    $Stage_2->uploading_2_1,
+                    $Stage_2->enable_2_1,
+                    $Stage_2->uploading_3_1,
+                    $Stage_2->enable_3_1,
+                    $Stage_2->enableView_1
+                );
+                tableStage(
+                    $Stage_2->stage_count_2,
+                    $Stage_2->add_2,
+                    $Stage_2->description_2,
+                    $Stage_2->info_general_2,
+                    $Stage_2->state_2,
+                    $Stage_2->underway_2,
+                    $Stage_2->info_1_2,
+                    $Stage_2->info_2_2,
+                    $Stage_2->uploading_1_2,
+                    $Stage_2->enable_1_2,
+                    $Stage_2->uploading_2_2,
+                    $Stage_2->enable_2_2,
+                    $Stage_2->uploading_3_2,
+                    $Stage_2->enable_3_2,
+                    $Stage_2->enableView_2
+                );
+                tableStage(
+                    $Stage_2->stage_count_3,
+                    $Stage_2->add_3,
+                    $Stage_2->description_3,
+                    $Stage_2->info_general_3,
+                    $Stage_2->state_3,
+                    $Stage_2->underway_3,
+                    $Stage_2->info_1_3,
+                    $Stage_2->info_2_3,
+                    $Stage_2->uploading_1_3,
+                    $Stage_2->enable_1_3,
+                    $Stage_2->uploading_2_3,
+                    $Stage_2->enable_2_3,
+                    $Stage_2->uploading_3_3,
+                    $Stage_2->enable_3_3,
+                    $Stage_2->enableView_3
+                );
+                tableStage(
+                    $Stage_2->stage_count_4,
+                    $Stage_2->add_4,
+                    $Stage_2->description_4,
+                    $Stage_2->info_general_4,
+                    $Stage_2->state_4,
+                    $Stage_2->underway_4,
+                    $Stage_2->info_1_4,
+                    $Stage_2->info_2_4,
+                    $Stage_2->uploading_1_4,
+                    $Stage_2->enable_1_4,
+                    $Stage_2->uploading_2_4,
+                    $Stage_2->enable_2_4,
+                    $Stage_2->uploading_3_4,
+                    $Stage_2->enable_3_4,
+                    $Stage_2->enableView_4
+                );
+                tableStage(
+                    $Stage_2->stage_count_5,
+                    $Stage_2->add_5,
+                    $Stage_2->description_5,
+                    $Stage_2->info_general_5,
+                    $Stage_2->state_5,
+                    $Stage_2->underway_5,
+                    $Stage_2->info_1_5,
+                    $Stage_2->info_2_5,
+                    $Stage_2->uploading_1_5,
+                    $Stage_2->enable_1_5,
+                    $Stage_2->uploading_2_5,
+                    $Stage_2->enable_2_5,
+                    $Stage_2->uploading_3_5,
+                    $Stage_2->enable_3_5,
+                    $Stage_2->enableView_5
+                );
+                ?>
+            </tbody>
+            <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section3" aria-expanded="true" style="cursor: pointer;">
+                <tr class="thead">
+                    <th colspan="14">Fase 3 - Confirmación embarazo - Primer trimestre</th>
+                </tr>
+            </thead>
+            <tbody id="section3" class="collapse show">
+                <tr class="thead">
+                    <?php
+                    headerStage($Stage_3->titles);
+                    ?>
+                </tr>
+                <?php
+                tableStage2(
+                    $Stage_3->stage_count_1,
+                    $Stage_3->add_1,
+                    $Stage_3->description_1,
+                    $Stage_3->info_general_1,
+                    $Stage_3->state_1,
+                    $Stage_3->underway_1,
+                    $Stage_3->info_1_1,
+                    $Stage_3->uploading_1_1,
+                    $Stage_3->enable_1_1,
+                    $Stage_3->uploading_2_1,
+                    $Stage_3->enable_2_1,
+                    $Stage_3->uploading_3_1,
+                    $Stage_3->enable_3_1,
+                    $Stage_3->enableView_1
+                );
+                tableStage2(
+                    $Stage_3->stage_count_2,
+                    $Stage_3->add_2,
+                    $Stage_3->description_2,
+                    $Stage_3->info_general_2,
+                    $Stage_3->state_2,
+                    $Stage_3->underway_2,
+                    $Stage_3->info_1_2,
+                    $Stage_3->uploading_1_2,
+                    $Stage_3->enable_1_2,
+                    $Stage_3->uploading_2_2,
+                    $Stage_3->enable_2_2,
+                    $Stage_3->uploading_3_2,
+                    $Stage_3->enable_3_2,
+                    $Stage_3->enableView_2
+                );
+                tableStage2(
+                    $Stage_3->stage_count_3,
+                    $Stage_3->add_3,
+                    $Stage_3->description_3,
+                    $Stage_3->info_general_3,
+                    $Stage_3->state_3,
+                    $Stage_3->underway_3,
+                    $Stage_3->info_1_3,
+                    $Stage_3->uploading_1_3,
+                    $Stage_3->enable_1_3,
+                    $Stage_3->uploading_2_3,
+                    $Stage_3->enable_2_3,
+                    $Stage_3->uploading_3_3,
+                    $Stage_3->enable_3_3,
+                    $Stage_3->enableView_3
+                );
+                ?>
+            </tbody>
+            <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section4" aria-expanded="true" style="cursor: pointer;">
+                <tr class="thead">
+                    <th colspan="14">Fase 4 - Seguimiento del embarazo - Segundo Trimestre</th>
+                </tr>
+            </thead>
+            <tbody id="section4" class="collapse show">
+                <?php
+                tableStage2(
+                    $Stage_4->stage_count_1,
+                    $Stage_4->add_1,
+                    $Stage_4->description_1,
+                    $Stage_4->info_general_1,
+                    $Stage_4->state_1,
+                    $Stage_4->underway_1,
+                    $Stage_4->info_1_1,
+                    $Stage_4->uploading_1_1,
+                    $Stage_4->enable_1_1,
+                    $Stage_4->uploading_2_1,
+                    $Stage_4->enable_2_1,
+                    $Stage_4->uploading_3_1,
+                    $Stage_4->enable_3_1,
+                    $Stage_4->enableView_1
+                );
+                tableStage2(
+                    $Stage_4->stage_count_2,
+                    $Stage_4->add_2,
+                    $Stage_4->description_2,
+                    $Stage_4->info_general_2,
+                    $Stage_4->state_2,
+                    $Stage_4->underway_2,
+                    $Stage_4->info_1_2,
+                    $Stage_4->uploading_1_2,
+                    $Stage_4->enable_1_2,
+                    $Stage_4->uploading_2_2,
+                    $Stage_4->enable_2_2,
+                    $Stage_4->uploading_3_2,
+                    $Stage_4->enable_3_2,
+                    $Stage_4->enableView_2
+                );
+                tableStage2(
+                    $Stage_4->stage_count_3,
+                    $Stage_4->add_3,
+                    $Stage_4->description_3,
+                    $Stage_4->info_general_3,
+                    $Stage_4->state_3,
+                    $Stage_4->underway_3,
+                    $Stage_4->info_1_3,
+                    $Stage_4->uploading_1_3,
+                    $Stage_4->enable_1_3,
+                    $Stage_4->uploading_2_3,
+                    $Stage_4->enable_2_3,
+                    $Stage_4->uploading_3_3,
+                    $Stage_4->enable_3_3,
+                    $Stage_4->enableView_3
+                );
+                tableStage2(
+                    $Stage_4->stage_count_4,
+                    $Stage_4->add_4,
+                    $Stage_4->description_4,
+                    $Stage_4->info_general_4,
+                    $Stage_4->state_4,
+                    $Stage_4->underway_4,
+                    $Stage_4->info_1_4,
+                    $Stage_4->uploading_1_4,
+                    $Stage_4->enable_1_4,
+                    $Stage_4->uploading_2_4,
+                    $Stage_4->enable_2_4,
+                    $Stage_4->uploading_3_4,
+                    $Stage_4->enable_3_4,
+                    $Stage_4->enableView_4
+                );
+                ?>
+            </tbody>
+            <thead class="table-light" data-bs-toggle="collapse" data-bs-target="#section5" aria-expanded="true" style="cursor: pointer;">
+                <tr class="thead">
+                    <th colspan="14">Fase 5 - Seguimiento del embarazo - Tercer Trimestre > Parto</th>
+                </tr>
+            </thead>
+            <tbody id="section5" class="collapse show">
+                <?php
+                tableStage2(
+                    $Stage_5->stage_count_1,
+                    $Stage_5->add_1,
+                    $Stage_5->description_1,
+                    $Stage_5->info_general_1,
+                    $Stage_5->state_1,
+                    $Stage_5->underway_1,
+                    $Stage_5->info_1_1,
+                    $Stage_5->uploading_1_1,
+                    $Stage_5->enable_1_1,
+                    $Stage_5->uploading_2_1,
+                    $Stage_5->enable_2_1,
+                    $Stage_5->uploading_3_1,
+                    $Stage_5->enable_3_1,
+                    $Stage_5->enableView_1
+                );
+                tableStage2(
+                    $Stage_5->stage_count_2,
+                    $Stage_5->add_2,
+                    $Stage_5->description_2,
+                    $Stage_5->info_general_2,
+                    $Stage_5->state_2,
+                    $Stage_5->underway_2,
+                    $Stage_5->info_1_2,
+                    $Stage_5->uploading_1_2,
+                    $Stage_5->enable_1_2,
+                    $Stage_5->uploading_2_2,
+                    $Stage_5->enable_2_2,
+                    $Stage_5->uploading_3_2,
+                    $Stage_5->enable_3_2,
+                    $Stage_5->enableView_2
+                );
+                tableStage2(
+                    $Stage_5->stage_count_3,
+                    $Stage_5->add_3,
+                    $Stage_5->description_3,
+                    $Stage_5->info_general_3,
+                    $Stage_5->state_3,
+                    $Stage_5->underway_3,
+                    $Stage_5->info_1_3,
+                    $Stage_5->uploading_1_3,
+                    $Stage_5->enable_1_3,
+                    $Stage_5->uploading_2_3,
+                    $Stage_5->enable_2_3,
+                    $Stage_5->uploading_3_3,
+                    $Stage_5->enable_3_3,
+                    $Stage_5->enableView_3
+                );
+                tableStage2(
+                    $Stage_5->stage_count_4,
+                    $Stage_5->add_4,
+                    $Stage_5->description_4,
+                    $Stage_5->info_general_4,
+                    $Stage_5->state_4,
+                    $Stage_5->underway_4,
+                    $Stage_5->info_1_4,
+                    $Stage_5->uploading_1_4,
+                    $Stage_5->enable_1_4,
+                    $Stage_5->uploading_2_4,
+                    $Stage_5->enable_2_4,
+                    $Stage_5->uploading_3_4,
+                    $Stage_5->enable_3_4,
+                    $Stage_5->enableView_4
+                );
+                tableStage2(
+                    $Stage_5->stage_count_5,
+                    $Stage_5->add_5,
+                    $Stage_5->description_5,
+                    $Stage_5->info_general_5,
+                    $Stage_5->state_5,
+                    $Stage_5->underway_5,
+                    $Stage_5->info_1_5,
+                    $Stage_5->uploading_1_5,
+                    $Stage_5->enable_1_5,
+                    $Stage_5->uploading_2_5,
+                    $Stage_5->enable_2_5,
+                    $Stage_5->uploading_3_5,
+                    $Stage_5->enable_3_5,
+                    $Stage_5->enableView_5
+                );
+                tableStage2(
+                    $Stage_5->stage_count_6,
+                    $Stage_5->add_6,
+                    $Stage_5->description_6,
+                    $Stage_5->info_general_6,
+                    $Stage_5->state_6,
+                    $Stage_5->underway_6,
+                    $Stage_5->info_1_6,
+                    $Stage_5->uploading_1_6,
+                    $Stage_5->enable_1_6,
+                    $Stage_5->uploading_2_6,
+                    $Stage_5->enable_2_6,
+                    $Stage_5->uploading_3_6,
+                    $Stage_5->enable_3_6,
+                    $Stage_5->enableView_6
+                );
+                tableStage2(
+                    $Stage_5->stage_count_7,
+                    $Stage_5->add_7,
+                    $Stage_5->description_7,
+                    $Stage_5->info_general_7,
+                    $Stage_5->state_7,
+                    $Stage_5->underway_7,
+                    $Stage_5->info_1_7,
+                    $Stage_5->uploading_1_7,
+                    $Stage_5->enable_1_7,
+                    $Stage_5->uploading_2_7,
+                    $Stage_5->enable_2_7,
+                    $Stage_5->uploading_3_7,
+                    $Stage_5->enable_3_7,
+                    $Stage_5->enableView_7
+                );
+                tableStage2(
+                    $Stage_5->stage_count_8,
+                    $Stage_5->add_8,
+                    $Stage_5->description_8,
+                    $Stage_5->info_general_8,
+                    $Stage_5->state_8,
+                    $Stage_5->underway_8,
+                    $Stage_5->info_1_8,
+                    $Stage_5->uploading_1_8,
+                    $Stage_5->enable_1_8,
+                    $Stage_5->uploading_2_8,
+                    $Stage_5->enable_2_8,
+                    $Stage_5->uploading_3_8,
+                    $Stage_5->enable_3_8,
+                    $Stage_5->enableView_8
+                );
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <!-- Favicon -->
+    <script src="https://kit.fontawesome.com/b8332e4c7c.js" crossorigin="anonymous"></script>
+    <!-- Animation -->
+    <script>
+        function toggle(id, state, stage, row = 0, row_num = 0, row_max = 0) {
 
-                const icon = document.getElementById('toggleIcon_off_' + stage + '_' + id);
-                icon.classList.add('icon-animate');
+            const icon = document.getElementById('toggleIcon_off_' + stage + '_' + id);
+            icon.classList.add('icon-animate');
 
-                setTimeout(() => {
-                    if (icon.className.split(" ")[1] == "fa-eye" || icon.className.split(" ")[1] == "fa-eye-slash") {
-                        if (state) {
-                            icon.classList.toggle('fa-eye');
-                            icon.classList.toggle('fa-eye-slash');
-                        } else {
-                            icon.classList.toggle('fa-eye-slash');
-                            icon.classList.toggle('fa-eye');
-                        }
-                    } else if (icon.className.split(" ")[1] == "fa-toggle-on" || icon.className.split(" ")[1] == "fa-toggle-off") {
-                        if (state) {
-                            icon.classList.toggle('fa-toggle-on');
-                            icon.classList.toggle('fa-toggle-off');
-                        } else {
-                            icon.classList.toggle('fa-toggle-off');
-                            icon.classList.toggle('fa-toggle-on');
-                        }
-                    }
-                }, 150);
-                let newValue = '-';
-
-                // // Remove animation class after it's done
-                setTimeout(() => {
-                    icon.classList.remove('icon-animate');
-                }, 300);
-                if (row == 0) {
-                    (state == true) ? newValue = 'false': newValue = 'true';
-                } else {
-                    if (row_num == row_max) {
-                        newValue = 'false';
-                    } else if (row_num == 1) {
-                        newValue = 'true';
+            setTimeout(() => {
+                if (icon.className.split(" ")[1] == "fa-eye" || icon.className.split(" ")[1] == "fa-eye-slash") {
+                    if (state) {
+                        icon.classList.toggle('fa-eye');
+                        icon.classList.toggle('fa-eye-slash');
                     } else {
-                        newValue = String(state);
+                        icon.classList.toggle('fa-eye-slash');
+                        icon.classList.toggle('fa-eye');
+                    }
+                } else if (icon.className.split(" ")[1] == "fa-toggle-on" || icon.className.split(" ")[1] == "fa-toggle-off") {
+                    if (state) {
+                        icon.classList.toggle('fa-toggle-on');
+                        icon.classList.toggle('fa-toggle-off');
+                    } else {
+                        icon.classList.toggle('fa-toggle-off');
+                        icon.classList.toggle('fa-toggle-on');
                     }
                 }
-                fetchContent(id, newValue, stage, row, row_max);
-                location.reload();
-            };
+            }, 150);
+            let newValue = '-';
 
-            function saveContent(tdElement, stage, id) {
-                const newValue = tdElement.innerText;
-                const row = 0;
-                const row_max = "";
-                fetchContent(id, newValue, stage, row, row_max);
+            // // Remove animation class after it's done
+            setTimeout(() => {
+                icon.classList.remove('icon-animate');
+            }, 300);
+            if (row == 0) {
+                (state == true) ? newValue = 'false': newValue = 'true';
+            } else {
+                if (row_num == row_max) {
+                    newValue = 'false';
+                } else if (row_num == 1) {
+                    newValue = 'true';
+                } else {
+                    newValue = String(state);
+                }
             }
+            fetchContent(id, newValue, stage, row, row_max);
+            location.reload();
+        };
 
-            function saveContent2(tdElement, stage, id) {
-                const newValue = document.getElementById(stage + '_' + id).value;
-                const row = 0;
-                const row_max = "";
-                fetchContent(id, newValue, stage, row, row_max);
-            }
+        function saveContent(tdElement, stage, id) {
+            const newValue = tdElement.innerText;
+            const row = 0;
+            const row_max = "";
+            fetchContent(id, newValue, stage, row, row_max);
+        }
 
-            function fetchContent(id, newValue, stage, row, row_max) {
-                fetch('ipsRegisterBack.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            id: id,
-                            content: newValue,
-                            stage: stage,
-                            row: row,
-                            row_max: row_max
-                        })
+        function saveContent2(tdElement, stage, id) {
+            const newValue = document.getElementById(stage + '_' + id).value;
+            const row = 0;
+            const row_max = "";
+            fetchContent(id, newValue, stage, row, row_max);
+        }
+
+        function fetchContent(id, newValue, stage, row, row_max) {
+            fetch('ipsRegisterBack.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        content: newValue,
+                        stage: stage,
+                        row: row,
+                        row_max: row_max
                     })
-                    .then(res => res.text()) // expect plain text for echo
-                    .then(data => {
-                        console.log('Server responded with:', data);
-                    })
-                    .catch(error => console.error('Error:', error));
-            }
-        </script>
+                })
+                .then(res => res.text()) // expect plain text for echo
+                .then(data => {
+                    console.log('Server responded with:', data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
 </main>

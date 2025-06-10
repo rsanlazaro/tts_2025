@@ -8,13 +8,17 @@ include '../../includes/templates/header_begin.php';
 
 <?php
 include '../../includes/templates/header_end.php';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 
 <main class="baby-sites-home">
     <div class="d-flex justify-content-start"> <a href="../../index.php"> <img src="../../build/img/logos/TTS.webp" alt="tts logo"> </a> </div>
     <h2>Menú de Sites</h2>
     <div class="d-flex justify-content-center">
-        <a href="#"> <img src="../../build/img/logos/babySite.webp" alt="babySite logo"> </a>
+        <a href=<?php echo "dashboard.php?user=" . $_SESSION['id'] ?> > <img src="../../build/img/logos/babySite.webp" alt="babySite logo"> </a>
         <a href="#"> <img src="../../build/img/logos/babyCloud.webp" alt="babyCloud logo"> </a>
     </div>
 </main>
