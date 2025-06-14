@@ -15,6 +15,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include "../../includes/app.php";
     $conn = connectDB();
 
+    if ($function == 'toggleAccess') {
+        $id = $input['id'] ?? 'No id value';
+        $newValue = $input['newValue'] ?? 'No newValue value';
+        $column = $input['column'] ?? 'No column value';
+        if (isset($id)) {
+            $query = "UPDATE access SET $column = '${newValue}' WHERE id = ${id}";
+            $result = mysqli_query($conn, $query);
+        }
+    }
+
     if ($function == 'deleteSelected') {
         $ids = $input['id'];
         $idsSQL = '(';

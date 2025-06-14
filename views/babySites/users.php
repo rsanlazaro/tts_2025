@@ -9,11 +9,7 @@ include '../../includes/templates/header_begin.php';
 <?php
 include '../../includes/templates/header_end.php';
 include '../../includes/app.php';
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-$conn = connectDB();
+include '../../includes/templates/sessionStart.php';
 
 $id_user = $_GET['user'] ?? $_SESSION['id'] ?? null;
 

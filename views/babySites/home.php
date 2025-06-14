@@ -8,10 +8,7 @@ include '../../includes/templates/header_begin.php';
 
 <?php
 include '../../includes/templates/header_end.php';
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+include '../../includes/templates/sessionStart.php';
 ?>
 
 <main class="baby-sites-home">
