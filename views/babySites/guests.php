@@ -42,7 +42,7 @@ $dt->modify('-6 hours'); // Manual offset for Mexico City
 
 // For users fetch information
 
-$sql = "SELECT * FROM users";
+$sql = "SELECT * FROM guests";
 $result = mysqli_query($conn, $sql);
 $index = 0;
 while ($row = mysqli_fetch_assoc($result)) {
@@ -79,11 +79,11 @@ while ($row = mysqli_fetch_assoc($result)) {
             <img style="cursor:pointer;" onclick="toggleDropdown()" src="../../build/img/testImg/profilepic.webp" alt="Profile Picture">
             <div id="myDropdown-profile" class="dropdown-content-profile">
                 <a href="../../logout.php">Cerrar sesión
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-</svg>
-</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                    </svg>
+                </a>
             </div>
         </div>
     </header>
@@ -93,8 +93,8 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <img class="icon-img" src="../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item active" href="users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item" href="guests.php">Listado de Externos</a>
+                    <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+                    <a class="dropdown-item active" href="#">Listado de Externos</a>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -177,7 +177,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <div class="content" id="content">
         <div class="header">
             <div class="message">
-                Listado de Usuarios
+                Listado de Externos
             </div>
             <div class="buttons">
                 <button onclick="newUser()">
@@ -254,173 +254,45 @@ while ($row = mysqli_fetch_assoc($result)) {
                         </colgroup>
                         <?php for ($i = 1; $i <= $index; $i++) { ?>
                             <?php if ($user[$i] != 'SaludConceptAdmin') { ?>
-                                <?php if ($id[$i] != $id_user) { ?>
-                                    <tr>
-                                        <td class="td-center"><input id="checkbox_<?php echo $id[$i]; ?>" type="checkbox" onclick="selectRows(this, <?php echo $id[$i] ?>)"> </td>
-                                        <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
-                                        <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
-                                        <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
-                                        <td>
-                                            <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>">
-                                                <?php if ($profile[$i] == 'super-admin') { ?>
-                                                    <option value="super-admin" selected>super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'admin-junior') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior" selected>admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'coordinador') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador" selected>coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'operador') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador" selected>operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'recluta-interno') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno" selected>recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'recluta-externo') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo" selected>recluta-externo</option>
-                                                <?php } else { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo" selected>recluta-externo</option>
-                                                <?php } ?>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <?php echo $created_on[$i]; ?>
-                                        </td>
-                                        <td class="td-center td-icon">
-                                            <?php if ($enabled[$i] == 'true') { ?>
-                                                <button onclick='toggle("false",<?php echo $id[$i] ?>,"enabled")'>
-                                                    <i class='fa-solid fa-toggle-on false'></i>
-                                                </button>
-                                            <?php } else { ?>
-                                                <button onclick='toggle("true",<?php echo $id[$i] ?>,"enabled")'>
-                                                    <i class='fa-solid fa-toggle-off false'></i>
-                                                </button>
+                                <tr>
+                                    <td class="td-center"><input id="checkbox_<?php echo $id[$i]; ?>" type="checkbox" onclick="selectRows(this, <?php echo $id[$i] ?>)"> </td>
+                                    <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
+                                    <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
+                                    <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
+                                    <td>
+                                        <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>">
+                                            <?php if ($profile[$i] == 'ip') { ?>
+                                                <option value="ip" selected>IP</option>
+                                                <option value="agency">Agency</option>
+                                            <?php } else if ($profile[$i] == 'agency') { ?>
+                                                <option value="ip">IP</option>
+                                                <option value="agency" selected>Agency</option>
                                             <?php } ?>
-                                        </td>
-                                        <td class="td-center">
-                                            <form method="POST" class="form-table" action="usersBack.php">
-                                                <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                                <input type="hidden" name="function" value="delete">
-                                                <input type="hidden" name="user" value="<?php echo $user[$i]; ?>">
-                                                <input type="submit" onclick="return confirm('¿Deseas eliminar al usuario?')" class="boton-rojo-block" value="Eliminar">
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php } else { ?>
-                                    <tr class="disabled-row">
-                                        <td class="td-center"><input id="checkbox_<?php echo $id[$i]; ?>" type="checkbox" onclick="selectRows(this, <?php echo $id[$i] ?>)" disabled> </td>
-                                        <td contenteditable='false' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
-                                        <td contenteditable='false' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
-                                        <td contenteditable='false' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
-                                        <td>
-                                            <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>" disabled>
-                                                <?php if ($profile[$i] == 'super-admin') { ?>
-                                                    <option value="super-admin" selected>super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'admin-junior') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior" selected>admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'coordinador') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador" selected>coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'operador') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador" selected>operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'recluta-interno') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno" selected>recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'recluta-externo') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo" selected>recluta-externo</option>
-                                                <?php } else { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo" selected>recluta-externo</option>
-                                                <?php } ?>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <?php echo $created_on[$i]; ?>
-                                        </td>
-                                        <td class="td-center td-icon">
-                                            <?php if ($enabled[$i] == 'true') { ?>
-                                                <button onclick='toggle("false",<?php echo $id[$i] ?>,"enabled")' disabled>
-                                                    <i class='fa-solid fa-toggle-on false'></i>
-                                                </button>
-                                            <?php } else { ?>
-                                                <button onclick='toggle("true",<?php echo $id[$i] ?>,"enabled")' disabled>
-                                                    <i class='fa-solid fa-toggle-off false'></i>
-                                                </button>
-                                            <?php } ?>
-                                        </td>
-                                        <td class="td-center">
-                                            <form method="POST" class="form-table" action="usersBack.php">
-                                                <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                                <input type="hidden" name="function" value="delete">
-                                                <input type="hidden" name="user" value="<?php echo $user[$i]; ?>">
-                                                <input type="submit" onclick="return confirm('¿Deseas eliminar al usuario?')" class="boton-rojo-block" value="Eliminar" disabled>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <?php echo $created_on[$i]; ?>
+                                    </td>
+                                    <td class="td-center td-icon">
+                                        <?php if ($enabled[$i] == 'true') { ?>
+                                            <button onclick='toggle("false",<?php echo $id[$i] ?>,"enabled")'>
+                                                <i class='fa-solid fa-toggle-on false'></i>
+                                            </button>
+                                        <?php } else { ?>
+                                            <button onclick='toggle("true",<?php echo $id[$i] ?>,"enabled")'>
+                                                <i class='fa-solid fa-toggle-off false'></i>
+                                            </button>
+                                        <?php } ?>
+                                    </td>
+                                    <td class="td-center">
+                                        <form method="POST" class="form-table" action="usersBack.php">
+                                            <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
+                                            <input type="hidden" name="function" value="delete">
+                                            <input type="hidden" name="user" value="<?php echo $user[$i]; ?>">
+                                            <input type="submit" onclick="return confirm('¿Deseas eliminar al usuario?')" class="boton-rojo-block" value="Eliminar">
+                                        </form>
+                                    </td>
+                                </tr>
                             <?php } ?>
                         <?php } ?>
                     </tbody>
@@ -624,7 +496,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     id: id,
                     newValue: newValue,
                     column: column,
-                    page: 'users'
+                    page: 'guests'
                 })
             })
             .then(res => res.text()) // expect plain text for echo
@@ -638,7 +510,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
     function toggleDropdown() {
         document.getElementById("myDropdown-profile").classList.toggle("profile-show");
-document.getElementById("content").classList.toggle("content-show");
+        document.getElementById("content").classList.toggle("content-show");
     }
 
     // Optional: close dropdown when clicking outside

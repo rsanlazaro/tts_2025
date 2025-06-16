@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($function == 'deleteSelected') {
+        $page = $input['page'];
         $ids = $input['id'];
         $idsSQL = '(';
         $count = 0;
@@ -38,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $idsSQL = $idsSQL . ')';
         if (isset($ids)) {
-            $query = "DELETE FROM users WHERE id IN ${idsSQL}";
+            $query = "DELETE FROM $page WHERE id IN ${idsSQL}";
             echo "Query: $query\n";
             $result = mysqli_query($conn, $query);
             header("Location: users.php?msg=El usuario '" . $user . "' se ha eliminado exitosamente");
@@ -46,32 +47,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($function == 'delete') {
+        $page = $input['page'];
         $id = $_POST['id'];
         $id = filter_var($id, FILTER_VALIDATE_INT);
         $user = $_POST['user'];
         if (isset($id)) {
-            $query = "DELETE FROM users WHERE id = ${id}";
+            $query = "DELETE FROM $page WHERE id = ${id}";
             $result = mysqli_query($conn, $query);
             header("Location: users.php?msg=El usuario '" . $user . "' se ha eliminado exitosamente");
         }
     }
 
     if ($function == 'insert') {
+        $page = $input['page'];
         $today = date("Y-m-d H:i:s");
-        $sql = "INSERT INTO users (username, password, created_on)
+        $sql = "INSERT INTO $page (username, password, created_on)
         VALUES ('-', '-', '${today}');";
         $result = mysqli_query($conn, $sql);
     }
 
     if ($function == 'update') {
+        $page = $input['page'];
         $id = $input['id'] ?? 'No id value';
         $newValue = $input['newValue'] ?? 'No newValue value';
         $column = $input['column'] ?? 'No column value';
         $id = filter_var($id, FILTER_VALIDATE_INT);
         if (isset($id)) {
-            $query = "UPDATE users SET $column = '${newValue}' WHERE id = ${id}";
+            $query = "UPDATE $page SET $column = '${newValue}' WHERE id = ${id}";
             $result = mysqli_query($conn, $query);
         }
-        echo "Received ID: $id with column $column and newValue $newValue";
+        echo "Received ID: $id with column $column and newValue $newValue from page $page";
     }
 }

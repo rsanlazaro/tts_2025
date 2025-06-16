@@ -79,7 +79,7 @@ $dt->modify('-6 hours'); // Manual offset for Mexico City
                 <img class="icon-img" src="../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+                    <a class="dropdown-item" href="guests.php">Listado de Usuarios</a>
                     <a class="dropdown-item" href="#">Listado de Externos</a>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
