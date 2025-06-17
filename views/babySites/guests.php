@@ -285,12 +285,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                                         <?php } ?>
                                     </td>
                                     <td class="td-center">
-                                        <form method="POST" class="form-table" action="usersBack.php">
-                                            <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                            <input type="hidden" name="function" value="delete">
-                                            <input type="hidden" name="user" value="<?php echo $user[$i]; ?>">
-                                            <input type="submit" onclick="return confirm('¿Deseas eliminar al usuario?')" class="boton-rojo-block" value="Eliminar">
-                                        </form>
+                                        <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)">
+                                            Eliminar
+                                        </button>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -454,11 +451,20 @@ while ($row = mysqli_fetch_assoc($result)) {
         }
     }
 
+    function deteleOne(id) {
+        if (confirm('¿Desear eliminar al usuario?')) {
+            functionName = 'delete';
+            fetchContent(functionName, id);
+            location.reload();
+        }
+    }
+
     function deleteSelected() {
-        confirm('¿Deseas eliminar a los usuarios seleccionados?')
-        functionName = 'deleteSelected';
-        fetchContent(functionName, selectedRows);
-        location.reload();
+        if (confirm('¿Deseas eliminar a los usuarios seleccionados?')) {
+            functionName = 'deleteSelected';
+            fetchContent(functionName, selectedRows);
+            location.reload();
+        }
     }
 
     function newUser() {

@@ -42,19 +42,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $query = "DELETE FROM $page WHERE id IN ${idsSQL}";
             echo "Query: $query\n";
             $result = mysqli_query($conn, $query);
-            header("Location: users.php?msg=El usuario '" . $user . "' se ha eliminado exitosamente");
         }
     }
 
     if ($function == 'delete') {
         $page = $input['page'];
-        $id = $_POST['id'];
+        $id = $input['id'];
         $id = filter_var($id, FILTER_VALIDATE_INT);
-        $user = $_POST['user'];
         if (isset($id)) {
             $query = "DELETE FROM $page WHERE id = ${id}";
             $result = mysqli_query($conn, $query);
-            header("Location: users.php?msg=El usuario '" . $user . "' se ha eliminado exitosamente");
         }
     }
 

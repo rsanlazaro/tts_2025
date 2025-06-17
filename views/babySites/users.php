@@ -79,11 +79,11 @@ while ($row = mysqli_fetch_assoc($result)) {
             <img style="cursor:pointer;" onclick="toggleDropdown()" src="../../build/img/testImg/profilepic.webp" alt="Profile Picture">
             <div id="myDropdown-profile" class="dropdown-content-profile">
                 <a href="../../logout.php">Cerrar sesión
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-</svg>
-</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                    </svg>
+                </a>
             </div>
         </div>
     </header>
@@ -329,12 +329,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                                             <?php } ?>
                                         </td>
                                         <td class="td-center">
-                                            <form method="POST" class="form-table" action="usersBack.php">
-                                                <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                                <input type="hidden" name="function" value="delete">
-                                                <input type="hidden" name="user" value="<?php echo $user[$i]; ?>">
-                                                <input type="submit" onclick="return confirm('¿Deseas eliminar al usuario?')" class="boton-rojo-block" value="Eliminar">
-                                            </form>
+                                            <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)">
+                                                Eliminar
+                                            </button>
                                         </td>
                                     </tr>
                                 <?php } else { ?>
@@ -412,12 +409,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                                             <?php } ?>
                                         </td>
                                         <td class="td-center">
-                                            <form method="POST" class="form-table" action="usersBack.php">
-                                                <input type="hidden" name="id" value="<?php echo $id[$i]; ?>">
-                                                <input type="hidden" name="function" value="delete">
-                                                <input type="hidden" name="user" value="<?php echo $user[$i]; ?>">
-                                                <input type="submit" onclick="return confirm('¿Deseas eliminar al usuario?')" class="boton-rojo-block" value="Eliminar" disabled>
-                                            </form>
+                                            <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)">
+                                                Eliminar
+                                            </button>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -576,17 +570,28 @@ while ($row = mysqli_fetch_assoc($result)) {
         if (selectedRows.length > 0) {
             const deleteButton = document.getElementById('delete_selected');
             deleteButton.disabled = false;
+            console.log("ok");
         } else {
             const deleteButton = document.getElementById('delete_selected');
             deleteButton.disabled = true;
+            console.log("not ok");
+        }
+    }
+
+    function deteleOne(id) {
+        if (confirm('¿Desear eliminar al usuario?')) {
+            functionName = 'delete';
+            fetchContent(functionName, id);
+            location.reload();
         }
     }
 
     function deleteSelected() {
-        confirm('¿Deseas eliminar a los usuarios seleccionados?')
-        functionName = 'deleteSelected';
-        fetchContent(functionName, selectedRows);
-        location.reload();
+        if (confirm('¿Deseas eliminar a los usuarios seleccionados?')) {
+            functionName = 'deleteSelected';
+            fetchContent(functionName, selectedRows);
+            location.reload();
+        }
     }
 
     function newUser() {
@@ -638,7 +643,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
     function toggleDropdown() {
         document.getElementById("myDropdown-profile").classList.toggle("profile-show");
-document.getElementById("content").classList.toggle("content-show");
+        document.getElementById("content").classList.toggle("content-show");
     }
 
     // Optional: close dropdown when clicking outside
