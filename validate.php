@@ -29,7 +29,12 @@ if (empty($username)) {
     exit();
 } else {
 
-    $sql = "SELECT * FROM users WHERE username='$username'";
+    if ($section == 'babyCloud') {
+        $sql = "SELECT * FROM guests WHERE username='$username'";
+    } else if ($section == 'babySites') {
+        $sql = "SELECT * FROM users WHERE username='$username'";
+    }
+
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     if ($row['username'] != '-') {
@@ -51,7 +56,7 @@ if (empty($username)) {
                     // Clear the cookie
                     setcookie('remembered_username', '', time() - 3600);
                 }
-                if (end(explode('-', $_SESSION['type'])) == 'external') {
+                if ($section == 'babyCloud') {
                     header("Location: views/babyCloud/home.php");
                 } else {
                     header("Location: views/babySites/home.php");

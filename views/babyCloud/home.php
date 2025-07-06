@@ -10,11 +10,10 @@ include '../../includes/templates/header_begin.php';
 include '../../includes/templates/header_end.php';
 ?>
 
-
 <main class="baby-cloud-home">
     <div class="d-flex justify-content-center"><img src="../../build/img/logos/babyCloud.webp" alt="babyCloud logo"></div>
     <div class="d-flex justify-content-center links">
-        <div class="baby-cloud-component"> <img src="../../build/img/icons/upload.webp"> <a href="#" class="btn-blue">Baby cloud</a></div>
+        <div class="baby-cloud-component"> <img src="../../build/img/icons/upload.webp"> <a href="sort_ip.php" class="btn-blue">Baby cloud</a></div>
         <div class="baby-cloud-component"> <img src="../../build/img/icons/settings.webp"> <a href="#" class="btn-blue">Agency</a></div>
     </div>
     <div class="d-flex justify-content-center"> <a href="../../index.php"> <img src="../../build/img/logos/tts.webp" alt="babyCloud logo"> </a></div>

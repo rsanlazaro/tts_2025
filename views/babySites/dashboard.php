@@ -10,6 +10,7 @@ include '../../includes/templates/header_begin.php';
 include '../../includes/templates/header_end.php';
 include '../../includes/app.php';
 include '../../includes/templates/sessionStart.php';
+include '../../includes/templates/validateAccessInternal.php';
 
 $id_user = $_GET['user'] ?? $_SESSION['id'] ?? null;
 
@@ -79,8 +80,8 @@ $dt->modify('-6 hours'); // Manual offset for Mexico City
                 <img class="icon-img" src="../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item" href="guests.php">Listado de Usuarios</a>
-                    <a class="dropdown-item" href="#">Listado de Externos</a>
+                    <a class="dropdown-item" href="pro_gestor/users.php">Listado de Usuarios</a>
+                    <a class="dropdown-item" href="pro_gestor/guests.php">Listado de Externos</a>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -111,7 +112,7 @@ $dt->modify('-6 hours'); // Manual offset for Mexico City
                 <img class="icon-img" src="../../build/img/icons/babySite-upload.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">BABY CLOUD UPLOAD</div>
-                    <a class="dropdown-item" href="#">Listado Cloud_IPS</a>
+                    <a class="dropdown-item" href="baby_cloud_upload/sort_ips.php">Listado Cloud_IPS</a>
                     <a class="dropdown-item" href="#">Listado Cloud_GES</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
@@ -119,7 +120,7 @@ $dt->modify('-6 hours'); // Manual offset for Mexico City
         </div>
         <div class="lateral-info">
             <div class="logo">
-                <img src="../../build/img/logos/babySite.webp" alt="Baby Site Logo">
+                <a href="dashboard.php"><img src="../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
             </div>
             <div class="date">
                 <div>

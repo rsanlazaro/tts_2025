@@ -1,16 +1,16 @@
 <?php
-include '../../includes/templates/header_begin.php';
+include '../../../includes/templates/header_begin.php';
 ?>
 
-<link rel="stylesheet" href="../../build/css/app.css" />
-<link href="../../assets/css/paper-dashboard.css" rel="stylesheet" />
-<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../../build/css/app.css" />
+<link href="../../../assets/css/paper-dashboard.css" rel="stylesheet" />
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" />
 
 <?php
-include '../../includes/templates/header_end.php';
-include '../../includes/app.php';
-include '../../includes/templates/sessionStart.php';
-include '../../includes/templates/validateAccessInternal.php';
+include '../../../includes/templates/header_end.php';
+include '../../../includes/app.php';
+include '../../../includes/templates/sessionStart.php';
+include '../../../includes/templates/validateAccessInternal.php';
 
 $id_user = $_GET['user'] ?? $_SESSION['id'] ?? null;
 
@@ -62,25 +62,25 @@ $sql = "SELECT * FROM access WHERE id=1";
 $result = mysqli_query($conn, $sql);
 $index = 0;
 while ($row = mysqli_fetch_assoc($result)) {
-    for ($i = 1; $i <= 50; $i++) {
+    for ($i = 1; $i <= 100; $i++) {
         $column_db = 'super_admin_' . $i;
         ${"super_admin_" . $i} = $row[$column_db];
     }
-    for ($i = 1; $i <= 50; $i++) {
+    for ($i = 1; $i <= 100; $i++) {
         $column_db = 'admin_jr_' . $i;
         ${"admin_jr_" . $i} = $row[$column_db];
     }
-    for ($i = 1; $i <= 50; $i++) {
-        $column_db = 'coordina_' . $i;
-        ${"coordina_" . $i} = $row[$column_db];
+    for ($i = 1; $i <= 100; $i++) {
+        $column_db = 'coordinator_' . $i;
+        ${"coordinator_" . $i} = $row[$column_db];
     }
-    for ($i = 1; $i <= 50; $i++) {
-        $column_db = 'operador_' . $i;
-        ${"operador_" . $i} = $row[$column_db];
+    for ($i = 1; $i <= 100; $i++) {
+        $column_db = 'operator_' . $i;
+        ${"operator_" . $i} = $row[$column_db];
     }
-    for ($i = 1; $i <= 50; $i++) {
-        $column_db = 'recluta_' . $i;
-        ${"recluta_" . $i} = $row[$column_db];
+    for ($i = 1; $i <= 100; $i++) {
+        $column_db = 'recruit_' . $i;
+        ${"recruit_" . $i} = $row[$column_db];
     }
 }
 
@@ -89,15 +89,13 @@ echo ($super_admin_1);
 // Values for the table of roles
 $pro_gestor_1 = ['Listado de Nota de Atención', 'Abrir de Nota de Atención'];
 $pro_gestor_2 = ['Listado de Nota Pendiente', 'Abrir Nota Pendiente'];
-$pro_gestor_3 = ['Listado de Pagos', 'Registro de pagos'];
-$pro_gestor_4 = ['Listado de Usuarios', 'Crear usuario', 'Editar usuario', 'Contraseña de usuario', 'Permisos de usuario', 'Borrar usuario'];
-$pro_gestor_5 = ['Listado de Guests', 'Crear Guest', 'Editar Guest', 'Contraseña de Guest', 'Permisos de Guest', 'Borrar Guess'];
-$pro_gestor_6 = ['Dash Boards'];
-$pro_gestor_7 = ['Permisos & Roles'];
+$pro_gestor_3 = ['Listado de Pagos', 'Registro de Pagos','Editar/Alterar Pagos Registrados'];
+$pro_gestor_4 = ['Listado de Usuarios', 'Crear usuario', 'Editar usuario', 'Contraseña de Usuario', 'Permisos de Usuario', 'Borrar Usuario'];
+$pro_gestor_5 = ['Listado de Guests', 'Crear Guests', 'Editar Guests', 'Contraseña de Guests', 'Permisos de Guests', 'Borrar Guests','Dash Boards'];
 
-$baby_site_1 = ['Listado Sort_GES', 'Alta Sort_GES', 'Alta documentación', 'Editar Documentación', 'Alta Citas', 'Tratamientos', 'Alta Seguro', 'Perfil Psico', 'Socio Económico'];
-$baby_site_2 = ['Listado Sort_IP', 'Alta Sort_IP', 'Documentación', 'Start Crio Embrio', 'Enviar a Pizarrón', 'Crear Sort_IP', 'Editar Sort_IP'];
-$baby_site_3 = ['Programas', 'Crioembrio', 'Iniciales', 'Pizarrón', 'Embarazos', 'Seguros'];
+$baby_site_1 = ['Listado Sort_GES', 'Alta Sort_GES', 'Documentación', 'Alterar Documentación', 'Start Programa', 'Alta Seguro'];
+$baby_site_2 = ['Listado Sort_IP', 'Editar Sort_IP', 'Documentación', 'Alterar/Borrar Documentación', 'Start Crio Embrio', 'Actualizar Seguimiento'];
+$baby_site_3 = ['Programas', 'Crioembrio', 'Asignar/Editar Donante', 'Editar Material Genético', 'Seleccionar Material Genético', 'Asignar/Editar Gestante', 'Iniciales', 'Perfil Psicológico', 'Agregar Sesión Psicológica', 'Alterar datos Sesión Psicológica', 'Socio Económico', 'Agregar Visita ESE', 'Alterar Datos ESE', 'Alta Citas', 'Agregar Tratamientos', 'Enviar a Pizarrón', 'Pizarrón', 'Agregar ACO', 'Detener ACO', 'Comenzar Preparación', 'Detener Preparación', 'Enviar a Transfer', 'Registrar Beta', 'Registrar Saco Gestacional', 'Registrar Latido', 'Confirmar GESTA', 'Comenzar SDG GESTA', 'Agenda de Seguro'];
 $baby_site_4 = ['Listado Egg Donor'];
 $baby_site_5 = ['Dash Boards'];
 
@@ -110,9 +108,7 @@ $sections_1 = array(
     $pro_gestor_2,
     $pro_gestor_3,
     $pro_gestor_4,
-    $pro_gestor_5,
-    $pro_gestor_6,
-    $pro_gestor_7
+    $pro_gestor_5
 );
 
 $sections_2 = array(
@@ -152,9 +148,9 @@ $sections_4 = array(
             <div class="last-name"><?php echo $last_name_user; ?></div>
         </div>
         <div class="profile-pic">
-            <img style="cursor:pointer;" onclick="toggleDropdown()" src="../../build/img/testImg/profilepic.webp" alt="Profile Picture">
+            <img style="cursor:pointer;" onclick="toggleDropdown()" src="../../../build/img/testImg/profilepic.webp" alt="Profile Picture">
             <div id="myDropdown-profile" class="dropdown-content-profile">
-                <a href="../../logout.php">Cerrar sesión
+                <a href="../../../logout.php">Cerrar sesión
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
                         <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
@@ -166,7 +162,7 @@ $sections_4 = array(
     <div class="sidebar">
         <div class="lateral">
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../build/img/icons/babySite-admin.webp" alt="icon">
+                <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
                     <a class="dropdown-item active" href="users.php">Listado de Usuarios</a>
@@ -177,7 +173,7 @@ $sections_4 = array(
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../build/img/icons/babySite-user.webp" alt="icon">
+                <img class="icon-img" src="../../../build/img/icons/babySite-user.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">BABY SITE</div>
                     <a class="dropdown-item" href="#">Listado Sort_GES</a>
@@ -188,7 +184,7 @@ $sections_4 = array(
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../build/img/icons/babySite-recluta.webp" alt="icon">
+                <img class="icon-img" src="../../../build/img/icons/babySite-recluta.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">RECLUTA</div>
                     <a class="dropdown-item" href="#">Nueva Candidata</a>
@@ -198,10 +194,10 @@ $sections_4 = array(
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../build/img/icons/babySite-upload.webp" alt="icon">
+                <img class="icon-img" src="../../../build/img/icons/babySite-upload.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">BABY CLOUD UPLOAD</div>
-                    <a class="dropdown-item" href="#">Listado Cloud_IPS</a>
+                    <a class="dropdown-item" href="../baby_cloud_upload/sort_ips.php">Listado Cloud_IPS</a>
                     <a class="dropdown-item" href="#">Listado Cloud_GES</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
@@ -209,7 +205,7 @@ $sections_4 = array(
         </div>
         <div class="lateral-info">
             <div class="logo">
-                <img src="../../build/img/logos/babySite.webp" alt="Baby Site Logo">
+                <a href="../dashboard.php"><img src="../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
             </div>
             <div class="date">
                 <div>
@@ -293,7 +289,13 @@ $sections_4 = array(
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th></th>
+                            <th>
+                                <div class="d-flex justify-content-end me-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                    </svg>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <?php $row_component = 0; ?>
@@ -311,9 +313,9 @@ $sections_4 = array(
                             <?php foreach ($section_component as $row) { ?>
                                 <?php $row_component++; ?>
                                 <tr <?php if ($row_counter == 1) {
-                                        echo "class='collapse show row-first'";
+                                        echo "class='collapse row-first'";
                                     } else {
-                                        echo "class='collapse show'";
+                                        echo "class='collapse'";
                                     } ?> id="section1">
                                     <td class="td-icon">
                                         <?php echo $row; ?>
@@ -327,7 +329,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -338,7 +340,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -349,7 +351,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -363,7 +365,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -374,7 +376,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -385,13 +387,13 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
                                     <?php } ?>
                                     <?php $column_component++ ?>
-                                    <?php $cell_component = ${"coordina_" . $row_component};
+                                    <?php $cell_component = ${"coordinator_" . $row_component};
                                     if ($cell_component == 0) { ?>
                                         <td class="td-icon">
                                             <div class="buttons-center">
@@ -399,7 +401,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -410,7 +412,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -421,13 +423,13 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
                                     <?php } ?>
                                     <?php $column_component++ ?>
-                                    <?php $cell_component = ${"operador_" . $row_component};
+                                    <?php $cell_component = ${"operator_" . $row_component};
                                     if ($cell_component == 0) { ?>
                                         <td class="td-icon">
                                             <div class="buttons-center">
@@ -435,7 +437,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -446,7 +448,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -457,13 +459,13 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
                                     <?php } ?>
                                     <?php $column_component++ ?>
-                                    <?php $cell_component = ${"recluta_" . $row_component};
+                                    <?php $cell_component = ${"recruit_" . $row_component};
                                     if ($cell_component == 0) { ?>
                                         <td class="td-icon">
                                             <div class="buttons-center">
@@ -471,7 +473,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -482,7 +484,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -493,7 +495,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -510,7 +512,13 @@ $sections_4 = array(
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th></th>
+                            <th>
+                                <div class="d-flex justify-content-end me-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                    </svg>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -519,9 +527,9 @@ $sections_4 = array(
                             <?php foreach ($section_component as $row) { ?>
                                 <?php $row_component++; ?>
                                 <tr <?php if ($row_counter == 1) {
-                                        echo "class='collapse show row-first'";
+                                        echo "class='collapse row-first'";
                                     } else {
-                                        echo "class='collapse show'";
+                                        echo "class='collapse'";
                                     } ?> id="section2">
                                     <td class="td-icon">
                                         <?php echo $row; ?>
@@ -535,7 +543,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -546,7 +554,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -557,7 +565,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -571,7 +579,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -582,7 +590,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -593,13 +601,13 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
                                     <?php } ?>
                                     <?php $column_component++ ?>
-                                    <?php $cell_component = ${"coordina_" . $row_component};
+                                    <?php $cell_component = ${"coordinator_" . $row_component};
                                     if ($cell_component == 0) { ?>
                                         <td class="td-icon">
                                             <div class="buttons-center">
@@ -607,7 +615,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -618,7 +626,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -629,13 +637,13 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
                                     <?php } ?>
                                     <?php $column_component++ ?>
-                                    <?php $cell_component = ${"operador_" . $row_component};
+                                    <?php $cell_component = ${"operator_" . $row_component};
                                     if ($cell_component == 0) { ?>
                                         <td class="td-icon">
                                             <div class="buttons-center">
@@ -643,7 +651,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -654,7 +662,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -665,13 +673,13 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
                                     <?php } ?>
                                     <?php $column_component++ ?>
-                                    <?php $cell_component = ${"recluta_" . $row_component};
+                                    <?php $cell_component = ${"recruit_" . $row_component};
                                     if ($cell_component == 0) { ?>
                                         <td class="td-icon">
                                             <div class="buttons-center">
@@ -679,7 +687,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -690,7 +698,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -701,7 +709,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -718,7 +726,13 @@ $sections_4 = array(
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th></th>
+                            <th>
+                                <div class="d-flex justify-content-end me-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                    </svg>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -727,9 +741,9 @@ $sections_4 = array(
                             <?php foreach ($section_component as $row) { ?>
                                 <?php $row_component++; ?>
                                 <tr <?php if ($row_counter == 1) {
-                                        echo "class='collapse show row-first'";
+                                        echo "class='collapse row-first'";
                                     } else {
-                                        echo "class='collapse show'";
+                                        echo "class='collapse'";
                                     } ?> id="section3">
                                     <td class="td-icon">
                                         <?php echo $row; ?>
@@ -743,7 +757,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -754,7 +768,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -765,7 +779,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -779,7 +793,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -790,7 +804,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -801,13 +815,13 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
                                     <?php } ?>
                                     <?php $column_component++ ?>
-                                    <?php $cell_component = ${"coordina_" . $row_component};
+                                    <?php $cell_component = ${"coordinator_" . $row_component};
                                     if ($cell_component == 0) { ?>
                                         <td class="td-icon">
                                             <div class="buttons-center">
@@ -815,7 +829,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -826,7 +840,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -837,13 +851,13 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
                                     <?php } ?>
                                     <?php $column_component++ ?>
-                                    <?php $cell_component = ${"operador_" . $row_component};
+                                    <?php $cell_component = ${"operator_" . $row_component};
                                     if ($cell_component == 0) { ?>
                                         <td class="td-icon">
                                             <div class="buttons-center">
@@ -851,7 +865,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -862,7 +876,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -873,13 +887,13 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
                                     <?php } ?>
                                     <?php $column_component++ ?>
-                                    <?php $cell_component = ${"recluta_" . $row_component};
+                                    <?php $cell_component = ${"recruit_" . $row_component};
                                     if ($cell_component == 0) { ?>
                                         <td class="td-icon">
                                             <div class="buttons-center">
@@ -887,7 +901,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -898,7 +912,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -909,7 +923,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -926,7 +940,13 @@ $sections_4 = array(
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th></th>
+                            <th>
+                                <div class="d-flex justify-content-end me-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                    </svg>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -935,9 +955,9 @@ $sections_4 = array(
                             <?php foreach ($section_component as $row) { ?>
                                 <?php $row_component++; ?>
                                 <tr <?php if ($row_counter == 1) {
-                                        echo "class='collapse show row-first'";
+                                        echo "class='collapse row-first'";
                                     } else {
-                                        echo "class='collapse show'";
+                                        echo "class='collapse'";
                                     } ?> id="section4">
                                     <td class="td-icon">
                                         <?php echo $row; ?>
@@ -951,7 +971,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -962,7 +982,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -973,7 +993,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -987,7 +1007,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -998,7 +1018,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -1009,13 +1029,13 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
                                     <?php } ?>
                                     <?php $column_component++ ?>
-                                    <?php $cell_component = ${"coordina_" . $row_component};
+                                    <?php $cell_component = ${"coordinator_" . $row_component};
                                     if ($cell_component == 0) { ?>
                                         <td class="td-icon">
                                             <div class="buttons-center">
@@ -1023,7 +1043,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -1034,7 +1054,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -1045,13 +1065,13 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
                                     <?php } ?>
                                     <?php $column_component++ ?>
-                                    <?php $cell_component = ${"operador_" . $row_component};
+                                    <?php $cell_component = ${"operator_" . $row_component};
                                     if ($cell_component == 0) { ?>
                                         <td class="td-icon">
                                             <div class="buttons-center">
@@ -1059,7 +1079,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -1070,7 +1090,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -1081,13 +1101,13 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
                                     <?php } ?>
                                     <?php $column_component++ ?>
-                                    <?php $cell_component = ${"recluta_" . $row_component};
+                                    <?php $cell_component = ${"recruit_" . $row_component};
                                     if ($cell_component == 0) { ?>
                                         <td class="td-icon">
                                             <div class="buttons-center">
@@ -1095,7 +1115,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye-slash'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -1106,7 +1126,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -1117,7 +1137,7 @@ $sections_4 = array(
                                                     <i class='fa-solid fa-eye'></i>
                                                 </button>
                                                 <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
                                                 </button>
                                             </div>
                                         </td>
@@ -1137,7 +1157,7 @@ $sections_4 = array(
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Custom JS -->
-<script src="../../build/js/bundle.min.js"></script>
+<script src="../../../build/js/bundle.min.js"></script>
 <script>
     // Clock functionality
     function updateClock() {
@@ -1209,7 +1229,7 @@ $sections_4 = array(
     }
 </script>
 <!-- Custom JS -->
-<script src="../../build/js/paginationFilter.min.js"></script>
+<script src="../../../build/js/paginationFilter.min.js"></script>
 <!-- Pagination -->
 <script>
     let options = {
@@ -1273,13 +1293,13 @@ $sections_4 = array(
                 columnName = "admin_jr_";
                 break;
             case 3:
-                columnName = "coordina_";
+                columnName = "coordinator_";
                 break;
             case 4:
-                columnName = "operador_";
+                columnName = "operator_";
                 break;
             case 5:
-                columnName = "recluta_";
+                columnName = "recruit_";
                 break;
             default:
         }

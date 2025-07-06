@@ -12,7 +12,7 @@ if (isset($_POST['function'])) {
     $function = $input['function'] ?? 'No function value';
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include "../../includes/app.php";
+    include "../../../includes/app.php";
     $conn = connectDB();
 
     if ($function == 'toggleAccess') {
