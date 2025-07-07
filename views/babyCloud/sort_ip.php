@@ -384,19 +384,31 @@ $stage = 5;
 $prev_stage = $stage - 1;
 ${"Stage_$stage"} = new stdClass();
 $table = "ipregister_" . $stage;
-$sql = "SELECT * FROM $table WHERE id=${id_user}";
+$sql = "SELECT * FROM ipregister_5_1 WHERE id=${id_user}";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) === 0) {
-    $sql = "INSERT INTO $table (id) VALUES (${id_user})";
+    $sql = "INSERT INTO ipregister_5_1 (id) VALUES (${id_user})";
     $result = mysqli_query($conn, $sql);
 } else {
     while ($row = mysqli_fetch_assoc($result)) {
-        for ($i = 1; $i <= 286; $i++) {
+        for ($i = 1; $i <= 150; $i++) {
             ${"stage_{$stage}_{$i}"} = $row['stage_' . $i];
         }
     }
 }
-$sql = "SELECT * FROM $table WHERE id=${id_user}";
+$sql = "SELECT * FROM ipregister_5_2 WHERE id=${id_user}";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) === 0) {
+    $sql = "INSERT INTO ipregister_5_2 (id) VALUES (${id_user})";
+    $result = mysqli_query($conn, $sql);
+} else {
+    while ($row = mysqli_fetch_assoc($result)) {
+        for ($i = 151; $i <= 286; $i++) {
+            ${"stage_{$stage}_{$i}"} = $row['stage_' . $i];
+        }
+    }
+}
+$sql = "SELECT * FROM ipregister_5_2 WHERE id=${id_user}";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
     for ($i = 1; $i <= 8; $i++) {
@@ -874,7 +886,7 @@ function tableStage2(
         </div>
         <div class="lateral-info">
             <div class="logo">
-                <a href="../dashboard.php"><img src="../../build/img/logos/babyCloud.webp" alt="Baby Site Logo"></a>
+                <a href="../home.php"><img src="../../build/img/logos/babyCloud.webp" alt="Baby Site Logo"></a>
             </div>
             <div class="date">
                 <div>

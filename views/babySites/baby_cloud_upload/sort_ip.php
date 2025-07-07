@@ -153,8 +153,6 @@ if (mysqli_num_rows($result) === 0) {
         }
     }
 }
-var_dump($table);
-var_dump($ip_id);
 $sql = "SELECT * FROM $table WHERE id=${ip_id}";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
@@ -392,19 +390,31 @@ $stage = 5;
 $prev_stage = $stage - 1;
 ${"Stage_$stage"} = new stdClass();
 $table = "ipregister_" . $stage;
-$sql = "SELECT * FROM $table WHERE id=${ip_id}";
+$sql = "SELECT * FROM ipregister_5_1 WHERE id=${ip_id}";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) === 0) {
-    $sql = "INSERT INTO $table (id) VALUES (${ip_id})";
+    $sql = "INSERT INTO ipregister_5_1 (id) VALUES (${ip_id})";
     $result = mysqli_query($conn, $sql);
 } else {
     while ($row = mysqli_fetch_assoc($result)) {
-        for ($i = 1; $i <= 286; $i++) {
+        for ($i = 1; $i <= 150; $i++) {
             ${"stage_{$stage}_{$i}"} = $row['stage_' . $i];
         }
     }
 }
-$sql = "SELECT * FROM $table WHERE id=${ip_id}";
+$sql = "SELECT * FROM ipregister_5_2 WHERE id=${ip_id}";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) === 0) {
+    $sql = "INSERT INTO ipregister_5_2 (id) VALUES (${ip_id})";
+    $result = mysqli_query($conn, $sql);
+} else {
+    while ($row = mysqli_fetch_assoc($result)) {
+        for ($i = 151; $i <= 286; $i++) {
+            ${"stage_{$stage}_{$i}"} = $row['stage_' . $i];
+        }
+    }
+}
+$sql = "SELECT * FROM ipregister_5_2 WHERE id=${ip_id}";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
     for ($i = 1; $i <= 8; $i++) {
@@ -880,7 +890,7 @@ function tableStage2(
         </div>
         <div class="lateral-info">
             <div class="logo">
-                <a href="../dashboard.php"><img src="../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
+                <a href="../home.php"><img src="../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
             </div>
             <div class="date">
                 <div>

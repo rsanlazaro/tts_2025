@@ -16,12 +16,17 @@ $remembered_username = isset($_COOKIE['remembered_username']) ? $_COOKIE['rememb
 ?>
 
 <main class="login">
-    <img src="build/img/logos/TTS.webp" alt="TTS logo">
+    <header class="d-flex justify-content-start align-items-center">
+        <div class="logo">
+            <a href="index.php"><img src="build/img/logos/TTS.webp" alt="TTS logo"></a>
+        </div>
+    </header>
+    <?php if (isset($_GET['error'])) { ?>
+        <p class="error"><?php echo $_GET['error']; ?></p>
+    <?php } ?>
     <div class="login-form">
-        <?php if (isset($_GET['error'])) { ?>
-            <p class="error"><?php echo $_GET['error']; ?></p>
-        <?php } ?>
-        <form action="validate.php" method="POST">
+        <form class="blue-form" action="validate.php" method="POST">
+            <input type="hidden" name="section" value='<?php echo "babySites"; ?>' />
             <div class="col-md-12">
                 <input class="form-control" type="text" name="username" placeholder="Usuario" value="<?php echo htmlspecialchars($remembered_username); ?>" required />
             </div>
@@ -32,7 +37,7 @@ $remembered_username = isset($_COOKIE['remembered_username']) ? $_COOKIE['rememb
                 <input type="checkbox" name="remember_me" <?php if (isset($remembered_username)) {
                                                                 echo 'checked';
                                                             } ?>>
-                Remember Me
+                Recuérdame
             </label><br>
             <div class="form-btn d-flex justify-content-center">
                 <button class="btn btn-pink btn-send" type="submit">

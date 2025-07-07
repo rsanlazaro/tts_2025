@@ -133,7 +133,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         </div>
         <div class="lateral-info">
             <div class="logo">
-                <a href="../dashboard.php"><img src="../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
+                <a href="../home.php"><img src="../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
             </div>
             <div class="date">
                 <div>

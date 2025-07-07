@@ -16,6 +16,9 @@ $id_ip = $input['id_ip'] ?? 'No id_ip value';
 include "../../../includes/app.php";
 $conn = connectDB();
 $table = "ipregister_" . $stage;
+if ($table == "ipregister_5") {
+    $table = "ipregister_5_2";
+}
 
 $sql = "SELECT * FROM $table WHERE id=$id_ip";
 $result = mysqli_query($conn, $sql);
@@ -45,6 +48,11 @@ if ($row_number > 0) {
 }
 
 $variable = "stage_" . $id;
+if ($table == "ipregister_5_2") {
+    if ($id <= 150) {
+        $table = "ipregister_5_1";
+    }
+}
 $sql = "UPDATE $table SET $variable='$content' WHERE id=$id_ip";
 mysqli_query($conn, $sql);
 
