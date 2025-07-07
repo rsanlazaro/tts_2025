@@ -78,6 +78,8 @@ $counter_enable = 1;
 
 // ----------------- New Stage ----------------- //
 
+$select_options2 = [];
+
 $stage = 1;
 ${"Stage_$stage"} = new stdClass();
 $titles = ["Agregar", "Crio embrio", "Estado", "Fecha", "Info Adicional", "Uploading/Habilitar Vista"];
@@ -114,7 +116,7 @@ $select_options = [
     "processing" => "Processing",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, $Stage_1->stage_count_1, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_1->stage_count_1, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 
@@ -128,7 +130,7 @@ $select_options = [
     "processing" => "Processing",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, $Stage_1->stage_count_2, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_1->stage_count_2, $description, $select_options, $select_options2, $isStage2);
 
 
 // ----------------- New Stage ----------------- //
@@ -175,7 +177,7 @@ $select_options = [
     "canceled" => "Canceled",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, $Stage_2->stage_count_1, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_2->stage_count_1, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 2;
@@ -187,7 +189,7 @@ $select_options = [
     "underway" => "Underway",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, $Stage_2->stage_count_2, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_2->stage_count_2, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 3;
@@ -198,7 +200,7 @@ $select_options = [
     "waiting" => "Esperando",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, $Stage_2->stage_count_3, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_2->stage_count_3, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 4;
@@ -209,7 +211,12 @@ $select_options = [
     "waiting" => "Esperando",
     "concluding" => "Concluding"
 ];
-generateRow($component, $stage, $Stage_2->stage_count_4, $description, $select_options, $isStage2);
+$select_options2 = [
+    "waiting" => "Esperando Beta",
+    "positive" => "Positivo",
+    "not_confirmed" => "No Confirmado"
+];
+generateRow($component, $stage, $Stage_2->stage_count_4, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 5;
@@ -220,7 +227,12 @@ $select_options = [
     "yes" => "Con presencia",
     "no" => "Sin presencia"
 ];
-generateRow($component, $stage, $Stage_2->stage_count_5, $description, $select_options, $isStage2);
+$select_options2 = [
+    "waiting" => "Esperando",
+    "presence" => "Con Presencia",
+    "not_confirmed" => "No Confirmado"
+];
+generateRow($component, $stage, $Stage_2->stage_count_5, $description, $select_options, $select_options2, $isStage2);
 
 
 // ----------------- New Stage ----------------- //
@@ -264,7 +276,7 @@ $select_options = [
     "successful" => "Successful",
     "notconfirmed" => "No Confirmado"
 ];
-generateRow($component, $stage, $Stage_3->stage_count_1, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_3->stage_count_1, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 2;
@@ -277,7 +289,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_3->stage_count_2, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_3->stage_count_2, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 3;
@@ -290,7 +302,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_3->stage_count_3, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_3->stage_count_3, $description, $select_options, $select_options2, $isStage2);
 
 // ----------------- New Stage ----------------- //
 
@@ -332,7 +344,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_4->stage_count_1, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_4->stage_count_1, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 2;
@@ -345,7 +357,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_4->stage_count_2, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_4->stage_count_2, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 3;
@@ -358,7 +370,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_4->stage_count_3, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_4->stage_count_3, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 4;
@@ -371,7 +383,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_4->stage_count_4, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_4->stage_count_4, $description, $select_options, $select_options2, $isStage2);
 
 // ----------------- New Stage ----------------- //
 
@@ -413,7 +425,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_5->stage_count_1, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_5->stage_count_1, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 2;
@@ -426,7 +438,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_5->stage_count_2, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_5->stage_count_2, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 3;
@@ -439,7 +451,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_5->stage_count_3, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_5->stage_count_3, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 4;
@@ -452,7 +464,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_5->stage_count_4, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_5->stage_count_4, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 5;
@@ -465,7 +477,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_5->stage_count_5, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_5->stage_count_5, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 6;
@@ -478,7 +490,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_5->stage_count_6, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_5->stage_count_6, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 7;
@@ -491,7 +503,7 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_5->stage_count_7, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_5->stage_count_7, $description, $select_options, $select_options2, $isStage2);
 
 // ---------------- New Component -------------- // 
 $component = 8;
@@ -504,9 +516,9 @@ $select_options = [
     "canceled" => "Cancelada",
     "done" => "Realizada"
 ];
-generateRow($component, $stage, $Stage_5->stage_count_8, $description, $select_options, $isStage2);
+generateRow($component, $stage, $Stage_5->stage_count_8, $description, $select_options, $select_options2, $isStage2);
 
-function generateRow(int $component, int $stage, int $row_num, string $description, array $select_options, bool $isStage2)
+function generateRow(int $component, int $stage, int $row_num, string $description, array $select_options, array $select_options2, bool $isStage2)
 {
     global $counter_enable;
     global ${"max_{$stage}_{$component}"};
@@ -582,6 +594,15 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
             ${"info_1_$component"}[$i] = "<td class='td-center'> <p>Candidata</p></td>";
         } else if ($description == "Reporte Transfer <br> Rapport de transfert embryonnaire") {
             ${"info_1_$component"}[$i] = "<td colspan='2'> <p class='td-info-two-cols' contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</p></td>";
+        } else if ($description == "Prueba Beta <br> Beta Test" || $description == "Saco gestacional <br> Sac gestationnel") {
+            ${"info_1_$component"}[$i] = "<td><select class='td-select' id='" . $stage . "_" . $counter_enable . "' onchange='saveContent2(this," . $stage . "," . $counter_enable . ")'>";
+            $state_variable = "";
+            foreach ($select_options2 as $key => $value) {
+                $state_variable .= "<option " . (${"stage_{$stage}_{$counter_enable}"} === $key ? "selected" : "") . " value=$key> " .
+                    $value .
+                    "</option>";
+            }
+            ${"info_1_$component"}[$i] .= $state_variable . "</select></td>";
         } else {
             if ($isStage2) {
                 ${"info_1_$component"}[$i] = "<td colspan='2'> <p class='td-info-two-cols' contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</p></td>";
@@ -923,7 +944,7 @@ function tableStage2(
                     <div class="body">
                         <div class="input-group">
                             <div></div>
-                            <button id="delete_selected" onclick="deleteSelected()">Preview IP </button>
+                            <button onclick="previewIP(<?php $_GET['id'] ?>)">Preview IP </button>
                         </div>
                     </div>
                 </div>
@@ -1587,6 +1608,12 @@ function tableStage2(
                 console.log('Server responded with:', data);
             })
             .catch(error => console.error('Error:', error));
+    }
+    // Preview IP function
+    function previewIP(id) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id_ip = urlParams.get('id');
+        window.location.href = `../../babyCloud/sort_ip.php?id=${id_ip}`;
     }
 </script>
 </body>

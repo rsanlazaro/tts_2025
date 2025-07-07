@@ -12,10 +12,19 @@ include '../../includes/app.php';
 include '../../includes/templates/sessionStart.php';
 include '../../includes/templates/validateAccessExternal.php';
 
+// User's profile identification
+
+$access = ['super-admin','admin-junior','coordinador','operador','recluta-interno'];
+
+if (!(in_array($_SESSION['type'],$access))) {
+    $user_type = 'external';
+} else {
+    $user_type = 'internal';
+}
+
 // For users fetch information
 
-$id_user = $_GET['user'] ?? $_SESSION['id'] ?? null;
-var_dump($id_user);
+$id_user = $_GET['id'] ?? $_SESSION['id'] ?? null;
 
 $sql = "SELECT * FROM guests WHERE id=${id_user}";
 $result = mysqli_query($conn, $sql);
@@ -77,7 +86,7 @@ $counter_enable = 1;
 
 $stage = 1;
 ${"Stage_$stage"} = new stdClass();
-$titles = ["Crio embrio", "Estado", "Fecha", "Info Adicional", "Archivos"];
+$titles = ["","Crio embrio", "Estado", "Fecha", "Info Adicional", "Archivos"];
 ${"Stage_$stage"}->titles = $titles;
 $table = "ipregister_" . $stage;
 $sql = "SELECT * FROM $table WHERE id=${id_user}";
@@ -133,7 +142,7 @@ $counter_enable = 1;
 $stage = 2;
 $prev_stage = $stage - 1;
 ${"Stage_$stage"} = new stdClass();
-$titles = ["Preparación Endometrial > Transferencia", "Resultado", "Fecha", "Info Adicional", "Archivos"];
+$titles = ["","Preparación Endometrial > Transferencia", "Resultado", "Fecha", "Info Adicional", "Archivos"];
 ${"Stage_$stage"}->titles = $titles;
 $table = "ipregister_" . $stage;
 $sql = "SELECT * FROM $table WHERE id=${id_user}";
@@ -224,7 +233,7 @@ $counter_enable = 1;
 $stage = 3;
 $prev_stage = $stage - 1;
 ${"Stage_$stage"} = new stdClass();
-$titles = ["Confirmación embarazo - Primer trimestre", "Descripción", "Resultado", "Fecha", "Ícono resumen", "Uploading", "Habilitar", "Uploading", "Habilitar", "Uploading", "Habilitar", "Habilitar Vista"];
+$titles = ["","Confirmación embarazo - Primer trimestre", "Descripción", "Resultado", "Fecha", "Ícono resumen", "Uploading", "Habilitar", "Uploading", "Habilitar", "Uploading", "Habilitar", "Habilitar Vista"];
 ${"Stage_$stage"}->titles = $titles;
 $table = "ipregister_" . $stage;
 $sql = "SELECT * FROM $table WHERE id=${id_user}";
@@ -584,7 +593,29 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
-        ${"uploading_1_$component"}[$i] = "<td class='td-center' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        if (${"stage_{$stage}_{$counter_enable}"} != '-') {
+            $counter_enable_2 = $counter_enable + 1;
+            global ${"stage_{$stage}_{$counter_enable_2}"};
+            var_dump(${"stage_{$stage}_{$counter_enable_2}"});
+            if (${"stage_{$stage}_{$counter_enable_2}"} == "true") {
+                ${"uploading_1_$component"}[$i] = "<td class='td-center'>
+                <a href=" . ${"stage_{$stage}_{$counter_enable}"} . ">
+                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-file-earmark-pdf-fill' viewBox='0 0 16 16'>
+                    <path d='M5.523 12.424q.21-.124.459-.238a8 8 0 0 1-.45.606c-.28.337-.498.516-.635.572l-.035.012a.3.3 0 0 1-.026-.044c-.056-.11-.054-.216.04-.36.106-.165.319-.354.647-.548m2.455-1.647q-.178.037-.356.078a21 21 0 0 0 .5-1.05 12 12 0 0 0 .51.858q-.326.048-.654.114m2.525.939a4 4 0 0 1-.435-.41q.344.007.612.054c.317.057.466.147.518.209a.1.1 0 0 1 .026.064.44.44 0 0 1-.06.2.3.3 0 0 1-.094.124.1.1 0 0 1-.069.015c-.09-.003-.258-.066-.498-.256M8.278 6.97c-.04.244-.108.524-.2.829a5 5 0 0 1-.089-.346c-.076-.353-.087-.63-.046-.822.038-.177.11-.248.196-.283a.5.5 0 0 1 .145-.04c.013.03.028.092.032.198q.008.183-.038.465z'/>
+                    <path fill-rule='evenodd' d='M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2zM4.165 13.668c.09.18.23.343.438.419.207.075.412.04.58-.03.318-.13.635-.436.926-.786.333-.401.683-.927 1.021-1.51a11.7 11.7 0 0 1 1.997-.406c.3.383.61.713.91.95.28.22.603.403.934.417a.86.86 0 0 0 .51-.138c.155-.101.27-.247.354-.416.09-.181.145-.37.138-.563a.84.84 0 0 0-.2-.518c-.226-.27-.596-.4-.96-.465a5.8 5.8 0 0 0-1.335-.05 11 11 0 0 1-.98-1.686c.25-.66.437-1.284.52-1.794.036-.218.055-.426.048-.614a1.24 1.24 0 0 0-.127-.538.7.7 0 0 0-.477-.365c-.202-.043-.41 0-.601.077-.377.15-.576.47-.651.823-.073.34-.04.736.046 1.136.088.406.238.848.43 1.295a20 20 0 0 1-1.062 2.227 7.7 7.7 0 0 0-1.482.645c-.37.22-.699.48-.897.787-.21.326-.275.714-.08 1.103'/>
+                </svg>
+                </a>
+                </td>";
+            } else {
+                ${"uploading_1_$component"}[$i] = "<td class='td-center'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-hourglass-split' viewBox='0 0 16 16'>
+                    <path d='M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z'/>
+                </svg>
+                </td>";
+            } 
+        } else {
+            ${"uploading_1_$component"}[$i] = "<td class='td-center'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
         if (${"stage_{$stage}_{$counter_enable}"} == "true") {
@@ -600,7 +631,28 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
-        ${"uploading_2_$component"}[$i] = "<td class='td-center' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        if (${"stage_{$stage}_{$counter_enable}"} != '-') {
+            $counter_enable_2 = $counter_enable + 1;
+            global ${"stage_{$stage}_{$counter_enable_2}"};
+            if (${"stage_{$stage}_{$counter_enable_2}"} == "true") {
+                ${"uploading_2_$component"}[$i] = "<td class='td-center'>
+                <a href=" . ${"stage_{$stage}_{$counter_enable}"} . ">
+                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-file-earmark-pdf-fill' viewBox='0 0 16 16'>
+                    <path d='M5.523 12.424q.21-.124.459-.238a8 8 0 0 1-.45.606c-.28.337-.498.516-.635.572l-.035.012a.3.3 0 0 1-.026-.044c-.056-.11-.054-.216.04-.36.106-.165.319-.354.647-.548m2.455-1.647q-.178.037-.356.078a21 21 0 0 0 .5-1.05 12 12 0 0 0 .51.858q-.326.048-.654.114m2.525.939a4 4 0 0 1-.435-.41q.344.007.612.054c.317.057.466.147.518.209a.1.1 0 0 1 .026.064.44.44 0 0 1-.06.2.3.3 0 0 1-.094.124.1.1 0 0 1-.069.015c-.09-.003-.258-.066-.498-.256M8.278 6.97c-.04.244-.108.524-.2.829a5 5 0 0 1-.089-.346c-.076-.353-.087-.63-.046-.822.038-.177.11-.248.196-.283a.5.5 0 0 1 .145-.04c.013.03.028.092.032.198q.008.183-.038.465z'/>
+                    <path fill-rule='evenodd' d='M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2zM4.165 13.668c.09.18.23.343.438.419.207.075.412.04.58-.03.318-.13.635-.436.926-.786.333-.401.683-.927 1.021-1.51a11.7 11.7 0 0 1 1.997-.406c.3.383.61.713.91.95.28.22.603.403.934.417a.86.86 0 0 0 .51-.138c.155-.101.27-.247.354-.416.09-.181.145-.37.138-.563a.84.84 0 0 0-.2-.518c-.226-.27-.596-.4-.96-.465a5.8 5.8 0 0 0-1.335-.05 11 11 0 0 1-.98-1.686c.25-.66.437-1.284.52-1.794.036-.218.055-.426.048-.614a1.24 1.24 0 0 0-.127-.538.7.7 0 0 0-.477-.365c-.202-.043-.41 0-.601.077-.377.15-.576.47-.651.823-.073.34-.04.736.046 1.136.088.406.238.848.43 1.295a20 20 0 0 1-1.062 2.227 7.7 7.7 0 0 0-1.482.645c-.37.22-.699.48-.897.787-.21.326-.275.714-.08 1.103'/>
+                </svg>
+                </a>
+                </td>";
+            } else {
+                ${"uploading_2_$component"}[$i] = "<td class='td-center'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-hourglass-split' viewBox='0 0 16 16'>
+                    <path d='M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z'/>
+                </svg>
+                </td>";
+            } 
+        } else {
+            ${"uploading_2_$component"}[$i] = "<td class='td-center'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
         if (${"stage_{$stage}_{$counter_enable}"} == "true") {
@@ -616,7 +668,28 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
-        ${"uploading_3_$component"}[$i] = "<td class='td-center' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        if (${"stage_{$stage}_{$counter_enable}"} != '-') {
+            $counter_enable_2 = $counter_enable + 1;
+            global ${"stage_{$stage}_{$counter_enable_2}"};
+            if (${"stage_{$stage}_{$counter_enable_2}"} == "true") {
+                ${"uploading_3_$component"}[$i] = "<td class='td-center'>
+                <a href=" . ${"stage_{$stage}_{$counter_enable}"} . ">
+                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-file-earmark-pdf-fill' viewBox='0 0 16 16'>
+                    <path d='M5.523 12.424q.21-.124.459-.238a8 8 0 0 1-.45.606c-.28.337-.498.516-.635.572l-.035.012a.3.3 0 0 1-.026-.044c-.056-.11-.054-.216.04-.36.106-.165.319-.354.647-.548m2.455-1.647q-.178.037-.356.078a21 21 0 0 0 .5-1.05 12 12 0 0 0 .51.858q-.326.048-.654.114m2.525.939a4 4 0 0 1-.435-.41q.344.007.612.054c.317.057.466.147.518.209a.1.1 0 0 1 .026.064.44.44 0 0 1-.06.2.3.3 0 0 1-.094.124.1.1 0 0 1-.069.015c-.09-.003-.258-.066-.498-.256M8.278 6.97c-.04.244-.108.524-.2.829a5 5 0 0 1-.089-.346c-.076-.353-.087-.63-.046-.822.038-.177.11-.248.196-.283a.5.5 0 0 1 .145-.04c.013.03.028.092.032.198q.008.183-.038.465z'/>
+                    <path fill-rule='evenodd' d='M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2zM4.165 13.668c.09.18.23.343.438.419.207.075.412.04.58-.03.318-.13.635-.436.926-.786.333-.401.683-.927 1.021-1.51a11.7 11.7 0 0 1 1.997-.406c.3.383.61.713.91.95.28.22.603.403.934.417a.86.86 0 0 0 .51-.138c.155-.101.27-.247.354-.416.09-.181.145-.37.138-.563a.84.84 0 0 0-.2-.518c-.226-.27-.596-.4-.96-.465a5.8 5.8 0 0 0-1.335-.05 11 11 0 0 1-.98-1.686c.25-.66.437-1.284.52-1.794.036-.218.055-.426.048-.614a1.24 1.24 0 0 0-.127-.538.7.7 0 0 0-.477-.365c-.202-.043-.41 0-.601.077-.377.15-.576.47-.651.823-.073.34-.04.736.046 1.136.088.406.238.848.43 1.295a20 20 0 0 1-1.062 2.227 7.7 7.7 0 0 0-1.482.645c-.37.22-.699.48-.897.787-.21.326-.275.714-.08 1.103'/>
+                </svg>
+                </a>
+                </td>";
+            } else {
+                ${"uploading_3_$component"}[$i] = "<td class='td-center'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-hourglass-split' viewBox='0 0 16 16'>
+                    <path d='M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z'/>
+                </svg>
+                </td>";
+            } 
+        } else {
+            ${"uploading_3_$component"}[$i] = "<td class='td-center'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
         if (${"stage_{$stage}_{$counter_enable}"} == "true") {
@@ -709,6 +782,11 @@ function tableStage(
     for ($x = 0; $x < $stage_count_1; $x++) {
         if (!(str_contains($enableView_1[$x], 'fa-eye-slash'))) {
             echo "<tr>" .
+                ($x == 0 ? "<td class='td-icon td-center td-info'>" . 
+                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-info-circle-fill' viewBox='0 0 16 16'>
+                    <path d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2'/>
+                </svg>" . 
+                "</td>" : "<td> </td>") .
                 "<td class='description'>" . $description_1[$x] . "</td>" .
                 "<td>" . $state_1[$x] . "</td>" .
                 $underway_1[$x] .
@@ -741,6 +819,11 @@ function tableStage2(
     for ($x = 0; $x < $stage_count_1; $x++) {
         if (!(str_contains($enableView_1[$x], 'fa-eye-slash'))) {
             echo "<tr>" .
+                ($x == 0 ? "<td class='td-icon td-center td-info'>" . 
+                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-info-circle-fill' viewBox='0 0 16 16'>
+                    <path d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2'/>
+                </svg>" . 
+                "</td>" : "<td> </td>") .
                 "<td class='description'>" . $description_1[$x] . "</td>" .
                 "<td>" . $state_1[$x] . "</td>" .
                 $underway_1[$x] .
@@ -791,7 +874,7 @@ function tableStage2(
         </div>
         <div class="lateral-info">
             <div class="logo">
-                <a href="../dashboard.php"><img src="../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
+                <a href="../dashboard.php"><img src="../../build/img/logos/babyCloud.webp" alt="Baby Site Logo"></a>
             </div>
             <div class="date">
                 <div>
@@ -844,19 +927,24 @@ function tableStage2(
         </div>
         <div class="babycloud-ip-body">
             <div class="content table-responsive table-scroll table-full-width table-container">
+                <?php if ($user_type == "internal") { ?>
+                    <div class="panel">
+                        <div class="body">
+                            <div class="input-group">
+                                <div></div>
+                                <button onclick="returnToPage()">Regresar</button>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
                 <table class="table table-hover myTable" id="myTable">
-                    <thead data-bs-toggle="collapse" data-bs-target="#section1" aria-expanded="true" style="cursor: pointer;">
+                    <thead>
                         <tr class="thead">
-                            <th colspan="8">Fase 1 - Crio Embrio</th>
+                            <th colspan="9">Fase 1 - Crio Embrio</th>
                         </tr>
                     </thead>
-                    <tbody id="section1" class="collapse show">
+                    <tbody>
                         <colgroup class="table-colgroup">
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                            <col>
                             <col>
                             <col>
                             <col>
@@ -919,12 +1007,12 @@ function tableStage2(
                     }
                     if ($stage_2_display == 'true') {
                     ?>
-                        <thead data-bs-toggle="collapse" data-bs-target="#section2" aria-expanded="true" style="cursor: pointer;">
+                        <thead>
                             <tr class="thead">
-                                <th colspan="8">Fase 2 - Intentos de embarazo</th>
+                                <th colspan="9">Fase 2 - Intentos de embarazo</th>
                             </tr>
                         </thead>
-                        <tbody id="section2" class="collapse show">
+                        <tbody>
                             <tr class="thead-2">
                                 <?php
                                 headerStage($Stage_2->titles);
@@ -1033,15 +1121,15 @@ function tableStage2(
                     ?>
                         <thead>
                             <tr class="thead">
-                                <th colspan="8">Fase 3 - Seguimiento Ginecológico</th>
+                                <th colspan="9">Fase 3 - Seguimiento Ginecológico</th>
                             </tr>
                         </thead>
-                        <thead data-bs-toggle="collapse" data-bs-target="#section3" aria-expanded="true" style="cursor: pointer;">
+                        <thead>
                             <tr class="thead-2">
-                                <th colspan="8">Seguimiento Ginecológico - Primer Trimestre</th>
+                                <th colspan="9">Seguimiento Ginecológico - Primer Trimestre</th>
                             </tr>
                         </thead>
-                        <tbody id="section3" class="collapse show">
+                        <tbody>
                             <?php
                             tableStage2(
                                 $Stage_3->stage_count_1,
@@ -1106,12 +1194,12 @@ function tableStage2(
                     }
                     if ($stage_4_display == 'true') {
                     ?>
-                        <thead data-bs-toggle="collapse" data-bs-target="#section4" aria-expanded="true" style="cursor: pointer;">
+                        <thead>
                             <tr class="thead-2">
-                                <th colspan="8">Seguimiento Ginecológico - Segundo Trimestre</th>
+                                <th colspan="9">Seguimiento Ginecológico - Segundo Trimestre</th>
                             </tr>
                         </thead>
-                        <tbody id="section4" class="collapse show">
+                        <tbody>
                             <?php
                             tableStage2(
                                 $Stage_4->stage_count_1,
@@ -1192,12 +1280,12 @@ function tableStage2(
                     }
                     if ($stage_5_display == 'true') {
                     ?>
-                        <thead data-bs-toggle="collapse" data-bs-target="#section5" aria-expanded="true" style="cursor: pointer;">
+                        <thead>
                             <tr class="thead-2">
-                                <th colspan="8">Seguimiento Ginecológico - Tercer Trimestre > Parto</th>
+                                <th colspan="9">Seguimiento Ginecológico - Tercer Trimestre > Parto</th>
                             </tr>
                         </thead>
-                        <tbody id="section5" class="collapse show">
+                        <tbody>
                             <?php
                             tableStage2(
                                 $Stage_5->stage_count_1,
@@ -1469,7 +1557,7 @@ function tableStage2(
     editField.forEach(td => {
         const text = td.innerText;
         if (text === '-') {
-            td.innerHTML = "<p class='td-italic'>Redactar resumen...</p>";
+            td.innerHTML = "<p class='td-italic'>En espera...</p>";
         }
     });
 </script>
@@ -1556,6 +1644,12 @@ function tableStage2(
                 console.log('Server responded with:', data);
             })
             .catch(error => console.error('Error:', error));
+    }
+    // Page location
+    function returnToPage() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id_ip = urlParams.get('id');
+        window.location.href = `../babySites/baby_cloud_upload/sort_ip.php?id=${id_ip}`;
     }
 </script>
 </body>
