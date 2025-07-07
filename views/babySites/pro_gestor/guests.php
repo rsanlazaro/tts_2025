@@ -50,8 +50,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     $user[$index] = $row['username'];
     $mail[$index] = $row['mail'];
     $pass[$index] = $row['password'];
-    $profile[$index] = $row['profile'];
-    $enabled[$index] = $row['enabled'];
+    $row['profile'] == NULL ? $profile[$index] = 'ip' : $profile[$index] = $row['profile'];
+    $row['enabled'] == NULL ? $enabled[$index] = 'false' : $enabled[$index] = $row['enabled'];
     $created_on[$index] = $row['created_on'];
 }
 
