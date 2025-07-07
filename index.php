@@ -17,7 +17,7 @@ $remembered_username = isset($_COOKIE['remembered_username']) ? $_COOKIE['rememb
 
 <main class="main">
     <div class="d-flex justify-content-between links">
-        <div class="baby-cloud-component"> <img src="build/img/icons/babySite.webp"> <a href="views/babySites/login.php" class="btn-white">Baby site</a></div>
+        <div class="baby-cloud-component"> <img src="build/img/icons/babySite.png"> <a href="views/babySites/login.php" class="btn-white">Baby site</a></div>
         <div class="baby-cloud-component"> <img src="build/img/icons/agency.webp"> <a href="views/babyCloud/login.php" class="btn-white">Agency</a></div>
         <div class="baby-cloud-component"> <img src="build/img/icons/babyCloud.webp"> <a href="views/babyCloud/login.php" class="btn-white">Baby Cloud</a></div>
     </div>
