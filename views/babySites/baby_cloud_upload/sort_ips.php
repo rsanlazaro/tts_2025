@@ -243,26 +243,28 @@ while ($row = mysqli_fetch_assoc($result)) {
                         </colgroup>
                         <?php for ($i = 1; $i <= $index; $i++) { ?>
                             <?php if ($user[$i] != 'SaludConceptAdmin') { ?>
-                                <tr id="<?php echo $id[$i]; ?>">
-                                    <td></td>
-                                    <td onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
-                                    <td onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
-                                    <td onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
-                                    <td onkeyup='updateContent(this,<?php echo $id[$i] ?>,"profile")'><?php echo $profile[$i] ?></td>
-                                    <td>
-                                        <?php echo $created_on[$i]; ?>
-                                    </td>
-                                    <td>
-                                        <button class="btn-hidden">
-                                            -
-                                        </button>
-                                    </td>
-                                    <td class="td-center">
-                                        <a class="td-delete td-center" href="<?php echo "sort_ip.php?id=" . $id[$i]; ?>">
-                                            Ver
-                                        </a>
-                                    </td>
-                                </tr>
+                                <?php if (!($profile[$i] == 'agency')) { ?>
+                                    <tr id="<?php echo $id[$i]; ?>">
+                                        <td></td>
+                                        <td onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
+                                        <td onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
+                                        <td onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
+                                        <td onkeyup='updateContent(this,<?php echo $id[$i] ?>,"profile")'><?php echo $profile[$i] ?></td>
+                                        <td>
+                                            <?php echo $created_on[$i]; ?>
+                                        </td>
+                                        <td>
+                                            <button class="btn-hidden">
+                                                -
+                                            </button>
+                                        </td>
+                                        <td class="td-center">
+                                            <a class="td-delete td-center" href="<?php echo "sort_ip.php?id=" . $id[$i]; ?>">
+                                                Ver
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                             <?php } ?>
                         <?php } ?>
                     </tbody>
