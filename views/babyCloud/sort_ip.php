@@ -700,7 +700,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
                 </td>";
             } 
         } else {
-            ${"uploading_3_$component"}[$i] = "<td class='td-center'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+            ${"uploading_3_$component"}[$i] = "<td class='td-center'>-</td>";
         }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
