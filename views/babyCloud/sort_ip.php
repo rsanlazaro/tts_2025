@@ -605,7 +605,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
-        if (${"stage_{$stage}_{$counter_enable}"} != '-' || ${"stage_{$stage}_{$counter_enable}"} == "" || ${"stage_{$stage}_{$counter_enable}"} == " ") {
+        if (${"stage_{$stage}_{$counter_enable}"} != '-' || ${"stage_{$stage}_{$counter_enable}"} == "" || ${"stage_{$stage}_{$counter_enable}"} == NULL) {
             $counter_enable_2 = $counter_enable + 1;
             global ${"stage_{$stage}_{$counter_enable_2}"};
             var_dump(${"stage_{$stage}_{$counter_enable_2}"});
@@ -643,7 +643,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
-        if (${"stage_{$stage}_{$counter_enable}"} != '-' || ${"stage_{$stage}_{$counter_enable}"} == "" || ${"stage_{$stage}_{$counter_enable}"} == " ") {
+        if (${"stage_{$stage}_{$counter_enable}"} != '-' || ${"stage_{$stage}_{$counter_enable}"} == "" || ${"stage_{$stage}_{$counter_enable}"} == NULL) {
             $counter_enable_2 = $counter_enable + 1;
             global ${"stage_{$stage}_{$counter_enable_2}"};
             if (${"stage_{$stage}_{$counter_enable_2}"} == "true") {
@@ -680,7 +680,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
-        if (${"stage_{$stage}_{$counter_enable}"} != '-' || ${"stage_{$stage}_{$counter_enable}"} == "" || ${"stage_{$stage}_{$counter_enable}"} == " ") {
+        if (${"stage_{$stage}_{$counter_enable}"} != '-' || ${"stage_{$stage}_{$counter_enable}"} == "" || ${"stage_{$stage}_{$counter_enable}"} == NULL) {
             $counter_enable_2 = $counter_enable + 1;
             global ${"stage_{$stage}_{$counter_enable_2}"};
             if (${"stage_{$stage}_{$counter_enable_2}"} == "true") {
