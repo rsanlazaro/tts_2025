@@ -86,7 +86,7 @@ $counter_enable = 1;
 
 $stage = 1;
 ${"Stage_$stage"} = new stdClass();
-$titles = ["","Crio embrio", "Estado", "Fecha", "Info Adicional", "Archivos"];
+$titles = ["","Etapa/descripción", "Estado", "Fecha", "Resultado e Info Adicional", "Archivos"];
 ${"Stage_$stage"}->titles = $titles;
 $table = "ipregister_" . $stage;
 $sql = "SELECT * FROM $table WHERE id=${id_user}";
@@ -142,7 +142,7 @@ $counter_enable = 1;
 $stage = 2;
 $prev_stage = $stage - 1;
 ${"Stage_$stage"} = new stdClass();
-$titles = ["","Preparación Endometrial > Transferencia", "Resultado", "Fecha", "Info Adicional", "Archivos"];
+$titles = ["","Etapa/descripción", "Resultado", "Fecha", "Resultado e Info Adicional", "Archivos"];
 ${"Stage_$stage"}->titles = $titles;
 $table = "ipregister_" . $stage;
 $sql = "SELECT * FROM $table WHERE id=${id_user}";
@@ -188,7 +188,7 @@ $isStage2 = false;
 $description = "Transfer. Embrionaria <br> Transfert embryonnaire";
 $select_options = [
     "canceled" => "Canceled",
-    "underway" => "Underway",
+    "processing" => "Processing",
     "concluding" => "Concluding"
 ];
 generateRow($component, $stage, $Stage_2->stage_count_2, $description, $select_options, $isStage2);
@@ -605,7 +605,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
-        if (${"stage_{$stage}_{$counter_enable}"} != '-') {
+        if (${"stage_{$stage}_{$counter_enable}"} != '-' || ${"stage_{$stage}_{$counter_enable}"} == "") {
             $counter_enable_2 = $counter_enable + 1;
             global ${"stage_{$stage}_{$counter_enable_2}"};
             var_dump(${"stage_{$stage}_{$counter_enable_2}"});
@@ -643,7 +643,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
-        if (${"stage_{$stage}_{$counter_enable}"} != '-') {
+        if (${"stage_{$stage}_{$counter_enable}"} != '-' || ${"stage_{$stage}_{$counter_enable}"} == "") {
             $counter_enable_2 = $counter_enable + 1;
             global ${"stage_{$stage}_{$counter_enable_2}"};
             if (${"stage_{$stage}_{$counter_enable_2}"} == "true") {
@@ -680,7 +680,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
-        if (${"stage_{$stage}_{$counter_enable}"} != '-') {
+        if (${"stage_{$stage}_{$counter_enable}"} != '-' || ${"stage_{$stage}_{$counter_enable}"} == "") {
             $counter_enable_2 = $counter_enable + 1;
             global ${"stage_{$stage}_{$counter_enable_2}"};
             if (${"stage_{$stage}_{$counter_enable_2}"} == "true") {
@@ -764,10 +764,10 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
 function headerStage($titles)
 {
     foreach ($titles as $title) {
-        if ($title == "Info Adicional" || $title == "Datos" || $title == "Ícono resumen") {
+        if ($title == "Resultado e Info Adicional" || $title == "Datos" || $title == "Ícono resumen") {
             echo "<th colspan='2'> <div class='td-info-title'>" . $title . "</div> </th>";
         } else if ($title == "Archivos") {
-            echo "<th colspan='3' class='td-center'>" . $title . "</th>";
+            echo "<th colspan='2' class='td-center'>" . $title . "</th>";
         } else {
             echo "<th>" . $title . "</th>";
         }
@@ -806,7 +806,6 @@ function tableStage(
                 $info_2_1[$x] .
                 $uploading_1_1[$x] .
                 $uploading_2_1[$x] .
-                $uploading_3_1[$x] .
                 "</tr>";
         }
     }
@@ -842,7 +841,6 @@ function tableStage2(
                 $info_1_1[$x] .
                 $uploading_1_1[$x] .
                 $uploading_2_1[$x] .
-                $uploading_3_1[$x] .
                 "</tr>";
         }
     }
@@ -952,7 +950,7 @@ function tableStage2(
                 <table class="table table-hover myTable" id="myTable">
                     <thead>
                         <tr class="thead">
-                            <th colspan="9">Fase 1 - Crio Embrio</th>
+                            <th colspan="8">Fase 1 - Crio Embrio</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1021,7 +1019,7 @@ function tableStage2(
                     ?>
                         <thead>
                             <tr class="thead">
-                                <th colspan="9">Fase 2 - Intentos de embarazo</th>
+                                <th colspan="8">Fase 2 - Intentos de embarazo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1133,12 +1131,12 @@ function tableStage2(
                     ?>
                         <thead>
                             <tr class="thead">
-                                <th colspan="9">Fase 3 - Seguimiento Ginecológico</th>
+                                <th colspan="8">Fase 3 - Seguimiento Ginecológico</th>
                             </tr>
                         </thead>
                         <thead>
                             <tr class="thead-2">
-                                <th colspan="9">Seguimiento Ginecológico - Primer Trimestre</th>
+                                <th colspan="8">Seguimiento Ginecológico - Primer Trimestre</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1208,7 +1206,7 @@ function tableStage2(
                     ?>
                         <thead>
                             <tr class="thead-2">
-                                <th colspan="9">Seguimiento Ginecológico - Segundo Trimestre</th>
+                                <th colspan="8">Seguimiento Ginecológico - Segundo Trimestre</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1294,7 +1292,7 @@ function tableStage2(
                     ?>
                         <thead>
                             <tr class="thead-2">
-                                <th colspan="9">Seguimiento Ginecológico - Tercer Trimestre > Parto</th>
+                                <th colspan="8">Seguimiento Ginecológico - Tercer Trimestre > Parto</th>
                             </tr>
                         </thead>
                         <tbody>

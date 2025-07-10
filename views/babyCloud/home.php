@@ -16,7 +16,7 @@ include '../../includes/templates/header_end.php';
         <div class="baby-cloud-component"> <img src="../../build/img/icons/upload.webp"> <a href="sort_ip.php" class="btn-blue">Baby cloud</a></div>
         <div class="baby-cloud-component"> <img src="../../build/img/icons/settings.webp"> <a href="#" class="btn-blue">Agency</a></div>
     </div>
-    <div class="d-flex justify-content-center"> <a href="../../index.php"> <img src="../../build/img/logos/tts.webp" alt="babyCloud logo"> </a></div>
+    <div class="d-flex justify-content-center"> <a href="../../index.php"> <img src="../../build/img/logos/babySite.webp" alt="babyCloud logo"> </a></div>
 </main>
 
 <!-- Boostrap JS -->

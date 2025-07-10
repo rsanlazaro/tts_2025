@@ -18,7 +18,7 @@ $remembered_username = isset($_COOKIE['remembered_username']) ? $_COOKIE['rememb
 <main class="login">
     <header class="d-flex justify-content-start align-items-center">
         <div class="logo">
-            <a href="index.php"><img src="build/img/logos/TTS.webp" alt="TTS logo"></a>
+            <a href="index.php"><img src="build/img/logos/babySite.webp" alt="TTS logo"></a>
         </div>
     </header>
     <?php if (isset($_GET['error'])) { ?>

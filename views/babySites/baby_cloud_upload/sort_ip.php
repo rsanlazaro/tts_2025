@@ -82,7 +82,7 @@ $select_options2 = [];
 
 $stage = 1;
 ${"Stage_$stage"} = new stdClass();
-$titles = ["Agregar", "Crio embrio", "Estado", "Fecha", "Info Adicional", "Uploading/Habilitar Vista"];
+$titles = ["Agregar", "Etapa/descripción", "Estado", "Fecha", "Resultado e Info adicional", "Uploading/Habilitar Vista"];
 ${"Stage_$stage"}->titles = $titles;
 $table = "ipregister_" . $stage;
 $sql = "SELECT * FROM $table WHERE id=${ip_id}";
@@ -113,6 +113,7 @@ ${"max_{$stage}_{$component}"} = 3;
 $isStage2 = false;
 $description = "Creación embrionaria - Reporte <br> Rapport de création embryonnaire";
 $select_options = [
+    "none" => "---",
     "processing" => "Processing",
     "concluding" => "Concluding"
 ];
@@ -125,6 +126,7 @@ ${"max_{$stage}_{$component}"} = 3;
 $isStage2 = false;
 $description = "Reporte Pgta <br> Rapport PGT-A";
 $select_options = [
+    "none" => "---",
     "waiting" => "Esperando",
     "sent" => "Enviado",
     "processing" => "Processing",
@@ -138,7 +140,7 @@ $counter_enable = 1;
 $stage = 2;
 $prev_stage = $stage - 1;
 ${"Stage_$stage"} = new stdClass();
-$titles = ["Agregar", "Preparación Endometrial > Transferencia", "Resultado", "Fecha", "Info Adicional", "Uploading/Habilitar Vista"];
+$titles = ["Agregar", "Etapa/descripción", "Resultado", "Fecha", "Resultado e Info adicional", "Uploading/Habilitar Vista"];
 ${"Stage_$stage"}->titles = $titles;
 $table = "ipregister_" . $stage;
 $sql = "SELECT * FROM $table WHERE id=${ip_id}";
@@ -169,6 +171,7 @@ ${"max_{$stage}_{$component}"} = 6;
 $isStage2 = false;
 $description = "Presentación de la candidata <br> Présentation de la candidate";
 $select_options = [
+    "none" => "---",
     "selection" => "Selection",
     "insurance" => "Insurance Period",
     "start" => "Start Simulation",
@@ -183,8 +186,10 @@ ${"max_{$stage}_{$component}"} = 6;
 $isStage2 = false;
 $description = "Transfer. Embrionaria <br> Transfert embryonnaire";
 $select_options = [
+    "none" => "---",
+    "waiting" => "Esperando",
     "canceled" => "Canceled",
-    "underway" => "Underway",
+    "processing" => "Processing",
     "concluding" => "Concluding"
 ];
 generateRow($component, $stage, $Stage_2->stage_count_2, $description, $select_options, $select_options2, $isStage2);
@@ -195,6 +200,7 @@ ${"max_{$stage}_{$component}"} = 1;
 $isStage2 = false;
 $description = "Reporte Transfer <br> Rapport de transfert embryonnaire";
 $select_options = [
+    "none" => "---",
     "waiting" => "Esperando",
     "concluding" => "Concluding"
 ];
@@ -206,10 +212,13 @@ ${"max_{$stage}_{$component}"} = 1;
 $isStage2 = false;
 $description = "Prueba Beta <br> Beta Test";
 $select_options = [
-    "waiting" => "Esperando",
+    "none" => "---",
+    "programmed" => "Programada",
+    "processing" => "Processing",
     "concluding" => "Concluding"
 ];
 $select_options2 = [
+    "none" => "---",
     "waiting" => "Esperando Beta",
     "positive" => "Positivo",
     "not_confirmed" => "No Confirmado"
@@ -222,10 +231,13 @@ ${"max_{$stage}_{$component}"} = 1;
 $isStage2 = false;
 $description = "Saco gestacional <br> Sac gestationnel";
 $select_options = [
-    "yes" => "Con presencia",
-    "no" => "Sin presencia"
+    "none" => "---",
+    "programmed" => "Programada",
+    "processing" => "Processing",
+    "concluding" => "Concluding"
 ];
 $select_options2 = [
+    "none" => "---",
     "waiting" => "Esperando",
     "presence" => "Con Presencia",
     "not_confirmed" => "No Confirmado"
@@ -270,6 +282,8 @@ ${"max_{$stage}_{$component}"} = 2;
 $isStage2 = true;
 $description = "SDG8 - Latido de corazón <br> Détection du battement du coeur foetal";
 $select_options = [
+    "none" => "---",
+    "programmed" => "Programada",
     "waiting" => "Esperando SDG",
     "successful" => "Successful",
     "notconfirmed" => "No Confirmado"
@@ -732,10 +746,10 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
 function headerStage($titles)
 {
     foreach ($titles as $title) {
-        if ($title == "Info Adicional" || $title == "Datos" || $title == "Ícono resumen") {
+        if ($title == "Resultado e Info adicional" || $title == "Datos" || $title == "Ícono resumen") {
             echo "<th colspan='2'> <div class='td-info-title'>" . $title . "</div> </th>";
         } else if ($title == "Uploading/Habilitar Vista") {
-            echo "<th colspan='7' class='td-center'>" . $title . "</th>";
+            echo "<th colspan='5' class='td-center'>" . $title . "</th>";
         } else {
             echo "<th>" . $title . "</th>";
         }
@@ -760,7 +774,8 @@ function tableStage(
     $enableView_1
 ) {
     for ($x = 0; $x < $stage_count_1; $x++) {
-        echo "<tr>" .
+        if (!($description_1[$x] == "Reporte Transfer <br> Rapport de transfert embryonnaire")) {
+            echo "<tr>" .
             ($x == 0 ? "<td class='add'>" . $add_1[$x] . "</td>" : "<td class='add'> </td>") .
             "<td class='description'>" . $description_1[$x] . "</td>" .
             "<td>" . $state_1[$x] . "</td>" .
@@ -771,10 +786,9 @@ function tableStage(
             "<td class='enable_1 td-icon td-center'>" . $enable_1_1[$x] . "</td>" .
             $uploading_2_1[$x] .
             "<td class='enable_2 td-icon td-center'>" . $enable_2_1[$x] . "</td>" .
-            $uploading_3_1[$x] .
-            "<td class='enable_3 td-icon td-center'>" . $enable_3_1[$x] . "</td>" .
             "<td class='enableView td-icon td-center'>" . $enableView_1[$x] . "</td>" .
             "</tr>";
+        } 
     }
 }
 
@@ -805,8 +819,6 @@ function tableStage2(
             "<td class='enable_1 td-icon td-center'>" . $enable_1_1[$x] . "</td>" .
             $uploading_2_1[$x] .
             "<td class='enable_2 td-icon td-center'>" . $enable_2_1[$x] . "</td>" .
-            $uploading_3_1[$x] .
-            "<td class='enable_3 td-icon td-center'>" . $enable_3_1[$x] . "</td>" .
             "<td class='enableView td-icon td-center'>" . $enableView_1[$x] . "</td>" .
             "</tr>";
     }
@@ -851,7 +863,7 @@ function tableStage2(
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
                     <a class="dropdown-item" href="../pro_gestor/users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item active" href="../pro_gestor/guests.php">Listado de Externos</a>
+                    <a class="dropdown-item active" href="../pro_gestor/guests.php">Listado de Guests</a>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -881,9 +893,9 @@ function tableStage2(
             <div href="#" class="icon-container">
                 <img class="icon-img" src="../../../build/img/icons/babySite-upload.webp" alt="icon">
                 <div class="dropdown">
-                    <div class="dropdown-title">BABY CLOUD UPLOAD</div>
-                    <a class="dropdown-item active" href="sort_ips.php">Listado Cloud_IPS</a>
-                    <a class="dropdown-item" href="#">Listado Cloud_GES</a>
+                    <div class="dropdown-title">Baby Cloud</div>
+                    <a class="dropdown-item active" href="sort_ips.php">Cloud_IPS Upload</a>
+                    <a class="dropdown-item" href="#">Cloud_GES Upload</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
             </div>
@@ -961,7 +973,7 @@ function tableStage2(
                 <table class="table table-hover myTable" id="myTable">
                     <thead data-bs-toggle="collapse" data-bs-target="#section1" aria-expanded="true" style="cursor: pointer;">
                         <tr class="thead">
-                            <th colspan="13">Fase 1 - Crio Embrio</th>
+                            <th colspan="11">Fase 1 - Crio Embrio</th>
                         </tr>
                     </thead>
                     <tbody id="section1" class="collapse show">
@@ -1025,7 +1037,7 @@ function tableStage2(
                     </tbody>
                     <thead data-bs-toggle="collapse" data-bs-target="#section2" aria-expanded="true" style="cursor: pointer;">
                         <tr class="thead">
-                            <th colspan="13">Fase 2 - Intentos de embarazo</th>
+                            <th colspan="11">Fase 2 - Intentos de embarazo</th>
                         </tr>
                     </thead>
                     <tbody id="section2" class="collapse show">
@@ -1124,12 +1136,12 @@ function tableStage2(
                     </tbody>
                     <thead>
                         <tr class="thead">
-                            <th colspan="13">Fase 3 - Seguimiento Ginecológico</th>
+                            <th colspan="11">Fase 3 - Seguimiento Ginecológico</th>
                         </tr>
                     </thead>
                     <thead data-bs-toggle="collapse" data-bs-target="#section3" aria-expanded="true" style="cursor: pointer;">
                         <tr class="thead-2">
-                            <th colspan="13">Seguimiento Ginecológico - Primer Trimestre</th>
+                            <th colspan="11">Seguimiento Ginecológico - Primer Trimestre</th>
                         </tr>
                     </thead>
                     <tbody id="section3" class="collapse show">
@@ -1186,7 +1198,7 @@ function tableStage2(
                     </tbody>
                     <thead data-bs-toggle="collapse" data-bs-target="#section4" aria-expanded="true" style="cursor: pointer;">
                         <tr class="thead-2">
-                            <th colspan="13">Seguimiento Ginecológico - Segundo Trimestre</th>
+                            <th colspan="11">Seguimiento Ginecológico - Segundo Trimestre</th>
                         </tr>
                     </thead>
                     <tbody id="section4" class="collapse show">
@@ -1259,7 +1271,7 @@ function tableStage2(
                     </tbody>
                     <thead data-bs-toggle="collapse" data-bs-target="#section5" aria-expanded="true" style="cursor: pointer;">
                         <tr class="thead-2">
-                            <th colspan="13">Seguimiento Ginecológico - Tercer Trimestre > Parto</th>
+                            <th colspan="11">Seguimiento Ginecológico - Tercer Trimestre > Parto</th>
                         </tr>
                     </thead>
                     <tbody id="section5" class="collapse show">

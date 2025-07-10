@@ -81,7 +81,7 @@ $dt->modify('-6 hours'); // Manual offset for Mexico City
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
                     <a class="dropdown-item" href="pro_gestor/users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item" href="pro_gestor/guests.php">Listado de Externos</a>
+                    <a class="dropdown-item" href="pro_gestor/guests.php">Listado de Guests</a>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -111,9 +111,9 @@ $dt->modify('-6 hours'); // Manual offset for Mexico City
             <div href="#" class="icon-container">
                 <img class="icon-img" src="../../build/img/icons/babySite-upload.webp" alt="icon">
                 <div class="dropdown">
-                    <div class="dropdown-title">BABY CLOUD UPLOAD</div>
-                    <a class="dropdown-item" href="baby_cloud_upload/sort_ips.php">Listado Cloud_IPS</a>
-                    <a class="dropdown-item" href="#">Listado Cloud_GES</a>
+                    <div class="dropdown-title">Baby Cloud</div>
+                    <a class="dropdown-item" href="baby_cloud_upload/sort_ips.php">Cloud_IPS Upload</a>
+                    <a class="dropdown-item" href="#">Cloud_GES Upload</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
             </div>

@@ -94,7 +94,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
                     <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item active" href="guests.php">Listado de Externos</a>
+                    <a class="dropdown-item active" href="guests.php">Listado de Guests</a>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -124,9 +124,9 @@ while ($row = mysqli_fetch_assoc($result)) {
             <div href="#" class="icon-container">
                 <img class="icon-img" src="../../../build/img/icons/babySite-upload.webp" alt="icon">
                 <div class="dropdown">
-                    <div class="dropdown-title">BABY CLOUD UPLOAD</div>
-                    <a class="dropdown-item" href="../baby_cloud_upload/sort_ips.php">Listado Cloud_IPS</a>
-                    <a class="dropdown-item" href="#">Listado Cloud_GES</a>
+                    <div class="dropdown-title">Baby Cloud</div>
+                    <a class="dropdown-item" href="../baby_cloud_upload/sort_ips.php">Cloud_IPS Upload</a>
+                    <a class="dropdown-item" href="#">Cloud_GES Upload</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
             </div>
@@ -177,19 +177,13 @@ while ($row = mysqli_fetch_assoc($result)) {
     <div class="content" id="content">
         <div class="header">
             <div class="message">
-                Listado de Externos
+                Listado de Guests
             </div>
             <div class="buttons">
                 <button onclick="newUser()">
-                    Nuevo usuario
+                    Nuevo Guest
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                         <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
-                    </svg>
-                </button>
-                <button>
-                    <a href="roles.php">Gestión de roles</a>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
-                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
                     </svg>
                 </button>
             </div>
@@ -237,7 +231,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <th>Fecha de creación
                                 <img onclick="sortTable(4)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
                             </th>
-                            <th>Acceso</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
