@@ -1,0 +1,33 @@
+<?php
+session_start();
+?>
+
+<?php
+include "../../../includes/app.php";
+$conn = connectDB();
+
+if (isset($_POST['password'])) {
+    function validate($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+}
+
+$password = validate($_POST['password']);
+
+if (empty($password)) {
+    header("Location: superadmin.php?error=Se requiere una contraseña");
+    exit();
+} else {
+    if ($password === 'admin123') { // Example password check
+        $_SESSION['super_admin'] = true;
+        header("Location: superadmin_ok.php");
+        exit();
+    } else {
+        header("Location: superadmin.php?error=Contraseña incorrecta");
+        exit();
+    }
+}

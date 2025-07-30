@@ -93,6 +93,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
+                    <a class="dropdown-item" href="superadmin.php">Super Admin</a>
                     <a class="dropdown-item active" href="users.php">Listado de Usuarios</a>
                     <a class="dropdown-item" href="guests.php">Listado de Guests</a>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>

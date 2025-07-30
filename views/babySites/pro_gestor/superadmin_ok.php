@@ -12,6 +12,11 @@ include '../../../includes/app.php';
 include '../../../includes/templates/sessionStart.php';
 include '../../../includes/templates/validateAccessInternal.php';
 
+if (!isset($_SESSION['super_admin']) || $_SESSION['super_admin'] !== true) {
+    header("Location: superadmin.php?error=Acceso denegado");
+    exit();
+}
+
 $id_user = $_GET['user'] ?? $_SESSION['id'] ?? null;
 
 $sql = "SELECT * FROM users WHERE id=${id_user}";
@@ -43,7 +48,7 @@ $dt->modify('-6 hours'); // Manual offset for Mexico City
 
 // For users fetch information
 
-$sql = "SELECT * FROM guests";
+$sql = "SELECT * FROM users";
 $result = mysqli_query($conn, $sql);
 $index = 0;
 while ($row = mysqli_fetch_assoc($result)) {
@@ -55,6 +60,77 @@ while ($row = mysqli_fetch_assoc($result)) {
     $enabled[$index] = $row['enabled'];
     $created_on[$index] = $row['created_on'];
 }
+
+// For access_default fetch information 
+
+$sql = "SELECT * FROM access WHERE id=1";
+$result = mysqli_query($conn, $sql);
+$index = 0;
+while ($row = mysqli_fetch_assoc($result)) {
+    for ($i = 1; $i <= 100; $i++) {
+        $column_db = 'super_admin_' . $i;
+        ${"super_admin_" . $i} = $row[$column_db];
+    }
+    for ($i = 1; $i <= 100; $i++) {
+        $column_db = 'admin_jr_' . $i;
+        ${"admin_jr_" . $i} = $row[$column_db];
+    }
+    for ($i = 1; $i <= 100; $i++) {
+        $column_db = 'coordinator_' . $i;
+        ${"coordinator_" . $i} = $row[$column_db];
+    }
+    for ($i = 1; $i <= 100; $i++) {
+        $column_db = 'operator_' . $i;
+        ${"operator_" . $i} = $row[$column_db];
+    }
+    for ($i = 1; $i <= 100; $i++) {
+        $column_db = 'recruit_' . $i;
+        ${"recruit_" . $i} = $row[$column_db];
+    }
+}
+
+echo ($super_admin_1);
+
+// Values for the table of roles
+$pro_gestor_1 = ['Listado de Nota de Atención', 'Abrir de Nota de Atención'];
+$pro_gestor_2 = ['Listado de Nota Pendiente', 'Abrir Nota Pendiente'];
+$pro_gestor_3 = ['Listado de Pagos', 'Registro de Pagos', 'Editar/Alterar Pagos Registrados'];
+$pro_gestor_4 = ['Listado de Usuarios', 'Crear usuario', 'Editar usuario', 'Contraseña de Usuario', 'Permisos de Usuario', 'Borrar Usuario'];
+$pro_gestor_5 = ['Listado de Guests', 'Crear Guests', 'Editar Guests', 'Contraseña de Guests', 'Permisos de Guests', 'Borrar Guests', 'Dash Boards'];
+
+$baby_site_1 = ['Listado Sort_GES', 'Alta Sort_GES', 'Documentación', 'Alterar Documentación', 'Start Programa', 'Alta Seguro'];
+$baby_site_2 = ['Listado Sort_IP', 'Editar Sort_IP', 'Documentación', 'Alterar/Borrar Documentación', 'Start Crio Embrio', 'Actualizar Seguimiento'];
+$baby_site_3 = ['Programas', 'Crioembrio', 'Asignar/Editar Donante', 'Editar Material Genético', 'Seleccionar Material Genético', 'Asignar/Editar Gestante', 'Iniciales', 'Perfil Psicológico', 'Agregar Sesión Psicológica', 'Alterar datos Sesión Psicológica', 'Socio Económico', 'Agregar Visita ESE', 'Alterar Datos ESE', 'Alta Citas', 'Agregar Tratamientos', 'Enviar a Pizarrón', 'Pizarrón', 'Agregar ACO', 'Detener ACO', 'Comenzar Preparación', 'Detener Preparación', 'Enviar a Transfer', 'Registrar Beta', 'Registrar Saco Gestacional', 'Registrar Latido', 'Confirmar GESTA', 'Comenzar SDG GESTA', 'Agenda de Seguro'];
+$baby_site_4 = ['Listado Egg Donor'];
+$baby_site_5 = ['Dash Boards'];
+
+$baby_cloud_1 = ['Inicio'];
+
+$alta_1 = ['Inicio'];
+
+$sections_1 = array(
+    $pro_gestor_1,
+    $pro_gestor_2,
+    $pro_gestor_3,
+    $pro_gestor_4,
+    $pro_gestor_5
+);
+
+$sections_2 = array(
+    $baby_site_1,
+    $baby_site_2,
+    $baby_site_3,
+    $baby_site_4,
+    $baby_site_5
+);
+
+$sections_3 = array(
+    $baby_cloud_1
+);
+
+$sections_4 = array(
+    $alta_1
+);
 
 ?>
 
@@ -94,9 +170,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item" href="../pro_gestor/superadmin.php">Super Admin</a>
-                    <a class="dropdown-item" href="../pro_gestor/users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item active" href="../pro_gestor/guests.php">Listado de Guests</a>
+                    <a class="dropdown-item active" href="superadmin.php">Super Admin</a>
+                    <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+                    <a class="dropdown-item" href="guests.php">Listado de Guests</a>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -127,7 +203,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <img class="icon-img" src="../../../build/img/icons/babySite-upload.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">Baby Cloud</div>
-                    <a class="dropdown-item active" href="sort_ips.php">Cloud_IPS Upload</a>
+                    <a class="dropdown-item" href="../baby_cloud_upload/sort_ips.php">Cloud_IPS Upload</a>
                     <a class="dropdown-item" href="#">Cloud_GES Upload</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
@@ -179,104 +255,31 @@ while ($row = mysqli_fetch_assoc($result)) {
     <div class="content" id="content">
         <div class="header">
             <div class="message">
-                Listado de IPs registrados
-            </div>
-            <div class="buttons">
-            </div>
-            <div class="info">
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
-                        <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
-                        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
-                        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z" />
-                    </svg>
-                </a>
+                Super Admin
             </div>
         </div>
-        <div class="users-body">
-            <div class="content table-responsive table-scroll table-full-width table-container">
-                <div class="panel">
-                    <div class="body">
-                        <div class="input-group">
-                            <div></div>
-                            <div class="searchBox">
-                                <label for="searchBox"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                                    </svg></label>
-                                <input type="search" id="searchBox" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <table class="table table-hover myTable" id="myTable">
-                    <thead aria-expanded="true" style="cursor: pointer;">
-                        <tr class="thead">
-                            <th></th>
-                            <th>Usuario
-                                <img onclick="sortTable(0)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
-                            </th>
-                            <th>Email
-                                <img onclick="sortTable(1)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
-                            </th>
-                            <th>Password
-                                <img onclick="sortTable(2)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
-                            </th>
-                            <th>Perfil
-                                <img onclick="sortTable(3)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
-                            </th>
-                            <th>Fecha de creación
-                                <img onclick="sortTable(4)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
-                            </th>
-                            <th></th>
-                            <th class="td-center">Upload</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <colgroup class="table-colgroup">
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                        </colgroup>
-                        <?php for ($i = 1; $i <= $index; $i++) { ?>
-                            <?php if ($user[$i] != 'SaludConceptAdmin') { ?>
-                                <?php if (!($profile[$i] == 'agency')) { ?>
-                                    <tr id="<?php echo $id[$i]; ?>">
-                                        <td></td>
-                                        <td onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
-                                        <td onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
-                                        <td onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
-                                        <td onkeyup='updateContent(this,<?php echo $id[$i] ?>,"profile")'><?php echo $profile[$i] ?></td>
-                                        <td>
-                                            <?php echo $created_on[$i]; ?>
-                                        </td>
-                                        <td>
-                                            <button class="btn-hidden">
-                                                -
-                                            </button>
-                                        </td>
-                                        <td class="td-center">
-                                            <a class="td-delete td-center" href="<?php echo "sort_ip.php?id=" . $id[$i]; ?>">
-                                                Ver
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                            <?php } ?>
-                        <?php } ?>
-                    </tbody>
-                </table>
+        <div class="super-admin-body">
+            <div class="buttons">
+                <button>
+                    <a href="bills/medical.php">Reporte Médico</a>
+                </button>
+                <button>
+                    <a href="bills/medical.php">Factura 2</a>
+                </button>
+                <button>
+                    <a href="bills/medical.php">Factura 3</a>
+                </button>
+                <button>
+                    <a href="bills/medical.php">Factura 4</a>
+                </button>
             </div>
         </div>
     </div>
 </main>
 
 <!-- Boostrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Custom JS -->
 <script src="../../../build/js/bundle.min.js"></script>
 <script>
@@ -354,7 +357,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 <!-- Pagination -->
 <script>
     let options = {
-        numberPerPage: 10000000000000, //Cantidad de datos por pagina
+        numberPerPage: 30, //Cantidad de datos por pagina
         goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
         pageCounter: true, //Contador de paginas, en cual estas, de cuantas paginas
     };
@@ -402,6 +405,34 @@ while ($row = mysqli_fetch_assoc($result)) {
 </script>
 <!-- Communication with DB -->
 <script>
+    // Access functionality logic
+    function toggleAccess(row, column, state) {
+        functionName = "toggleAccess";
+        id = 1
+        switch (column) {
+            case 1:
+                columnName = "super_admin_";
+                break;
+            case 2:
+                columnName = "admin_jr_";
+                break;
+            case 3:
+                columnName = "coordinator_";
+                break;
+            case 4:
+                columnName = "operator_";
+                break;
+            case 5:
+                columnName = "recruit_";
+                break;
+            default:
+        }
+        column = columnName + row;
+        newValue = state;
+        fetchContent(functionName, id, newValue, column)
+        location.reload();
+    }
+
     // Selection of rows to delete
 
     if (!Array.isArray(selectedRows)) {
@@ -427,27 +458,11 @@ while ($row = mysqli_fetch_assoc($result)) {
         }
     }
 
-    function deteleOne(id) {
-        if (confirm('¿Desear eliminar al usuario?')) {
-            functionName = 'delete';
-            fetchContent(functionName, id);
-            const row = document.getElementById(id);
-            if (row) row.remove();
-        }
-    }
-
     function deleteSelected() {
-        if (confirm('¿Deseas eliminar a los usuarios seleccionados?')) {
-            functionName = 'deleteSelected';
-            fetchContent(functionName, selectedRows);
-            const selectedRowsValues = Object.values(selectedRows);
-            for (let i = 0; i < selectedRowsValues.length; i++) {
-                const row = document.getElementById(selectedRowsValues[i]);
-                console.log("Eliminando fila con ID:", selectedRowsValues[i]);
-                console.log(i);
-                if (row) row.remove();
-            }
-        }
+        confirm('¿Deseas eliminar a los usuarios seleccionados?')
+        functionName = 'deleteSelected';
+        fetchContent(functionName, selectedRows);
+        location.reload();
     }
 
     function newUser() {
@@ -484,8 +499,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     function: functionName,
                     id: id,
                     newValue: newValue,
-                    column: column,
-                    page: 'guests'
+                    column: column
                 })
             })
             .then(res => res.text()) // expect plain text for echo
