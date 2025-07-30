@@ -292,35 +292,35 @@ $sections_4 = array(
                     <div class="bills-info-2 bills-info">
                         <div>
                             <label for="diameter" class="form-label">Diámetro biparietal (DBP) - Valor (cm)</label>
-                            <input class="form-control" id="diameter" type="number" name="diameter" required />
+                            <input class="form-control" id="diameter" type="number" step="0.01" name="diameter" required />
                         </div>
                         <div>
                             <label for="diameter-age" class="form-label">Diámetro biparietal (DBP) - Edad gestacional (semanas)</label>
-                            <input class="form-control" id="diameter-age" type="number" name="diameter-age" required />
+                            <input class="form-control" id="diameter-age" type="number" step="0.01" name="diameter-age" required />
                         </div>
                         <div>
                             <label for="circumference" class="form-label">Circunferencia cefálica (CC) - Valor (cm)</label>
-                            <input class="form-control" id="circumference" type="number" name="circumference" required />
+                            <input class="form-control" id="circumference" type="number" step="0.01" name="circumference" required />
                         </div>
                         <div>
                             <label for="circumference-age" class="form-label">Circunferencia cefálica (CC) - Edad gestacional (semanas)</label>
-                            <input class="form-control" id="circumference-age" type="number" name="circumference-age" required />
+                            <input class="form-control" id="circumference-age" type="number" step="0.01" name="circumference-age" required />
                         </div>
                         <div>
                             <label for="circumference-abdm" class="form-label">Circunferencia abdominal (CA) - Valor (cm)</label>
-                            <input class="form-control" id="circumference-abdm" type="number" name="circumference-abdm" required />
+                            <input class="form-control" id="circumference-abdm" type="number" step="0.01" name="circumference-abdm" required />
                         </div>
                         <div>
                             <label for="circumference-abdm-age" class="form-label">Circunferencia abdominal (CA) - Edad gestacional (semanas)</label>
-                            <input class="form-control" id="circumference-abdm-age" type="number" name="circumference-abdm-age" required />
+                            <input class="form-control" id="circumference-abdm-age" type="number" step="0.01" name="circumference-abdm-age" required />
                         </div>
                         <div>
                             <label for="length" class="form-label">Longitud femoral (LF) - Valor (cm)</label>
-                            <input class="form-control" id="length" type="number" name="length" required />
+                            <input class="form-control" id="length" type="number" step="0.01" name="length" required />
                         </div>
                         <div>
                             <label for="length-age" class="form-label">Longitud femoral (LF) - Edad gestacional (semanas)</label>
-                            <input class="form-control" id="length-age" type="number" name="length-age" required />
+                            <input class="form-control" id="length-age" type="number" step="0.01" name="length-age" required />
                         </div>
                         <div>
                             <label for="fetometry" class="form-label">Fetometría promedio</label>
