@@ -14,6 +14,12 @@ include '../../../includes/templates/validateAccessInternal.php';
 
 $id_user = $_GET['user'] ?? $_SESSION['id'] ?? null;
 
+if (isset($_SESSION['super_admin'])) {
+    if ($_SESSION['super_admin'] === true) {
+        header("Location: superadmin_ok.php");
+    }
+}
+
 $sql = "SELECT * FROM users WHERE id=${id_user}";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {

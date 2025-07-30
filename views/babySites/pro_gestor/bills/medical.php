@@ -264,88 +264,88 @@ $sections_4 = array(
                 <div class="form-info">
                     <div class="bills-info bills-info-3">
                         <div>
-                            <label for="date" class="form-label">Fecha</label>
+                            <label for="date" class="form-label">Fecha *</label>
                             <input class="form-control" id="date" type="date" name="date" required />
                         </div>
                         <div>
-                            <label for="doctor" class="form-label">Médico tratante</label>
+                            <label for="doctor" class="form-label">Médico tratante *</label>
                             <input class="form-control" id="doctor" type="text" name="doctor" required />
                         </div>
                         <div>
-                            <label for="name" class="form-label">Nombre de paciente</label>
+                            <label for="name" class="form-label">Nombre de paciente *</label>
                             <input class="form-control" id="name" type="text" name="name" required />
                         </div>
                         <div>
-                            <label for="age" class="form-label">Edad</label>
+                            <label for="age" class="form-label">Edad *</label>
                             <input class="form-control" id="age" type="number" name="age" required />
                         </div>
                         <div>
-                            <label for="date-menst" class="form-label">Fecha de última menstruación</label>
+                            <label for="date-menst" class="form-label">Fecha de última menstruación *</label>
                             <input class="form-control" id="date-menst" type="date" name="date-menst" required />
                         </div>
                         <div>
-                            <label for="gest-age" class="form-label">Edad gestacional</label>
+                            <label for="gest-age" class="form-label">Edad gestacional *</label>
                             <input class="form-control" id="gest-age" type="text" name="gest-age" required />
                         </div>
                     </div>
                     <div class="title">Parámetros biofísicos</div>
                     <div class="bills-info-2 bills-info">
                         <div>
-                            <label for="diameter" class="form-label">Diámetro biparietal (DBP) - Valor (cm)</label>
+                            <label for="diameter" class="form-label">Diámetro biparietal (DBP) - Valor (cm) *</label>
                             <input class="form-control" id="diameter" type="number" step="0.01" name="diameter" required />
                         </div>
                         <div>
-                            <label for="diameter-age" class="form-label">Diámetro biparietal (DBP) - Edad gestacional (semanas)</label>
+                            <label for="diameter-age" class="form-label">Diámetro biparietal (DBP) - Edad gestacional (semanas) *</label>
                             <input class="form-control" id="diameter-age" type="number" step="0.01" name="diameter-age" required />
                         </div>
                         <div>
-                            <label for="circumference" class="form-label">Circunferencia cefálica (CC) - Valor (cm)</label>
+                            <label for="circumference" class="form-label">Circunferencia cefálica (CC) - Valor (cm) *</label>
                             <input class="form-control" id="circumference" type="number" step="0.01" name="circumference" required />
                         </div>
                         <div>
-                            <label for="circumference-age" class="form-label">Circunferencia cefálica (CC) - Edad gestacional (semanas)</label>
+                            <label for="circumference-age" class="form-label">Circunferencia cefálica (CC) - Edad gestacional (semanas) *</label>
                             <input class="form-control" id="circumference-age" type="number" step="0.01" name="circumference-age" required />
                         </div>
                         <div>
-                            <label for="circumference-abdm" class="form-label">Circunferencia abdominal (CA) - Valor (cm)</label>
+                            <label for="circumference-abdm" class="form-label">Circunferencia abdominal (CA) - Valor (cm) *</label>
                             <input class="form-control" id="circumference-abdm" type="number" step="0.01" name="circumference-abdm" required />
                         </div>
                         <div>
-                            <label for="circumference-abdm-age" class="form-label">Circunferencia abdominal (CA) - Edad gestacional (semanas)</label>
+                            <label for="circumference-abdm-age" class="form-label">Circunferencia abdominal (CA) - Edad gestacional (semanas) *</label>
                             <input class="form-control" id="circumference-abdm-age" type="number" step="0.01" name="circumference-abdm-age" required />
                         </div>
                         <div>
-                            <label for="length" class="form-label">Longitud femoral (LF) - Valor (cm)</label>
+                            <label for="length" class="form-label">Longitud femoral (LF) - Valor (cm) *</label>
                             <input class="form-control" id="length" type="number" step="0.01" name="length" required />
                         </div>
                         <div>
-                            <label for="length-age" class="form-label">Longitud femoral (LF) - Edad gestacional (semanas)</label>
+                            <label for="length-age" class="form-label">Longitud femoral (LF) - Edad gestacional (semanas) *</label>
                             <input class="form-control" id="length-age" type="number" step="0.01" name="length-age" required />
                         </div>
                         <div>
-                            <label for="fetometry" class="form-label">Fetometría promedio</label>
+                            <label for="fetometry" class="form-label">Fetometría promedio *</label>
                             <input class="form-control" id="fetometry" type="text" name="fetometry" required />
                         </div>
                         <div>
-                            <label for="fetal-weight" class="form-label">Peso fetal estimado (PFE)</label>
+                            <label for="fetal-weight" class="form-label">Peso fetal estimado (PFE) *</label>
                             <input class="form-control" id="fetal-weight" type="text" name="fetal-weight" required />
                         </div>
                         <div>
-                            <label for="perc-weight" class="form-label">Percentil de peso</label>
+                            <label for="perc-weight" class="form-label">Percentil de peso *</label>
                             <input class="form-control" id="perc-weight" type="text" name="perc-weight" required />
                         </div>
                         <div>
-                            <label for="cardiac-frec" class="form-label">Frecuencia cardiaca fetal</label>
+                            <label for="cardiac-frec" class="form-label">Frecuencia cardiaca fetal *</label>
                             <input class="form-control" id="cardiac-frec" type="text" name="cardiac-frec" required />
                         </div>
                     </div>
-                    <div class="title">Comentarios y conclusiones</div>
+                    <div class="title">Comentarios y conclusiones *</div>
                     <div class="bills-info bills-info-1">
                         <div>
                             <textarea class="form-control" id="comments" name="comments" rows="4" required></textarea>
                         </div>
                     </div>
-                    <div class="title">Impresión diagnóstica</div>
+                    <div class="title">Impresión diagnóstica *</div>
                     <div class="bills-info bills-info-1">
                         <div>
                             <textarea class="form-control" id="diagnosis" name="diagnosis" rows="2" required></textarea>
@@ -417,6 +417,9 @@ $sections_4 = array(
                                 <div>Seleccione una imagen</div>
                             </div>
                         </div>
+                    </div>
+                    <div class="bills-info required-fields">
+                        <p>*Required fields</p>
                     </div>
                 </div>
                 <div class="form-btn d-flex justify-content-center">

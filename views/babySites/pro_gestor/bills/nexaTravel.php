@@ -1,19 +1,20 @@
 <?php
-include '../../../includes/templates/header_begin.php';
+include '../../../../includes/templates/header_begin.php';
 ?>
 
-<link rel="stylesheet" href="../../../build/css/app.css" />
-<link href="../../../assets/css/paper-dashboard.css" rel="stylesheet" />
-<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../../../build/css/app.css" />
+<link href="../../../../assets/css/paper-dashboard.css" rel="stylesheet" />
+<link href="../../../../assets/css/bootstrap.min.css" rel="stylesheet" />
 
 <?php
-include '../../../includes/templates/header_end.php';
-include '../../../includes/app.php';
-include '../../../includes/templates/sessionStart.php';
-include '../../../includes/templates/validateAccessInternal.php';
+include '../../../../includes/templates/header_end.php';
+include '../../../../includes/app.php';
+include '../../../../includes/templates/sessionStart.php';
+include '../../../../includes/templates/validateAccessInternal.php';
 
+var_dump($_SESSION);
 if (!isset($_SESSION['super_admin']) || $_SESSION['super_admin'] !== true) {
-    header("Location: superadmin.php?error=Acceso denegado");
+    header("Location: ../../../../index.php?error=Acceso denegado");
     exit();
 }
 
@@ -135,7 +136,7 @@ $sections_4 = array(
 ?>
 
 <main class="dashboard">
-    <header class="d-flex justify-content-end align-items-center">
+    <header class="d-flex justify-content-end align-items-center header-bills">
         <div class="icons">
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -153,9 +154,9 @@ $sections_4 = array(
             <div class="last-name"><?php echo $last_name_user; ?></div>
         </div>
         <div class="profile-pic">
-            <img style="cursor:pointer;" onclick="toggleDropdown()" src="../../../build/img/testImg/profilepic.webp" alt="Profile Picture">
+            <img style="cursor:pointer;" onclick="toggleDropdown()" src="../../../../build/img/testImg/profilepic.webp" alt="Profile Picture">
             <div id="myDropdown-profile" class="dropdown-content-profile">
-                <a href="../../../logout.php">Cerrar sesión
+                <a href="../../../../logout.php">Cerrar sesión
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
                         <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
@@ -167,19 +168,19 @@ $sections_4 = array(
     <div class="sidebar">
         <div class="lateral">
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
+                <img class="icon-img" src="../../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item active" href="superadmin.php">Super Admin</a>
-                    <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item" href="guests.php">Listado de Guests</a>
+                    <a class="dropdown-item active" href="../superadmin.php">Super Admin</a>
+                    <a class="dropdown-item" href="../users.php">Listado de Usuarios</a>
+                    <a class="dropdown-item" href="../guests.php">Listado de Guests</a>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../build/img/icons/babySite-user.webp" alt="icon">
+                <img class="icon-img" src="../../../../build/img/icons/babySite-user.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">BABY SITE</div>
                     <a class="dropdown-item" href="#">Listado Sort_GES</a>
@@ -190,7 +191,7 @@ $sections_4 = array(
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../build/img/icons/babySite-recluta.webp" alt="icon">
+                <img class="icon-img" src="../../../../build/img/icons/babySite-recluta.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">RECLUTA</div>
                     <a class="dropdown-item" href="#">Nueva Candidata</a>
@@ -200,10 +201,10 @@ $sections_4 = array(
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../build/img/icons/babySite-upload.webp" alt="icon">
+                <img class="icon-img" src="../../../../build/img/icons/babySite-upload.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">Baby Cloud</div>
-                    <a class="dropdown-item" href="../baby_cloud_upload/sort_ips.php">Cloud_IPS Upload</a>
+                    <a class="dropdown-item" href="../../baby_cloud_upload/sort_ips.php">Cloud_IPS Upload</a>
                     <a class="dropdown-item" href="#">Cloud_GES Upload</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
@@ -211,7 +212,7 @@ $sections_4 = array(
         </div>
         <div class="lateral-info">
             <div class="logo">
-                <a href="../home.php"><img src="../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
+                <a href="../home.php"><img src="../../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
             </div>
             <div class="date">
                 <div>
@@ -255,16 +256,115 @@ $sections_4 = array(
     <div class="content" id="content">
         <div class="header">
             <div class="message">
-                Super Admin
+                Factura para Nexa Travel
             </div>
         </div>
-        <div class="super-admin-body">
-            <div class="buttons">
-                <a href="bills/medical.php"> Reporte Médico </a>
-                <a href="bills/travelMedicalCare.php">Travel Medical Care</a>
-                <a href="bills/nexaTravel.php">Nexa Travel</a>
-                <a href="bills/babyMedic.php">Babymedic</a>
-            </div>
+        <div class="super-admin-body bills">
+            <form class="pink-form" action="nexaTravelReport.php" method="POST" enctype="multipart/form-data">
+                <div class="form-info">
+                    <div class="bills-info bills-info-3">
+                        <div>
+                            <label for="tmc" class="form-label">Invoice # *</label>
+                            <input class="form-control" id="tmc" type="text" name="tmc" required/>
+                        </div>
+                        <div>
+                            <label for="date" class="form-label">Date *</label>
+                            <input class="form-control" id="date" type="date" name="date" required/>
+                        </div>
+                        <div>
+                            <label for="balance" class="form-label">Balance due *</label>
+                            <input class="form-control" id="balance" type="text" name="balance" required/>
+                        </div>
+                    </div>
+                    <div class="title">Description information</div>
+                    <h4>Product 1</h4><br>
+                    <div class="bills-info bills-info-1">
+                        <label>Description</label>
+                        <div>
+                            <textarea class="form-control" id="description1" name="description1" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="bills-info-3 bills-info">
+                        <div>
+                            <label for="qty1" class="form-label">QTY</label>
+                            <input class="form-control" id="qty1" type="number" name="qty1" />
+                        </div>
+                        <div>
+                            <label for="price1" class="form-label">Price</label>
+                            <input class="form-control" id="price1" type="text" name="price1" />
+                        </div>
+                        <div>
+                            <label for="total1" class="form-label">Total</label>
+                            <input class="form-control" id="total1" type="text" name="total1" />
+                        </div>
+                    </div>
+                    <br><h4>Product 2</h4><br>
+                    <div class="bills-info bills-info-1">
+                        <label>Description</label>
+                        <div>
+                            <textarea class="form-control" id="description2" name="description2" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="bills-info-3 bills-info">
+                        <div>
+                            <label for="qty2" class="form-label">QTY</label>
+                            <input class="form-control" id="qty2" type="number" name="qty2" />
+                        </div>
+                        <div>
+                            <label for="price2" class="form-label">Price</label>
+                            <input class="form-control" id="price2" type="text" name="price2" />
+                        </div>
+                        <div>
+                            <label for="total2" class="form-label">Total</label>
+                            <input class="form-control" id="total2" type="text" name="total2" />
+                        </div>
+                    </div>
+                    <br><h4>Product 3</h4><br>
+                    <div class="bills-info bills-info-1">
+                        <label>Description</label>
+                        <div>
+                            <textarea class="form-control" id="description3" name="description3" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="bills-info-3 bills-info">
+                        <div>
+                            <label for="qty3" class="form-label">QTY</label>
+                            <input class="form-control" id="qty3" type="number" name="qty3" />
+                        </div>
+                        <div>
+                            <label for="price3" class="form-label">Price</label>
+                            <input class="form-control" id="price3" type="text" name="price3" />
+                        </div>
+                        <div>
+                            <label for="total3" class="form-label">Total</label>
+                            <input class="form-control" id="total3" type="text" name="total3" />
+                        </div>
+                    </div>
+                    <div class="title">Final info</div>
+                    <div class="bills-info-3 bills-info">
+                        <div>
+                            <label for="subtotal" class="form-label">Subtotal *</label>
+                            <input class="form-control" id="subtotal" type="text" name="subtotal" required />
+                        </div>
+                        <div>
+                            <label for="tax" class="form-label">Tax *</label>
+                            <input class="form-control" id="tax" type="text" name="tax" required/>
+                        </div>
+                        <div>
+                            <label for="total" class="form-label">Total *</label>
+                            <input class="form-control" id="total" type="text" name="total" required/>
+                        </div>
+                    </div>
+                    <div class="bills-info required-fields">
+                        <p>*Required fields</p>
+                    </div>
+                </div>
+                <div class="form-btn d-flex justify-content-center">
+                    <button class="btn btn-pink btn-send" type="submit">
+                        <div>Generate PDF</div>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </main>
@@ -273,7 +373,7 @@ $sections_4 = array(
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Custom JS -->
-<script src="../../../build/js/bundle.min.js"></script>
+<script src="../../../../build/js/bundle.min.js"></script>
 <script>
     // Clock functionality
     function updateClock() {
@@ -345,7 +445,7 @@ $sections_4 = array(
     }
 </script>
 <!-- Custom JS -->
-<script src="../../../build/js/paginationFilter.min.js"></script>
+<script src="../../../../build/js/paginationFilter.min.js"></script>
 <!-- Pagination -->
 <script>
     let options = {
