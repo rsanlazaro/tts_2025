@@ -259,7 +259,7 @@ $sections_4 = array(
                 Super Admin
             </div>
         </div>
-        <div class="super-admin-body">
+        <div class="super-admin-body users-body">
             <div class="error-msg">
                 <?php if (isset($_GET['error'])) { ?>
                     <p class="error"><?php echo $_GET['error']; ?></p>

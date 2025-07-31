@@ -258,7 +258,7 @@ $sections_4 = array(
                 Super Admin
             </div>
         </div>
-        <div class="super-admin-body">
+        <div class="super-admin-body users-body">
             <div class="buttons">
                 <a href="bills/medical.php"> Reporte Médico </a>
                 <a href="bills/travelMedicalCare.php">Travel Medical Care</a>

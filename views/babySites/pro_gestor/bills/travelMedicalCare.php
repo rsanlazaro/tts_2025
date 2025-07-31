@@ -259,7 +259,7 @@ $sections_4 = array(
                 Factura para Travel Medical Care
             </div>
         </div>
-        <div class="super-admin-body bills">
+        <div class="super-admin-body bills users-body">
             <form class="pink-form" action="travelMedicalCareReport.php" method="POST" enctype="multipart/form-data">
                 <div class="form-info">
                     <div class="bills-info bills-info-3">
