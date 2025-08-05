@@ -67,35 +67,44 @@ $backgroundImage1 = 'images/medicalReport-1.jpg'; // Absolute or relative path
 $backgroundImage2 = 'images/medicalReport-2.jpg'; // Absolute or relative path
 $backgroundImage3 = 'images/medicalReport-3.jpg'; // Absolute or relative path
 
+$dateString = $_POST['date'];
+$dateTime = DateTime::createFromFormat('Y-m-d', $dateString);
+$newDateString = $dateTime->format('d-m-Y');
+
+$dateString_menst = $_POST['date-menst'];
+$dateTime_menst = DateTime::createFromFormat('Y-m-d', $dateString_menst);
+$newDateString_menst = $dateTime_menst->format('d-m-Y');
+
 $mpdf->SetDefaultBodyCSS('background', "url('$backgroundImage1')");
 $mpdf->SetDefaultBodyCSS('background-image-resize', 6); // 6 = stretch to fill
 $html = '
-<p style="color: black; font-size: 15px; padding-top: 83px; padding-left: 90px;">' . $_POST['date'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 450px;">' . $_POST['doctor'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: 15px; padding-left: 195px;">' . $_POST['name'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 470px;">' . $_POST['age'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: 15px; padding-left: 275px;">' . $_POST['date-menst'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 560px;">' . $_POST['gest-age'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: 150px; padding-left: 355px; width: 50px; text-align: center;">' . $_POST['diameter'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 550px; width: 50px; text-align: center;">' . $_POST['diameter-age'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -12px; padding-left: 355px; width: 50px; text-align: center;">' . $_POST['circumference'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 550px; width: 50px; text-align: center;">' . $_POST['circumference-age'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -12px; padding-left: 355px; width: 50px; text-align: center;">' . $_POST['circumference-abdm'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 550px; width: 50px; text-align: center;">' . $_POST['circumference-abdm-age'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -12px; padding-left: 355px; width: 50px; text-align: center;">' . $_POST['length'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 550px; width: 50px; text-align: center;">' . $_POST['length-age'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -12px; padding-left: 425px; width: 150px; text-align: center;">' . $_POST['fetometry'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -12px; padding-left: 425px; width: 150px; text-align: center;">' . $_POST['fetal-weight'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -12px; padding-left: 425px; width: 150px; text-align: center;">' . $_POST['perc-weight'] . '</p>
-<p style="color: black; font-size: 15px; padding-top: -12px; padding-left: 425px; width: 150px; text-align: center;">' . $_POST['cardiac-frec'] . '</p>
+<p style="color: black; font-size: 15px; padding-top: 130px; padding-left: -10px;">' . $newDateString . '</p>
+<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 460px;">' . $_POST['doctor'] . '</p>
+<p style="color: black; font-size: 15px; padding-top: 24px; padding-left: -10px;">' . $_POST['name'] . '</p>
+<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 460px;">' . $_POST['age'] . ' años</p>
+<p style="color: black; font-size: 15px; padding-top: 24px; padding-left: -10px;">' . $newDateString_menst . '</p>
+<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 460px;">' . $_POST['gest-age'] . ' SDG</p>
+<p style="color: black; font-size: 15px; padding-top: 102px; padding-left: 305px; width: 50px; text-align: center;">' . $_POST['diameter'] . '</p>
+<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 565px; width: 50px; text-align: center;">' . $_POST['diameter-age'] . '</p>
+<p style="color: black; font-size: 15px; padding-top: -5px; padding-left: 305px; width: 50px; text-align: center;">' . $_POST['circumference'] . '</p>
+<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 565px; width: 50px; text-align: center;">' . $_POST['circumference-age'] . '</p>
+<p style="color: black; font-size: 15px; padding-top: -5px; padding-left: 305px; width: 50px; text-align: center;">' . $_POST['circumference-abdm'] . '</p>
+<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 565px; width: 50px; text-align: center;">' . $_POST['circumference-abdm-age'] . '</p>
+<p style="color: black; font-size: 15px; padding-top: -5px; padding-left: 305px; width: 50px; text-align: center;">' . $_POST['length'] . '</p>
+<p style="color: black; font-size: 15px; padding-top: -37px; padding-left: 565px; width: 50px; text-align: center;">' . $_POST['length-age'] . '</p>
+<p style="color: black; font-size: 15px; padding-top: 35px; padding-left: 255px; width: 150px; text-align: center;">' . $_POST['fetometry'] . ' SDG</p>
+<p style="color: black; font-size: 15px; padding-top: -5px; padding-left: 255px; width: 150px; text-align: center;">' . $_POST['fetal-weight'] . ' GRS</p>
+<p style="color: black; font-size: 15px; padding-top: -5px; padding-left: 255px; width: 150px; text-align: center;">' . $_POST['perc-weight'] . ' %</p>
+<p style="color: black; font-size: 15px; padding-top: -5px; padding-left: 255px; width: 150px; text-align: center;">' . $_POST['cardiac-frec'] . ' LPM</p>
 <p style="color: black; font-size: 15px; padding-top: 80px; padding-left: -5px;">' . $_POST['comments'] . '</p>
 ';
 $mpdf->WriteHTML($html);
 $mpdf->SetDefaultBodyCSS('background', "url('$backgroundImage2')");
 $mpdf->AddPage();
 $html = '
-<p style="color: black; font-size: 15px; padding-top: 200px; padding-left: 15px;">' . $_POST['diagnosis'] . '</p>
-<img src="' . $targetFilePath1 . '" style="width: 300px; padding-left: 15px;" />
+<p style="color: black; font-size: 15px; padding-top: 115px; padding-left: -5px;">' . $_POST['diagnosis'] . '</p>
+<p style="color: black; font-size: 15px; padding-top: 150px;"> </p>
+<img src="' . $targetFilePath1 . '" style="width: 300px; padding-top: 15px; padding-left: 15px;" />
 <img src="' . $targetFilePath2 . '" style="width: 300px; padding-left: 15px;" />
 <img src="' . $targetFilePath3 . '" style="width: 300px; padding-left: 15px; padding-top: 10px;" />
 <img src="' . $targetFilePath4 . '" style="width: 300px; padding-left: 15px;" />

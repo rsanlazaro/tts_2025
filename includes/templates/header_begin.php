@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="author" content="BabySite" />
   <meta name="keywords" content="BabySite" />
-  <link rel="icon" type="image/x-icon" href="build/img/icons/favicon.webp">
+  <link rel="icon" type="image/x-icon" href="/build/img/logos/favicon.webp">
   <!-- Primary Meta Tags -->
   <title>BabySite</title>
   <meta name="title" content="BabySite" />

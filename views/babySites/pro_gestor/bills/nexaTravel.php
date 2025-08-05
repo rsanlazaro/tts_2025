@@ -265,15 +265,25 @@ $sections_4 = array(
                     <div class="bills-info bills-info-3">
                         <div>
                             <label for="tmc" class="form-label">Invoice # *</label>
-                            <input class="form-control" id="tmc" type="text" name="tmc" required/>
+                            <input class="form-control" id="tmc" type="text" name="tmc" required />
                         </div>
                         <div>
                             <label for="date" class="form-label">Date *</label>
-                            <input class="form-control" id="date" type="date" name="date" required/>
+                            <input class="form-control" id="date" type="date" name="date" required />
                         </div>
                         <div>
                             <label for="balance" class="form-label">Balance due *</label>
-                            <input class="form-control" id="balance" type="text" name="balance" required/>
+                            <input class="form-control" id="balance" type="text" name="balance" required />
+                        </div>
+                    </div>
+                    <div class="bills-info bills-info-3">
+                        <div>
+                            <label for="bill" class="form-label">Bill to *</label>
+                            <input class="form-control" id="bill" type="text" name="bill" required />
+                        </div>
+                        <div>
+                            <label for="country" class="form-label">Country *</label>
+                            <input class="form-control" id="country" type="text" name="country" required />
                         </div>
                     </div>
                     <div class="title">Description information</div>
@@ -281,7 +291,7 @@ $sections_4 = array(
                     <div class="bills-info bills-info-1">
                         <label>Description</label>
                         <div>
-                            <textarea class="form-control" id="description1" name="description1" rows="4"></textarea>
+                            <textarea class="form-control" id="description1" name="description1" rows="1"></textarea>
                         </div>
                     </div>
                     <div class="bills-info-3 bills-info">
@@ -298,11 +308,12 @@ $sections_4 = array(
                             <input class="form-control" id="total1" type="text" name="total1" />
                         </div>
                     </div>
-                    <br><h4>Product 2</h4><br>
+                    <br>
+                    <h4>Product 2</h4><br>
                     <div class="bills-info bills-info-1">
                         <label>Description</label>
                         <div>
-                            <textarea class="form-control" id="description2" name="description2" rows="4"></textarea>
+                            <textarea class="form-control" id="description2" name="description2" rows="1"></textarea>
                         </div>
                     </div>
                     <div class="bills-info-3 bills-info">
@@ -319,11 +330,12 @@ $sections_4 = array(
                             <input class="form-control" id="total2" type="text" name="total2" />
                         </div>
                     </div>
-                    <br><h4>Product 3</h4><br>
+                    <br>
+                    <h4>Product 3</h4><br>
                     <div class="bills-info bills-info-1">
                         <label>Description</label>
                         <div>
-                            <textarea class="form-control" id="description3" name="description3" rows="4"></textarea>
+                            <textarea class="form-control" id="description3" name="description3" rows="1"></textarea>
                         </div>
                     </div>
                     <div class="bills-info-3 bills-info">
@@ -340,6 +352,27 @@ $sections_4 = array(
                             <input class="form-control" id="total3" type="text" name="total3" />
                         </div>
                     </div>
+                    <h4>Product 4</h4><br>
+                    <div class="bills-info bills-info-1">
+                        <label>Description</label>
+                        <div>
+                            <textarea class="form-control" id="description4" name="description4" rows="1"></textarea>
+                        </div>
+                    </div>
+                    <div class="bills-info-3 bills-info">
+                        <div>
+                            <label for="qty4" class="form-label">QTY</label>
+                            <input class="form-control" id="qty4" type="number" name="qty4" />
+                        </div>
+                        <div>
+                            <label for="price4" class="form-label">Price</label>
+                            <input class="form-control" id="price4" type="text" name="price4" />
+                        </div>
+                        <div>
+                            <label for="total4" class="form-label">Total</label>
+                            <input class="form-control" id="total4" type="text" name="total4" />
+                        </div>
+                    </div>
                     <div class="title">Final info</div>
                     <div class="bills-info-3 bills-info">
                         <div>
@@ -348,11 +381,22 @@ $sections_4 = array(
                         </div>
                         <div>
                             <label for="tax" class="form-label">Tax *</label>
-                            <input class="form-control" id="tax" type="text" name="tax" required/>
+                            <input class="form-control" id="tax" type="text" name="tax" required />
                         </div>
                         <div>
                             <label for="total" class="form-label">Total *</label>
-                            <input class="form-control" id="total" type="text" name="total" required/>
+                            <input class="form-control" id="total" type="text" name="total" required />
+                        </div>
+                    </div>
+                    <div class="title">Generate document in Euros or Dollars *</div>
+                    <div class="bills-info bills-info-radio">
+                        <div>
+                            <input type="radio" id="euro" name="currency" value="euro" required>
+                            <label for="euro">Euro</label><br>
+                        </div>
+                        <div>
+                            <input type="radio" id="dollar" name="currency" value="dollar" required>
+                            <label for="dollar">Dollar</label><br>
                         </div>
                     </div>
                     <div class="bills-info required-fields">

@@ -607,7 +607,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         ${"state_$component"}[$i] .= $state_variable . "</select>";
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
-        ${"underway_$component"}[$i] = "<td contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        ${"underway_$component"}[$i] = "<td onchange='saveContentDate(this," . $stage . "," . $counter_enable . ")'> <input id='" . $counter_enable . "' type='date' value='" . ${"stage_{$stage}_{$counter_enable}"} . "'></td>";
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
         if ($description == "Creación embrionaria - Reporte <br> Rapport de création embryonnaire") {
@@ -651,7 +651,25 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
-        ${"uploading_1_$component"}[$i] = "<td class='td-center' contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        if (strlen(${"stage_{$stage}_{$counter_enable}"})>5) {
+            ${"uploading_1_$component"}[$i] = "<td class='td-center td-icon' contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" .
+            // ${"stage_{$stage}_{$counter_enable}"} .
+                "<button type='button' data-bs-toggle='modal' data-bs-target='#modal-" . $stage . "-" . $counter_enable . "'>
+                    <svg class='uploading-true' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-cloud-arrow-up-fill' viewBox='0 0 16 16'>
+                        <path d='M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2m2.354 5.146a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0z'/>
+                    </svg>
+                </button>" .
+            "</td>";
+        } else {
+            ${"uploading_1_$component"}[$i] = "<td class='td-center td-icon' contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" .
+            // ${"stage_{$stage}_{$counter_enable}"} .
+                "<button type='button' data-bs-toggle='modal' data-bs-target='#modal-" . $stage . "-" . $counter_enable . "'>
+                    <svg class='uploading-false' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-cloud-arrow-up-fill' viewBox='0 0 16 16'>
+                        <path d='M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2m2.354 5.146a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0z'/>
+                    </svg>
+                </button>" .
+            "</td>";
+        }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
         if (${"stage_{$stage}_{$counter_enable}"} == "true") {
@@ -667,7 +685,25 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
-        ${"uploading_2_$component"}[$i] = "<td class='td-center' contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
+        if (strlen(${"stage_{$stage}_{$counter_enable}"})>5) {
+            ${"uploading_2_$component"}[$i] = "<td class='td-center td-icon' contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . 
+            // ${"stage_{$stage}_{$counter_enable}"} .
+                "<button type='button' data-bs-toggle='modal' data-bs-target='#modal-" . $stage . "-" . $counter_enable . "'>
+                    <svg class='uploading-true' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-cloud-arrow-up-fill' viewBox='0 0 16 16'>
+                        <path d='M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2m2.354 5.146a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0z'/>
+                    </svg>
+                </button>" .
+            "</td>";
+        } else {
+            ${"uploading_2_$component"}[$i] = "<td class='td-center td-icon' contenteditable='true' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . 
+            // ${"stage_{$stage}_{$counter_enable}"} .
+                "<button type='button' data-bs-toggle='modal' data-bs-target='#modal-" . $stage . "-" . $counter_enable . "'>
+                    <svg class='uploading-false' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-cloud-arrow-up-fill' viewBox='0 0 16 16'>
+                        <path d='M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2m2.354 5.146a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0z'/>
+                    </svg>
+                </button>" .
+            "</td>";
+        }
         $counter_enable++;
         global ${"stage_{$stage}_{$counter_enable}"};
         if (${"stage_{$stage}_{$counter_enable}"} == "true") {
@@ -776,19 +812,19 @@ function tableStage(
     for ($x = 0; $x < $stage_count_1; $x++) {
         if (!($description_1[$x] == "Reporte Transfer <br> Rapport de transfert embryonnaire")) {
             echo "<tr>" .
-            ($x == 0 ? "<td class='add'>" . $add_1[$x] . "</td>" : "<td class='add'> </td>") .
-            "<td class='description'>" . $description_1[$x] . "</td>" .
-            "<td>" . $state_1[$x] . "</td>" .
-            $underway_1[$x] .
-            $info_1_1[$x] .
-            $info_2_1[$x] .
-            $uploading_1_1[$x] .
-            "<td class='enable_1 td-icon td-center'>" . $enable_1_1[$x] . "</td>" .
-            $uploading_2_1[$x] .
-            "<td class='enable_2 td-icon td-center'>" . $enable_2_1[$x] . "</td>" .
-            "<td class='enableView td-icon td-center'>" . $enableView_1[$x] . "</td>" .
-            "</tr>";
-        } 
+                ($x == 0 ? "<td class='add'>" . $add_1[$x] . "</td>" : "<td class='add'> </td>") .
+                "<td class='description'>" . $description_1[$x] . "</td>" .
+                "<td>" . $state_1[$x] . "</td>" .
+                $underway_1[$x] .
+                $info_1_1[$x] .
+                $info_2_1[$x] .
+                $uploading_1_1[$x] .
+                "<td class='enable_1 td-icon td-center'>" . $enable_1_1[$x] . "</td>" .
+                $uploading_2_1[$x] .
+                "<td class='enable_2 td-icon td-center'>" . $enable_2_1[$x] . "</td>" .
+                "<td class='enableView td-icon td-center'>" . $enableView_1[$x] . "</td>" .
+                "</tr>";
+        }
     }
 }
 
@@ -979,9 +1015,6 @@ function tableStage2(
                     </thead>
                     <tbody id="section1" class="collapse show">
                         <colgroup class="table-colgroup">
-                            <col>
-                            <col>
-                            <col>
                             <col>
                             <col>
                             <col>
@@ -1406,6 +1439,41 @@ function tableStage2(
                             $Stage_5->enableView_8
                         );
                         ?>
+                        <!-- <div class="modal fade" id="modal-1-7" tabindex="-1" aria-labelledby="modalLabel-1-7" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel-1-7">Modal for 1-7</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        This is the content for row ID -1-7.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <?php for ($j = 0; $j <= 5; $j++) { ?>
+                            <?php for ($i = 0; $i < 500; $i++) { ?>
+                                <div class="modal fade" id="modal-<?php echo $j; ?>-<?php echo $i; ?>" tabindex="-1" aria-labelledby="modalLabel-<?php echo $j; ?>-<?php echo $i; ?>" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalLabel-<?php echo $j; ?>-<?php echo $i; ?>">Ingrese el enlace:</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="editable-paragraph" id="editableParagraph-<?php echo $j; ?>-<?php echo $i; ?>" onkeyup="saveContent(this,<?php echo $j; ?>,<?php echo $i; ?>)" contenteditable="true">
+                                                    <?php echo ${"stage_{$j}_{$i}"} ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -1604,6 +1672,13 @@ function tableStage2(
 
     function saveContent2(tdElement, stage, id) {
         const newValue = document.getElementById(stage + '_' + id).value;
+        const row = 0;
+        const row_max = "";
+        fetchContent(id, newValue, stage, row, row_max);
+    }
+
+    function saveContentDate(tdElement, stage, id) {
+        const newValue = document.getElementById(id).value;
         const row = 0;
         const row_max = "";
         fetchContent(id, newValue, stage, row, row_max);

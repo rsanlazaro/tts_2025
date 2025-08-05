@@ -963,7 +963,6 @@ function tableStage2(
                             <col>
                             <col>
                             <col>
-                            <col>
                         </colgroup>
                         <tr class="thead-2">
                             <?php
