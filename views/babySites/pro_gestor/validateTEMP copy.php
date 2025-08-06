@@ -22,7 +22,7 @@ if (empty($password)) {
     header("Location: superadmin.php?error=Se requiere una contraseña");
     exit();
 } else {
-    if ($password === 'admin123') {
+    if ($password === 'admin123') { // Example password check
         $_SESSION['super_admin'] = true;
         header("Location: superadmin_ok.php");
         exit();

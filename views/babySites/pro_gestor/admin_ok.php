@@ -1,19 +1,19 @@
 <?php
-include '../../../../includes/templates/header_begin.php';
+include '../../../includes/templates/header_begin.php';
 ?>
 
-<link rel="stylesheet" href="../../../../build/css/app.css" />
-<link href="../../../../assets/css/paper-dashboard.css" rel="stylesheet" />
-<link href="../../../../assets/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../../build/css/app.css" />
+<link href="../../../assets/css/paper-dashboard.css" rel="stylesheet" />
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" />
 
 <?php
-include '../../../../includes/templates/header_end.php';
-include '../../../../includes/app.php';
-include '../../../../includes/templates/sessionStart.php';
-include '../../../../includes/templates/validateAccessInternal.php';
+include '../../../includes/templates/header_end.php';
+include '../../../includes/app.php';
+include '../../../includes/templates/sessionStart.php';
+include '../../../includes/templates/validateAccessInternal.php';
 
-if ((!isset($_SESSION['super_admin'])) && (!isset($_SESSION['admin']))) {
-    header("Location: ../../../../index.php?error=Acceso denegado");
+if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
+    header("Location: superadmin.php?error=Acceso denegado");
     exit();
 }
 
@@ -135,7 +135,7 @@ $sections_4 = array(
 ?>
 
 <main class="dashboard">
-    <header class="d-flex justify-content-end align-items-center header-bills">
+    <header class="d-flex justify-content-end align-items-center">
         <div class="icons">
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -153,9 +153,9 @@ $sections_4 = array(
             <div class="last-name"><?php echo $last_name_user; ?></div>
         </div>
         <div class="profile-pic">
-            <img style="cursor:pointer;" onclick="toggleDropdown()" src="../../../../build/img/testImg/profilepic.webp" alt="Profile Picture">
+            <img style="cursor:pointer;" onclick="toggleDropdown()" src="../../../build/img/testImg/profilepic.webp" alt="Profile Picture">
             <div id="myDropdown-profile" class="dropdown-content-profile">
-                <a href="../../../../logout.php">Cerrar sesión
+                <a href="../../../logout.php">Cerrar sesión
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
                         <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
@@ -167,19 +167,19 @@ $sections_4 = array(
     <div class="sidebar">
         <div class="lateral">
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../../build/img/icons/babySite-admin.webp" alt="icon">
+                <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item active" href="../superadmin.php">Super Admin</a>
-                    <a class="dropdown-item" href="../users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item" href="../guests.php">Listado de Guests</a>
+                    <a class="dropdown-item active" href="superadmin.php">Super Admin</a>
+                    <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+                    <a class="dropdown-item" href="guests.php">Listado de Guests</a>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../../build/img/icons/babySite-user.webp" alt="icon">
+                <img class="icon-img" src="../../../build/img/icons/babySite-user.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">BABY SITE</div>
                     <a class="dropdown-item" href="#">Listado Sort_GES</a>
@@ -190,7 +190,7 @@ $sections_4 = array(
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../../build/img/icons/babySite-recluta.webp" alt="icon">
+                <img class="icon-img" src="../../../build/img/icons/babySite-recluta.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">RECLUTA</div>
                     <a class="dropdown-item" href="#">Nueva Candidata</a>
@@ -200,10 +200,10 @@ $sections_4 = array(
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../../build/img/icons/babySite-upload.webp" alt="icon">
+                <img class="icon-img" src="../../../build/img/icons/babySite-upload.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">Baby Cloud</div>
-                    <a class="dropdown-item" href="../../baby_cloud_upload/sort_ips.php">Cloud_IPS Upload</a>
+                    <a class="dropdown-item" href="../baby_cloud_upload/sort_ips.php">Cloud_IPS Upload</a>
                     <a class="dropdown-item" href="#">Cloud_GES Upload</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
@@ -211,7 +211,7 @@ $sections_4 = array(
         </div>
         <div class="lateral-info">
             <div class="logo">
-                <a href="../home.php"><img src="../../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
+                <a href="../home.php"><img src="../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
             </div>
             <div class="date">
                 <div>
@@ -255,178 +255,13 @@ $sections_4 = array(
     <div class="content" id="content">
         <div class="header">
             <div class="message">
-                Reporte Médico
+                Admin
             </div>
         </div>
-        <div class="super-admin-body bills users-body">
-            <form class="pink-form" action="medicalReport.php" method="POST" enctype="multipart/form-data">
-                <div class="form-info">
-                    <div class="bills-info bills-info-3">
-                        <div>
-                            <label for="date" class="form-label">Fecha *</label>
-                            <input class="form-control" id="date" type="date" name="date" required />
-                        </div>
-                        <div>
-                            <label for="doctor" class="form-label">Médico tratante *</label>
-                            <input class="form-control" id="doctor" type="text" name="doctor" required />
-                        </div>
-                        <div>
-                            <label for="name" class="form-label">Nombre de paciente *</label>
-                            <input class="form-control" id="name" type="text" name="name" required />
-                        </div>
-                        <div>
-                            <label for="age" class="form-label">Edad *</label>
-                            <input class="form-control" id="age" type="number" name="age" required />
-                        </div>
-                        <div>
-                            <label for="date-menst" class="form-label">Fecha de última menstruación *</label>
-                            <input class="form-control" id="date-menst" type="date" name="date-menst" required />
-                        </div>
-                        <div>
-                            <label for="gest-age" class="form-label">Edad gestacional *</label>
-                            <input class="form-control" id="gest-age" type="text" name="gest-age" required />
-                        </div>
-                    </div>
-                    <div class="title">Parámetros biofísicos</div>
-                    <div class="bills-info-2 bills-info">
-                        <div>
-                            <label for="diameter" class="form-label">Diámetro biparietal (DBP) - Valor (cm) *</label>
-                            <input class="form-control" id="diameter" type="number" step="0.01" name="diameter" required />
-                        </div>
-                        <div>
-                            <label for="diameter-age" class="form-label">Diámetro biparietal (DBP) - Edad gestacional (semanas) *</label>
-                            <input class="form-control" id="diameter-age" type="number" step="0.01" name="diameter-age" required />
-                        </div>
-                        <div>
-                            <label for="circumference" class="form-label">Circunferencia cefálica (CC) - Valor (cm) *</label>
-                            <input class="form-control" id="circumference" type="number" step="0.01" name="circumference" required />
-                        </div>
-                        <div>
-                            <label for="circumference-age" class="form-label">Circunferencia cefálica (CC) - Edad gestacional (semanas) *</label>
-                            <input class="form-control" id="circumference-age" type="number" step="0.01" name="circumference-age" required />
-                        </div>
-                        <div>
-                            <label for="circumference-abdm" class="form-label">Circunferencia abdominal (CA) - Valor (cm) *</label>
-                            <input class="form-control" id="circumference-abdm" type="number" step="0.01" name="circumference-abdm" required />
-                        </div>
-                        <div>
-                            <label for="circumference-abdm-age" class="form-label">Circunferencia abdominal (CA) - Edad gestacional (semanas) *</label>
-                            <input class="form-control" id="circumference-abdm-age" type="number" step="0.01" name="circumference-abdm-age" required />
-                        </div>
-                        <div>
-                            <label for="length" class="form-label">Longitud femoral (LF) - Valor (cm) *</label>
-                            <input class="form-control" id="length" type="number" step="0.01" name="length" required />
-                        </div>
-                        <div>
-                            <label for="length-age" class="form-label">Longitud femoral (LF) - Edad gestacional (semanas) *</label>
-                            <input class="form-control" id="length-age" type="number" step="0.01" name="length-age" required />
-                        </div>
-                        <div>
-                            <label for="fetometry" class="form-label">Fetometría promedio *</label>
-                            <input class="form-control" id="fetometry" type="text" name="fetometry" required />
-                        </div>
-                        <div>
-                            <label for="fetal-weight" class="form-label">Peso fetal estimado (PFE) *</label>
-                            <input class="form-control" id="fetal-weight" type="text" name="fetal-weight" required />
-                        </div>
-                        <div>
-                            <label for="perc-weight" class="form-label">Percentil de peso *</label>
-                            <input class="form-control" id="perc-weight" type="text" name="perc-weight" required />
-                        </div>
-                        <div>
-                            <label for="cardiac-frec" class="form-label">Frecuencia cardiaca fetal *</label>
-                            <input class="form-control" id="cardiac-frec" type="text" name="cardiac-frec" required />
-                        </div>
-                    </div>
-                    <div class="title">Comentarios y conclusiones *</div>
-                    <div class="bills-info bills-info-1">
-                        <div>
-                            <textarea class="form-control" id="comments" name="comments" rows="4" required></textarea>
-                        </div>
-                    </div>
-                    <div class="title">Impresión diagnóstica *</div>
-                    <div class="bills-info bills-info-1">
-                        <div>
-                            <textarea class="form-control" id="diagnosis" name="diagnosis" rows="2" required></textarea>
-                        </div>
-                    </div>
-                    <div class="title">Imágenes</div>
-                    <div class="bills-info bills-info-img">
-                        <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 1</label>
-                            <input type="file" onchange="previewFile()" class="form-control img-1-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-1" />
-                            <img class="img-1-pre" alt="Image preview...">
-                            <div class="invalid-feedback">
-                                <div>Seleccione una imagen</div>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 2</label>
-                            <input type="file" onchange="previewFile2()" class="form-control img-2-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-2" />
-                            <img class="img-2-pre" alt="Image preview...">
-                            <div class="invalid-feedback">
-                                <div>Seleccione una imagen</div>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 3</label>
-                            <input type="file" onchange="previewFile3()" class="form-control img-3-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-3" />
-                            <img class="img-3-pre" alt="Image preview...">
-                            <div class="invalid-feedback">
-                                <div>Seleccione una imagen</div>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 4</label>
-                            <input type="file" onchange="previewFile4()" class="form-control img-4-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-4" />
-                            <img class="img-4-pre" alt="Image preview...">
-                            <div class="invalid-feedback">
-                                <div>Seleccione una imagen</div>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 5</label>
-                            <input type="file" onchange="previewFile5()" class="form-control img-5-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-5" />
-                            <img class="img-5-pre" alt="Image preview...">
-                            <div class="invalid-feedback">
-                                <div>Seleccione una imagen</div>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 6</label>
-                            <input type="file" onchange="previewFile6()" class="form-control img-6-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-6" />
-                            <img class="img-6-pre" alt="Image preview...">
-                            <div class="invalid-feedback">
-                                <div>Seleccione una imagen</div>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 7</label>
-                            <input type="file" onchange="previewFile7()" class="form-control img-7-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-7" />
-                            <img class="img-7-pre" alt="Image preview...">
-                            <div class="invalid-feedback">
-                                <div>Seleccione una imagen</div>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 8</label>
-                            <input type="file" onchange="previewFile8()" class="form-control img-8-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-8" />
-                            <img class="img-8-pre" alt="Image preview...">
-                            <div class="invalid-feedback">
-                                <div>Seleccione una imagen</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bills-info required-fields">
-                        <p>*Required fields</p>
-                    </div>
-                </div>
-                <div class="form-btn d-flex justify-content-center">
-                    <button class="btn btn-pink btn-send" type="submit">
-                        <div>Generar PDF</div>
-                    </button>
-                </div>
-            </form>
+        <div class="super-admin-body users-body">
+            <div class="buttons">
+                <a href="bills/medical.php"> Reporte Médico </a>
+            </div>
         </div>
     </div>
 </main>
@@ -435,7 +270,7 @@ $sections_4 = array(
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Custom JS -->
-<script src="../../../../build/js/bundle.min.js"></script>
+<script src="../../../build/js/bundle.min.js"></script>
 <script>
     // Clock functionality
     function updateClock() {
@@ -507,7 +342,7 @@ $sections_4 = array(
     }
 </script>
 <!-- Custom JS -->
-<script src="../../../../build/js/paginationFilter.min.js"></script>
+<script src="../../../build/js/paginationFilter.min.js"></script>
 <!-- Pagination -->
 <script>
     let options = {
@@ -681,143 +516,6 @@ $sections_4 = array(
                     document.getElementById("content").classList.remove("content-show");
                 }
             }
-        }
-    }
-</script>
-<script>
-    function previewFile() {
-        var preview = document.querySelector(".img-1-pre");
-        var file = document.querySelector(".img-1-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            preview.src = reader.result;
-
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
-        }
-    }
-
-    function previewFile2() {
-        var preview = document.querySelector(".img-2-pre");
-        var file = document.querySelector(".img-2-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            preview.src = reader.result;
-
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
-        }
-    }
-
-    function previewFile3() {
-        var preview = document.querySelector(".img-3-pre");
-        var file = document.querySelector(".img-3-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            preview.src = reader.result;
-
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
-        }
-    }
-
-    function previewFile4() {
-        var preview = document.querySelector(".img-4-pre");
-        var file = document.querySelector(".img-4-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            preview.src = reader.result;
-
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
-        }
-    }
-
-    function previewFile5() {
-        var preview = document.querySelector(".img-5-pre");
-        var file = document.querySelector(".img-5-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            preview.src = reader.result;
-
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
-        }
-    }
-
-    function previewFile6() {
-        var preview = document.querySelector(".img-6-pre");
-        var file = document.querySelector(".img-6-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            preview.src = reader.result;
-
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
-        }
-    }
-
-    function previewFile7() {
-        var preview = document.querySelector(".img-7-pre");
-        var file = document.querySelector(".img-7-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            preview.src = reader.result;
-
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
-        }
-    }
-
-    function previewFile8() {
-        var preview = document.querySelector(".img-8-pre");
-        var file = document.querySelector(".img-8-input").files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            preview.src = reader.result;
-
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "";
         }
     }
 </script>

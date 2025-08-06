@@ -14,9 +14,9 @@ include '../../includes/templates/validateAccessExternal.php';
 
 // User's profile identification
 
-$access = ['super-admin','admin-junior','coordinador','operador','recluta-interno'];
+$access = ['super-admin', 'admin-junior', 'coordinador', 'operador', 'recluta-interno'];
 
-if (!(in_array($_SESSION['type'],$access))) {
+if (!(in_array($_SESSION['type'], $access))) {
     $user_type = 'external';
 } else {
     $user_type = 'internal';
@@ -86,7 +86,7 @@ $counter_enable = 1;
 
 $stage = 1;
 ${"Stage_$stage"} = new stdClass();
-$titles = ["","Etapa/descripción", "Estado", "Fecha", "Resultado e Info Adicional", "Archivos"];
+$titles = ["", "Etapa/descripción", "Estado", "Fecha", "Resultado e Info Adicional", "Archivos"];
 ${"Stage_$stage"}->titles = $titles;
 $table = "ipregister_" . $stage;
 $sql = "SELECT * FROM $table WHERE id=${id_user}";
@@ -142,7 +142,7 @@ $counter_enable = 1;
 $stage = 2;
 $prev_stage = $stage - 1;
 ${"Stage_$stage"} = new stdClass();
-$titles = ["","Etapa/descripción", "Resultado", "Fecha", "Resultado e Info Adicional", "Archivos"];
+$titles = ["", "Etapa/descripción", "Resultado", "Fecha", "Resultado e Info Adicional", "Archivos"];
 ${"Stage_$stage"}->titles = $titles;
 $table = "ipregister_" . $stage;
 $sql = "SELECT * FROM $table WHERE id=${id_user}";
@@ -233,7 +233,7 @@ $counter_enable = 1;
 $stage = 3;
 $prev_stage = $stage - 1;
 ${"Stage_$stage"} = new stdClass();
-$titles = ["","Confirmación embarazo - Primer trimestre", "Descripción", "Resultado", "Fecha", "Ícono resumen", "Uploading", "Habilitar", "Uploading", "Habilitar", "Uploading", "Habilitar", "Habilitar Vista"];
+$titles = ["", "Confirmación embarazo - Primer trimestre", "Descripción", "Resultado", "Fecha", "Ícono resumen", "Uploading", "Habilitar", "Uploading", "Habilitar", "Uploading", "Habilitar", "Habilitar Vista"];
 ${"Stage_$stage"}->titles = $titles;
 $table = "ipregister_" . $stage;
 $sql = "SELECT * FROM $table WHERE id=${id_user}";
@@ -522,6 +522,40 @@ $select_options = [
 ];
 generateRow($component, $stage, $Stage_5->stage_count_8, $description, $select_options, $isStage2);
 
+// ----------------- New Stage ----------------- //
+
+$counter_enable = 1;
+$stage = 6;
+$prev_stage = $stage - 1;
+${"Stage_$stage"} = new stdClass();
+$table = "ipregister_" . $stage;
+$sql = "SELECT * FROM $table WHERE id=${id_user}";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) === 0) {
+    $sql = "INSERT INTO $table (id) VALUES (${id_user})";
+    $result = mysqli_query($conn, $sql);
+} else {
+    while ($row = mysqli_fetch_assoc($result)) {
+        for ($i = 1; $i <= 13; $i++) {
+            ${"stage_{$stage}_{$i}"} = $row['stage_' . $i];
+        }
+    }
+}
+$propertyName = "stage_count_1";
+${"Stage_$stage"}->$propertyName = 1;
+
+// ---------------- New Component -------------- // 
+$component = 1;
+${"max_{$stage}_{$component}"} = 1;
+$isStage2 = true;
+$description = "Fecha estimada de parto <br> Date probable de naissance";
+$select_options = [
+    "none" => "---",
+    "waiting" => "Esperando fecha",
+    "programmed" => "Confirmada"
+];
+generateRow($component, $stage, $Stage_6->stage_count_1, $description, $select_options, $isStage2);
+
 function generateRow(int $component, int $stage, int $row_num, string $description, array $select_options, bool $isStage2)
 {
     global $counter_enable;
@@ -597,7 +631,24 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
         } else if ($description == "Presentación de la candidata <br> Présentation de la candidate") {
             ${"info_2_$component"}[$i] = "<td class='td-inline-block td-center'> <p onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</p></td>";
         } else if ($description == "Prueba Beta <br> Beta Test" || $description == "Saco gestacional <br> Sac gestationnel") {
-            ${"info_2_$component"}[$i] = "<td> <p class='td-info-two-cols' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</p></td>";
+            // ${"info_2_$component"}[$i] = "<td> <p class='td-info-two-cols' onkeyup='saveContent(this," . $stage . "," . $counter_enable . ")'>" . ${"stage_{$stage}_{$counter_enable}"} . "</p></td>";
+            if (strlen(${"stage_{$stage}_{$counter_enable}"}) > 1) {
+                ${"info_2_$component"}[$i] = "<td class='td-center td-icon'>" .
+                    "<button type='button' data-bs-toggle='modal' data-bs-target='#modal-" . $stage . "-text-" . $counter_enable . "'>
+                        <svg class='uploading-true' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chat-dots-fill' viewBox='0 0 16 16'>
+                            <path d='M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2'/>
+                        </svg>
+                    </button>"
+                    . "</td>";
+            } else {
+                ${"info_2_$component"}[$i] = "<td class='td-center td-icon'>" .
+                    "<button type='button' data-bs-toggle='modal' data-bs-target='#modal-" . $stage . "-text-" . $counter_enable . "'>
+                        <svg class='uploading-false' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chat-dots-fill' viewBox='0 0 16 16'>
+                            <path d='M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2'/>
+                        </svg>
+                    </button>"
+                    . "</td>";
+            }
         } else if ($description == "Reporte Transfer <br> Rapport de transfert embryonnaire") {
             ${"info_2_$component"}[$i] = '';
         } else {
@@ -624,7 +675,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
                     <path d='M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z'/>
                 </svg>
                 </td>";
-            } 
+            }
         } else {
             ${"uploading_1_$component"}[$i] = "<td class='td-center'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
         }
@@ -661,7 +712,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
                     <path d='M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z'/>
                 </svg>
                 </td>";
-            } 
+            }
         } else {
             ${"uploading_2_$component"}[$i] = "<td class='td-center'>" . ${"stage_{$stage}_{$counter_enable}"} . "</td>";
         }
@@ -698,7 +749,7 @@ function generateRow(int $component, int $stage, int $row_num, string $descripti
                     <path d='M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z'/>
                 </svg>
                 </td>";
-            } 
+            }
         } else {
             ${"uploading_3_$component"}[$i] = "<td class='td-center'>-</td>";
         }
@@ -793,20 +844,22 @@ function tableStage(
 ) {
     for ($x = 0; $x < $stage_count_1; $x++) {
         if (!(str_contains($enableView_1[$x], 'fa-eye-slash'))) {
-            echo "<tr>" .
-                ($x == 0 ? "<td class='td-icon td-center td-info'>" . 
-                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-info-circle-fill' viewBox='0 0 16 16'>
+            if (!($description_1[$x] == "Reporte Transfer <br> Rapport de transfert embryonnaire")) {
+                echo "<tr>" .
+                    ($x == 0 ? "<td class='td-icon td-center td-info'>" .
+                        "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-info-circle-fill' viewBox='0 0 16 16'>
                     <path d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2'/>
-                </svg>" . 
-                "</td>" : "<td> </td>") .
-                "<td class='description'>" . $description_1[$x] . "</td>" .
-                "<td>" . $state_1[$x] . "</td>" .
-                $underway_1[$x] .
-                $info_1_1[$x] .
-                $info_2_1[$x] .
-                $uploading_1_1[$x] .
-                $uploading_2_1[$x] .
-                "</tr>";
+                </svg>" .
+                        "</td>" : "<td> </td>") .
+                    "<td class='description'>" . $description_1[$x] . "</td>" .
+                    "<td>" . $state_1[$x] . "</td>" .
+                    $underway_1[$x] .
+                    $info_1_1[$x] .
+                    $info_2_1[$x] .
+                    $uploading_1_1[$x] .
+                    $uploading_2_1[$x] .
+                    "</tr>";
+            }
         }
     }
 }
@@ -830,11 +883,11 @@ function tableStage2(
     for ($x = 0; $x < $stage_count_1; $x++) {
         if (!(str_contains($enableView_1[$x], 'fa-eye-slash'))) {
             echo "<tr>" .
-                ($x == 0 ? "<td class='td-icon td-center td-info'>" . 
-                "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-info-circle-fill' viewBox='0 0 16 16'>
+                ($x == 0 ? "<td class='td-icon td-center td-info'>" .
+                    "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-info-circle-fill' viewBox='0 0 16 16'>
                     <path d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2'/>
-                </svg>" . 
-                "</td>" : "<td> </td>") .
+                </svg>" .
+                    "</td>" : "<td> </td>") .
                 "<td class='description'>" . $description_1[$x] . "</td>" .
                 "<td>" . $state_1[$x] . "</td>" .
                 $underway_1[$x] .
@@ -1423,6 +1476,58 @@ function tableStage2(
                                 $Stage_5->uploading_3_8,
                                 $Stage_5->enable_3_8,
                                 $Stage_5->enableView_8
+                            );
+                            ?>
+                            <?php for ($j = 0; $j <= 6; $j++) { ?>
+                                <?php for ($i = 0; $i < 500; $i++) { ?>
+                                    <div class="modal fade" id="modal-<?php echo $j; ?>-text-<?php echo $i; ?>" tabindex="-1" aria-labelledby="modalLabel-<?php echo $j; ?>-<?php echo $i; ?>" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalLabel-<?php echo $j; ?>-<?php echo $i; ?>">Ingrese la información:</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="editable-paragraph" id="editableParagraph-<?php echo $j; ?>-<?php echo $i; ?>" onkeyup="saveContent(this,<?php echo $j; ?>,<?php echo $i; ?>)" contenteditable="true">
+                                                        <?php echo ${"stage_{$j}_{$i}"} ?>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            <?php } ?>
+                        </tbody>
+                    <?php
+                    }
+                    ?>
+                    <?php
+                    $stage_6_display = false;
+                    for ($i = 1; $i <= 1; $i++) {
+                        $j = $i * 13;
+                        if (${"stage_6_{$j}"} == 'true') {
+                            $stage_6_display = true;
+                        }
+                    }
+                    if ($stage_6_display == 'true') {
+                    ?>
+                        <tbody>
+                            <?php
+                            tableStage2(
+                                $Stage_6->stage_count_1,
+                                $Stage_6->add_1,
+                                $Stage_6->description_1,
+                                $Stage_6->info_general_1,
+                                $Stage_6->state_1,
+                                $Stage_6->underway_1,
+                                $Stage_6->info_1_1,
+                                $Stage_6->uploading_1_1,
+                                $Stage_6->enable_1_1,
+                                $Stage_6->uploading_2_1,
+                                $Stage_6->enable_2_1,
+                                $Stage_6->uploading_3_1,
+                                $Stage_6->enable_3_1,
+                                $Stage_6->enableView_1
                             );
                             ?>
                         </tbody>
