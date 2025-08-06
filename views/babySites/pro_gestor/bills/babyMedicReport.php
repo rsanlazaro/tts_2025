@@ -54,6 +54,16 @@ if ($_POST['currency'] === 'euro') {
 <p style="position: absolute; font-size: 15px; top: 64mm; left: 14.5mm; width: 300px;">' . $_POST['country'] . '</p>
 <p style="position: absolute; font-size: 15px; top: 57mm; left: 14.5mm; width: 300px;">' . $_POST['bill'] . '</p>';
 
+($_POST['price1'] !== '') ? $price_1 = $_POST['price1'] . ' €' : $price_1 = '';
+($_POST['price2'] !== '') ? $price_2 = $_POST['price2'] . ' €' : $price_2 = '';
+($_POST['price3'] !== '') ? $price_3 = $_POST['price3'] . ' €' : $price_3 = '';
+($_POST['price4'] !== '') ? $price_4 = $_POST['price4'] . ' €' : $price_4 = '';
+
+($_POST['total1'] !== '') ? $total_1 = $_POST['total1'] . ' €' : $total_1 = '';
+($_POST['total2'] !== '') ? $total_2 = $_POST['total2'] . ' €' : $total_2 = '';
+($_POST['total3'] !== '') ? $total_3 = $_POST['total3'] . ' €' : $total_3 = '';
+($_POST['total4'] !== '') ? $total_4 = $_POST['total4'] . ' €' : $total_4 = '';
+
     if (isset($_POST['description1']) || isset($_POST['description2']) || isset($_POST['description3']) || isset($_POST['description4'])) {
         $html .= '<div width="510px" height="295px" style="margin-top: 60px;"></div>';
     }
@@ -64,8 +74,8 @@ if ($_POST['currency'] === 'euro') {
         <tr>
             <td width="34%" style="padding-left: 10px;">' . $_POST['description1'] . '</td>
             <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty1'] . '</td>
-            <td width="30%" style="text-align: center;">' . $_POST['price1'] . ' €</td>
-            <td width="9%" style="text-align: center   ;">' . $_POST['total1'] . ' €</td>
+            <td width="30%" style="text-align: center;">' . $price_1 . '</td>
+            <td width="9%" style="text-align: center   ;">' . $total_1 . '</td>
         </tr>
     </table>';
     }
@@ -76,8 +86,8 @@ if ($_POST['currency'] === 'euro') {
         <tr>
             <td width="34%" style="padding-left: 10px;">' . $_POST['description2'] . '</td>
             <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty2'] . '</td>
-            <td width="30%" style="text-align: center;">' . $_POST['price2'] . ' €</td>
-            <td width="9%" style="text-align: center   ;">' . $_POST['total2'] . ' €</td>
+            <td width="30%" style="text-align: center;">' . $price_2 . '</td>
+            <td width="9%" style="text-align: center   ;">' . $total_2 . '</td>
         </tr>
     </table>';
     }
@@ -88,8 +98,8 @@ if ($_POST['currency'] === 'euro') {
         <tr>
             <td width="34%" style="padding-left: 10px;">' . $_POST['description3'] . '</td>
             <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty3'] . '</td>
-            <td width="30%" style="text-align: center;">' . $_POST['price3'] . ' €</td>
-            <td width="9%" style="text-align: center   ;">' . $_POST['total3'] . ' €</td>
+            <td width="30%" style="text-align: center;">' . $price_3 . '</td>
+            <td width="9%" style="text-align: center   ;">' . $total_3 . '</td>
         </tr>
     </table>';
     }
@@ -100,8 +110,8 @@ if ($_POST['currency'] === 'euro') {
         <tr>
             <td width="34%" style="padding-left: 10px;">' . $_POST['description4'] . '</td>
             <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty4'] . '</td>
-            <td width="30%" style="text-align: center;">' . $_POST['price4'] . ' €</td>
-            <td width="9%" style="text-align: center   ;">' . $_POST['total4'] . ' €</td>
+            <td width="30%" style="text-align: center;">' . $price_4 . '</td>
+            <td width="9%" style="text-align: center   ;">' . $total_4 . '</td>
         </tr>
     </table>';
     }
@@ -124,6 +134,16 @@ if ($_POST['currency'] === 'euro') {
 <p style="position: absolute; font-size: 15px; top: 64mm; left: 14.5mm; width: 300px;">' . $_POST['country'] . '</p>
 <p style="position: absolute; font-size: 15px; top: 57mm; left: 14.5mm; width: 300px;">' . $_POST['bill'] . '</p>';
 
+($_POST['price1'] !== '') ? $price_1 = $_POST['price1'] . ' $' : $price_1 = '';
+($_POST['price2'] !== '') ? $price_2 = $_POST['price2'] . ' $' : $price_2 = '';
+($_POST['price3'] !== '') ? $price_3 = $_POST['price3'] . ' $' : $price_3 = '';
+($_POST['price4'] !== '') ? $price_4 = $_POST['price4'] . ' $' : $price_4 = '';
+
+($_POST['total1'] !== '') ? $total_1 = $_POST['total1'] . ' $' : $total_1 = '';
+($_POST['total2'] !== '') ? $total_2 = $_POST['total2'] . ' $' : $total_2 = '';
+($_POST['total3'] !== '') ? $total_3 = $_POST['total3'] . ' $' : $total_3 = '';
+($_POST['total4'] !== '') ? $total_4 = $_POST['total4'] . ' $' : $total_4 = '';
+
     if (isset($_POST['description1']) || isset($_POST['description2']) || isset($_POST['description3']) || isset($_POST['description4'])) {
         $html .= '<div width="510px" height="295px" style="margin-top: 60px;"></div>';
     }
@@ -134,8 +154,8 @@ if ($_POST['currency'] === 'euro') {
         <tr>
             <td width="34%" style="padding-left: 10px;">' . $_POST['description1'] . '</td>
             <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty1'] . '</td>
-            <td width="30%" style="text-align: center;">' . $_POST['price1'] . ' $</td>
-            <td width="9%" style="text-align: center   ;">' . $_POST['total1'] . ' $</td>
+            <td width="30%" style="text-align: center;">' . $price_1 . '</td>
+            <td width="9%" style="text-align: center   ;">' . $total_1 . '</td>
         </tr>
     </table>';
     }
@@ -146,8 +166,8 @@ if ($_POST['currency'] === 'euro') {
         <tr>
             <td width="34%" style="padding-left: 10px;">' . $_POST['description2'] . '</td>
             <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty2'] . '</td>
-            <td width="30%" style="text-align: center;">' . $_POST['price2'] . ' $</td>
-            <td width="9%" style="text-align: center   ;">' . $_POST['total2'] . ' $</td>
+            <td width="30%" style="text-align: center;">' . $price_2 . '</td>
+            <td width="9%" style="text-align: center   ;">' . $total_2 . '</td>
         </tr>
     </table>';
     }
@@ -158,8 +178,8 @@ if ($_POST['currency'] === 'euro') {
         <tr>
             <td width="34%" style="padding-left: 10px;">' . $_POST['description3'] . '</td>
             <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty3'] . '</td>
-            <td width="30%" style="text-align: center;">' . $_POST['price3'] . ' $</td>
-            <td width="9%" style="text-align: center   ;">' . $_POST['total3'] . ' $</td>
+            <td width="30%" style="text-align: center;">' . $price_3 . '</td>
+            <td width="9%" style="text-align: center   ;">' . $total_3 . '</td>
         </tr>
     </table>';
     }
@@ -170,8 +190,8 @@ if ($_POST['currency'] === 'euro') {
         <tr>
             <td width="34%" style="padding-left: 10px;">' . $_POST['description4'] . '</td>
             <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty4'] . '</td>
-            <td width="30%" style="text-align: center;">' . $_POST['price4'] . ' $</td>
-            <td width="9%" style="text-align: center   ;">' . $_POST['total4'] . ' $</td>
+            <td width="30%" style="text-align: center;">' . $price_4 . '</td>
+            <td width="9%" style="text-align: center   ;">' . $total_4 . '</td>
         </tr>
     </table>';
     }
