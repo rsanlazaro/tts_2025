@@ -104,19 +104,19 @@ $mpdf->AddPage();
 $html = '
 <p style="color: black; font-size: 15px; padding-top: 115px; padding-left: -5px;">' . $_POST['diagnosis'] . '</p>
 <p style="color: black; font-size: 15px; padding-top: 150px;"> </p>
-<img src="' . $targetFilePath1 . '" style="width: 300px; padding-top: 15px; padding-left: 15px;" />
-<img src="' . $targetFilePath2 . '" style="width: 300px; padding-left: 15px;" />
-<img src="' . $targetFilePath3 . '" style="width: 300px; padding-left: 15px; padding-top: 10px;" />
-<img src="' . $targetFilePath4 . '" style="width: 300px; padding-left: 15px;" />
+<img src="' . $targetFilePath1 . '" style="width: 300px; height: 200px; padding-top: 15px; padding-left: 15px;" />
+<img src="' . $targetFilePath2 . '" style="width: 300px; height: 200px; padding-left: 15px;" />
+<img src="' . $targetFilePath3 . '" style="width: 300px; height: 200px; padding-left: 15px; padding-top: 10px;" />
+<img src="' . $targetFilePath4 . '" style="width: 300px; height: 200px; padding-left: 15px;" />
 ';
 $mpdf->WriteHTML($html);
 $mpdf->SetDefaultBodyCSS('background', "url('$backgroundImage3')");
 $mpdf->AddPage();
 $html = '
-<img src="' . $targetFilePath5 . '" style="width: 300px; padding-left: 15px; padding-top: 150px;" />
-<img src="' . $targetFilePath6 . '" style="width: 300px; padding-left: 15px;" />
-<img src="' . $targetFilePath7 . '" style="width: 300px; padding-left: 15px; padding-top: 10px;" />
-<img src="' . $targetFilePath8 . '" style="width: 300px; padding-left: 15px;" />
+<img src="' . $targetFilePath5 . '" style="width: 300px; height: 200px; padding-left: 15px; padding-top: 150px;" />
+<img src="' . $targetFilePath6 . '" style="width: 300px; height: 200px; padding-left: 15px;" />
+<img src="' . $targetFilePath7 . '" style="width: 300px; height: 200px; padding-left: 15px; padding-top: 10px;" />
+<img src="' . $targetFilePath8 . '" style="width: 300px; height: 200px; padding-left: 15px;" />
 ';
 $mpdf->WriteHTML($html);
 
