@@ -20,15 +20,16 @@ $mpdf->SetDefaultBodyCSS('background', "url('$backgroundImage1')");
 $mpdf->SetDefaultBodyCSS('background-image-resize', 6); // 6 = stretch to fill
 
 $dateString = $_POST['date'];
-$dateTime = DateTime::createFromFormat('Y-m-d', $dateString);
+// $dateTime = DateTime::createFromFormat('Y-m-d', $dateString);
 
-// Set the locale to French
-$formatter = new IntlDateFormatter(
-    'fr_FR',                      // Locale
-    IntlDateFormatter::LONG,     // Date format
-    IntlDateFormatter::NONE      // Time format
-);
-$frenchDate = $formatter->format($dateTime); // Output: 5 août 2025
+// // Set the locale to French
+// $formatter = new IntlDateFormatter(
+//     'fr_FR',                      // Locale
+//     IntlDateFormatter::LONG,     // Date format
+//     IntlDateFormatter::NONE      // Time format
+// );
+// $frenchDate = $formatter->format($dateTime); // Output: 5 août 2025
+$frenchDate = $dateString;
 
 if ($_POST['currency'] === 'euro') {
     $html = '
