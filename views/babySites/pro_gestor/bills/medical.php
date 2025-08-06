@@ -353,7 +353,7 @@ $sections_4 = array(
                     <div class="title">Imágenes</div>
                     <div class="bills-info bills-info-img">
                         <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 1</label>
+                            <label class="label-form" for="validationCustomUsername">Imagen 1 (Tamaño recomendado: 470px X 330px)</label>
                             <input type="file" onchange="previewFile()" class="form-control img-1-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-1" />
                             <img class="img-1-pre" alt="Image preview...">
                             <div class="invalid-feedback">
@@ -361,7 +361,7 @@ $sections_4 = array(
                             </div>
                         </div>
                         <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 2</label>
+                            <label class="label-form" for="validationCustomUsername">Imagen 2 (Tamaño recomendado: 470px X 330px)</label>
                             <input type="file" onchange="previewFile2()" class="form-control img-2-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-2" />
                             <img class="img-2-pre" alt="Image preview...">
                             <div class="invalid-feedback">
@@ -369,7 +369,7 @@ $sections_4 = array(
                             </div>
                         </div>
                         <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 3</label>
+                            <label class="label-form" for="validationCustomUsername">Imagen 3 (Tamaño recomendado: 470px X 330px)</label>
                             <input type="file" onchange="previewFile3()" class="form-control img-3-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-3" />
                             <img class="img-3-pre" alt="Image preview...">
                             <div class="invalid-feedback">
@@ -377,7 +377,7 @@ $sections_4 = array(
                             </div>
                         </div>
                         <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 4</label>
+                            <label class="label-form" for="validationCustomUsername">Imagen 4 (Tamaño recomendado: 470px X 330px)</label>
                             <input type="file" onchange="previewFile4()" class="form-control img-4-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-4" />
                             <img class="img-4-pre" alt="Image preview...">
                             <div class="invalid-feedback">
@@ -385,7 +385,7 @@ $sections_4 = array(
                             </div>
                         </div>
                         <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 5</label>
+                            <label class="label-form" for="validationCustomUsername">Imagen 5 (Tamaño recomendado: 470px X 330px)</label>
                             <input type="file" onchange="previewFile5()" class="form-control img-5-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-5" />
                             <img class="img-5-pre" alt="Image preview...">
                             <div class="invalid-feedback">
@@ -393,7 +393,7 @@ $sections_4 = array(
                             </div>
                         </div>
                         <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 6</label>
+                            <label class="label-form" for="validationCustomUsername">Imagen 6 (Tamaño recomendado: 470px X 330px)</label>
                             <input type="file" onchange="previewFile6()" class="form-control img-6-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-6" />
                             <img class="img-6-pre" alt="Image preview...">
                             <div class="invalid-feedback">
@@ -401,7 +401,7 @@ $sections_4 = array(
                             </div>
                         </div>
                         <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 7</label>
+                            <label class="label-form" for="validationCustomUsername">Imagen 7 (Tamaño recomendado: 470px X 330px)</label>
                             <input type="file" onchange="previewFile7()" class="form-control img-7-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-7" />
                             <img class="img-7-pre" alt="Image preview...">
                             <div class="invalid-feedback">
@@ -409,7 +409,7 @@ $sections_4 = array(
                             </div>
                         </div>
                         <div>
-                            <label class="label-form" for="validationCustomUsername">Imagen 8</label>
+                            <label class="label-form" for="validationCustomUsername">Imagen 8 (Tamaño recomendado: 470px X 330px)</label>
                             <input type="file" onchange="previewFile8()" class="form-control img-8-input" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="image-8" />
                             <img class="img-8-pre" alt="Image preview...">
                             <div class="invalid-feedback">

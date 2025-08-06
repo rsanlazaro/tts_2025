@@ -7,60 +7,92 @@ $mpdf = new \Mpdf\Mpdf();
 $uploadDir = 'uploads/';
 
 $filename = basename($_FILES['image-1']['name']);
+if ($filename !== '') {
 $targetFilePath1 = $uploadDir . $filename;
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 move_uploaded_file($_FILES['image-1']['tmp_name'], $targetFilePath1);
+} else {
+    $targetFilePath1 = 'white.jpg';
+}
 
 $filename = basename($_FILES['image-2']['name']);
+if ($filename !== '') {
 $targetFilePath2 = $uploadDir . $filename;
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 move_uploaded_file($_FILES['image-2']['tmp_name'], $targetFilePath2);
+} else {
+    $targetFilePath2 = 'white.jpg';
+}
 
 $filename = basename($_FILES['image-3']['name']);
+if ($filename !== '') {
 $targetFilePath3 = $uploadDir . $filename;
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 move_uploaded_file($_FILES['image-3']['tmp_name'], $targetFilePath3);
+} else {
+    $targetFilePath3 = 'white.jpg';
+}
 
 $filename = basename($_FILES['image-4']['name']);
+if ($filename !== '') {
 $targetFilePath4 = $uploadDir . $filename;
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 move_uploaded_file($_FILES['image-4']['tmp_name'], $targetFilePath4);
+} else {
+    $targetFilePath4 = 'white.jpg';
+}
 
 $filename = basename($_FILES['image-5']['name']);
+if ($filename !== '') {
 $targetFilePath5 = $uploadDir . $filename;
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 move_uploaded_file($_FILES['image-5']['tmp_name'], $targetFilePath5);
+} else {
+    $targetFilePath5 = 'white.jpg';
+}
 
 $filename = basename($_FILES['image-6']['name']);
+if ($filename !== '') {
 $targetFilePath6 = $uploadDir . $filename;
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 move_uploaded_file($_FILES['image-6']['tmp_name'], $targetFilePath6);
+} else {
+    $targetFilePath6 = 'white.jpg';
+}
 
 $filename = basename($_FILES['image-7']['name']);
+if ($filename !== '') {
 $targetFilePath7 = $uploadDir . $filename;
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 move_uploaded_file($_FILES['image-7']['tmp_name'], $targetFilePath7);
+} else {
+    $targetFilePath7 = 'white.jpg';
+}
 
 $filename = basename($_FILES['image-8']['name']);
+if ($filename !== '') {
 $targetFilePath8 = $uploadDir . $filename;
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 move_uploaded_file($_FILES['image-8']['tmp_name'], $targetFilePath8);
+} else {
+    $targetFilePath8 = 'white.jpg';
+}
 
 // Set full-page background image using CSS
 $backgroundImage1 = 'images/medicalReport-1.jpg'; // Absolute or relative path
