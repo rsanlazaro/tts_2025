@@ -239,6 +239,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <img onclick="sortTable(4)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
                             </th>
                             <th>Status</th>
+                            <th>Roles</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -252,9 +253,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <col>
                             <col>
                             <col>
+                            <col>
                         </colgroup>
                         <?php for ($i = 1; $i <= $index; $i++) { ?>
-                            <?php if ($user[$i] != 'SaludConceptAdmin') { ?>
+                            <?php if ($user[$i] != 'AdminBabyCloud') { ?>
                                 <?php if ($id[$i] != $id_user) { ?>
                                     <tr id="<?php echo $id[$i]; ?>">
                                         <td class="td-center"><input id="checkbox_<?php echo $id[$i]; ?>" type="checkbox" onclick="selectRows(this, <?php echo $id[$i] ?>)"> </td>
@@ -263,31 +265,36 @@ while ($row = mysqli_fetch_assoc($result)) {
                                         <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
                                         <td>
                                             <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>">
-                                                <?php if ($profile[$i] == 'super-admin') { ?>
-                                                    <option value="super-admin" selected>super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
+                                                <?php if ($profile[$i] == 'super_admin') { ?>
+                                                    <option value="super_admin" selected>super-admin</option>
+                                                    <option value="admin_junior">admin-junior</option>
                                                     <option value="coordinador">coordinador</option>
                                                     <option value="operador">operador</option>
-                                                <?php } else if ($profile[$i] == 'admin-junior') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior" selected>admin-junior</option>
+                                                    <option value="recluta">recluta</option>
+                                                <?php } else if ($profile[$i] == 'admin_junior') { ?>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior" selected>admin-junior</option>
                                                     <option value="coordinador">coordinador</option>
                                                     <option value="operador">operador</option>
+                                                    <option value="recluta">recluta</option>
                                                 <?php } else if ($profile[$i] == 'coordinador') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior">admin-junior</option>
                                                     <option value="coordinador" selected>coordinador</option>
                                                     <option value="operador">operador</option>
+                                                    <option value="recluta">recluta</option>
                                                 <?php } else if ($profile[$i] == 'operador') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior">admin-junior</option>
                                                     <option value="coordinador">coordinador</option>
                                                     <option value="operador" selected>operador</option>
+                                                    <option value="recluta">recluta</option>
                                                 <?php } else { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior">admin-junior</option>
                                                     <option value="coordinador">coordinador</option>
-                                                    <option value="operador" selected>operador</option>
+                                                    <option value="operador">operador</option>
+                                                    <option value="recluta" selected>recluta</option>
                                                 <?php } ?>
                                             </select>
                                         </td>
@@ -306,6 +313,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                                             <?php } ?>
                                         </td>
                                         <td class="td-center">
+                                            <a class="td-delete td-center" href="<?php echo "roles.php?id=" . $id[$i]; ?>">
+                                                Ver
+                                            </a>
+                                        </td>
+                                        <td class="td-center">
                                             <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)">
                                                 Eliminar
                                             </button>
@@ -319,55 +331,36 @@ while ($row = mysqli_fetch_assoc($result)) {
                                         <td contenteditable='false' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
                                         <td>
                                             <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>" disabled>
-                                                <?php if ($profile[$i] == 'super-admin') { ?>
-                                                    <option value="super-admin" selected>super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
+                                                <?php if ($profile[$i] == 'super_admin') { ?>
+                                                    <option value="super_admin" selected>super-admin</option>
+                                                    <option value="admin_junior">admin-junior</option>
                                                     <option value="coordinador">coordinador</option>
                                                     <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'admin-junior') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior" selected>admin-junior</option>
+                                                    <option value="recluta">recluta</option>
+                                                <?php } else if ($profile[$i] == 'admin_junior') { ?>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior" selected>admin-junior</option>
                                                     <option value="coordinador">coordinador</option>
                                                     <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
+                                                    <option value="recluta">recluta</option>
                                                 <?php } else if ($profile[$i] == 'coordinador') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior">admin-junior</option>
                                                     <option value="coordinador" selected>coordinador</option>
                                                     <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
+                                                    <option value="recluta">recluta</option>
                                                 <?php } else if ($profile[$i] == 'operador') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior">admin-junior</option>
                                                     <option value="coordinador">coordinador</option>
                                                     <option value="operador" selected>operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'recluta-interno') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno" selected>recluta-interno</option>
-                                                    <option value="recluta-externo">recluta-externo</option>
-                                                <?php } else if ($profile[$i] == 'recluta-externo') { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
-                                                    <option value="coordinador">coordinador</option>
-                                                    <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo" selected>recluta-externo</option>
+                                                    <option value="recluta">recluta</option>
                                                 <?php } else { ?>
-                                                    <option value="super-admin">super-admin</option>
-                                                    <option value="admin-junior">admin-junior</option>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior">admin-junior</option>
                                                     <option value="coordinador">coordinador</option>
                                                     <option value="operador">operador</option>
-                                                    <option value="recluta-interno">recluta-interno</option>
-                                                    <option value="recluta-externo" selected>recluta-externo</option>
+                                                    <option value="recluta" selected>recluta</option>
                                                 <?php } ?>
                                             </select>
                                         </td>
@@ -384,6 +377,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                     <i class='fa-solid fa-toggle-off false'></i>
                                                 </button>
                                             <?php } ?>
+                                        </td>
+                                        <td class="td-center">
+                                            <a class="td-delete td-center" href="<?php echo "roles.php?id=" . $id[$i]; ?>">
+                                                Ver
+                                            </a>
                                         </td>
                                         <td class="td-center">
                                             <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)">

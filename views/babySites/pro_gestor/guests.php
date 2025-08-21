@@ -248,7 +248,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <col>
                         </colgroup>
                         <?php for ($i = 1; $i <= $index; $i++) { ?>
-                            <?php if ($user[$i] != 'SaludConceptAdmin') { ?>
+                            <?php if ($user[$i] != 'AdminBabyCloud') { ?>
                                 <tr id="<?php echo $id[$i]; ?>">
                                     <td class="td-center"><input id="checkbox_<?php echo $id[$i]; ?>" type="checkbox" onclick="selectRows(this, <?php echo $id[$i] ?>)"> </td>
                                     <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>

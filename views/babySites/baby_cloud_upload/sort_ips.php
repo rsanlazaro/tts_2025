@@ -96,7 +96,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <div class="dropdown-title">PRO GESTOR</div>
                     <a class="dropdown-item" href="../pro_gestor/superadmin.php">Super Admin</a>
                     <a class="dropdown-item" href="../pro_gestor/users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item active" href="../pro_gestor/guests.php">Listado de Guests</a>
+                    <a class="dropdown-item" href="../pro_gestor/guests.php">Listado de Guests</a>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -228,6 +228,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <img onclick="sortTable(4)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
                             </th>
                             <th></th>
+                            <th></th>
                             <th class="td-center">Upload</th>
                         </tr>
                     </thead>
@@ -241,9 +242,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <col>
                             <col>
                             <col>
+                            <col>
                         </colgroup>
                         <?php for ($i = 1; $i <= $index; $i++) { ?>
-                            <?php if ($user[$i] != 'SaludConceptAdmin') { ?>
+                            <?php if ($user[$i] != 'AdminBabyCloud') { ?>
                                 <?php if (!($profile[$i] == 'agency')) { ?>
                                     <tr id="<?php echo $id[$i]; ?>">
                                         <td></td>
@@ -259,6 +261,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                 -
                                             </button>
                                         </td>
+                                        <td></td>
                                         <td class="td-center">
                                             <a class="td-delete td-center" href="<?php echo "sort_ip.php?id=" . $id[$i]; ?>">
                                                 Ver

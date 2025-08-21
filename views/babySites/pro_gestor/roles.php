@@ -58,40 +58,52 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 // For access_default fetch information 
 
-$sql = "SELECT * FROM access WHERE id=1";
-$result = mysqli_query($conn, $sql);
-$index = 0;
-while ($row = mysqli_fetch_assoc($result)) {
-    for ($i = 1; $i <= 100; $i++) {
-        $column_db = 'super_admin_' . $i;
-        ${"super_admin_" . $i} = $row[$column_db];
+if (isset($_GET['id'])) {
+    $ip_id = $_GET['id'];
+    $sql = "SELECT * FROM users WHERE id=${ip_id}";
+    $result = mysqli_query($conn, $sql);
+    $index = 0;
+    while ($row = mysqli_fetch_assoc($result)) {
+        $profile = $row['profile'];
+        $user = $row['username'];
+        for ($i = 1; $i <= 100; $i++) {
+            ${$profile . '_' . $i} = $row['access_' . $i];
+        }
     }
-    for ($i = 1; $i <= 100; $i++) {
-        $column_db = 'admin_jr_' . $i;
-        ${"admin_jr_" . $i} = $row[$column_db];
-    }
-    for ($i = 1; $i <= 100; $i++) {
-        $column_db = 'coordinator_' . $i;
-        ${"coordinator_" . $i} = $row[$column_db];
-    }
-    for ($i = 1; $i <= 100; $i++) {
-        $column_db = 'operator_' . $i;
-        ${"operator_" . $i} = $row[$column_db];
-    }
-    for ($i = 1; $i <= 100; $i++) {
-        $column_db = 'recruit_' . $i;
-        ${"recruit_" . $i} = $row[$column_db];
+} else {
+    $sql = "SELECT * FROM access WHERE id=1";
+    $result = mysqli_query($conn, $sql);
+    $index = 0;
+    while ($row = mysqli_fetch_assoc($result)) {
+        for ($i = 1; $i <= 100; $i++) {
+            $column_db = 'super_admin_' . $i;
+            ${"super_admin_" . $i} = $row[$column_db];
+        }
+        for ($i = 1; $i <= 100; $i++) {
+            $column_db = 'admin_junior_' . $i;
+            ${"admin_junior_" . $i} = $row[$column_db];
+        }
+        for ($i = 1; $i <= 100; $i++) {
+            $column_db = 'coordinador_' . $i;
+            ${"coordinador_" . $i} = $row[$column_db];
+        }
+        for ($i = 1; $i <= 100; $i++) {
+            $column_db = 'operador_' . $i;
+            ${"operador_" . $i} = $row[$column_db];
+        }
+        for ($i = 1; $i <= 100; $i++) {
+            $column_db = 'recluta_' . $i;
+            ${"recluta_" . $i} = $row[$column_db];
+        }
     }
 }
-
-echo ($super_admin_1);
 
 // Values for the table of roles
 $pro_gestor_1 = ['Listado de Nota de Atención', 'Abrir de Nota de Atención'];
 $pro_gestor_2 = ['Listado de Nota Pendiente', 'Abrir Nota Pendiente'];
-$pro_gestor_3 = ['Listado de Pagos', 'Registro de Pagos','Editar/Alterar Pagos Registrados'];
+$pro_gestor_3 = ['Listado de Pagos', 'Registro de Pagos', 'Editar/Alterar Pagos Registrados'];
 $pro_gestor_4 = ['Listado de Usuarios', 'Crear usuario', 'Editar usuario', 'Contraseña de Usuario', 'Permisos de Usuario', 'Borrar Usuario'];
-$pro_gestor_5 = ['Listado de Guests', 'Crear Guests', 'Editar Guests', 'Contraseña de Guests', 'Permisos de Guests', 'Borrar Guests','Dash Boards'];
+$pro_gestor_5 = ['Listado de Guests', 'Crear Guests', 'Editar Guests', 'Contraseña de Guests', 'Permisos de Guests', 'Borrar Guests', 'Dash Boards'];
 
 $baby_site_1 = ['Listado Sort_GES', 'Alta Sort_GES', 'Documentación', 'Alterar Documentación', 'Start Programa', 'Alta Seguro'];
 $baby_site_2 = ['Listado Sort_IP', 'Editar Sort_IP', 'Documentación', 'Alterar/Borrar Documentación', 'Start Crio Embrio', 'Actualizar Seguimiento'];
@@ -247,911 +259,1866 @@ $sections_4 = array(
             </div>
         </div>
     </div>
-    <div class="content" id="content">
-        <div class="header">
-            <div class="message">
-                Admin permisos y roles
+    <?php if (isset($_GET['id'])) { ?>
+        <div class="content" id="content">
+            <div class="header">
+                <div class="message">
+                    Permisos y roles para el usuario <?php echo $user; ?> con el perfil
+                    <?php
+                    if ($profile == 'super_admin') {
+                        echo 'Super Admin';
+                    } else if ($profile == 'admin_junior') {
+                        echo 'Admin Junior';
+                    } else if ($profile == 'coordinador') {
+                        echo 'Coordinador';
+                    } else if ($profile == 'operador') {
+                        echo 'Operador';
+                    } else if ($profile == 'recluta') {
+                        echo 'Recluta';
+                    }
+                    ?>
+                </div>
+                <div class="buttons">
+                    <button>
+                        <a href="users.php">Regresar al listado de usuarios</a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="info">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+                            <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
+                            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
+                            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z" />
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <div class="buttons">
-                <button>
-                    <a href="users.php">Regresar al listado de usuarios</a>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5" />
-                    </svg>
-                </button>
-            </div>
-            <div class="info">
-                <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
-                        <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
-                        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
-                        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z" />
-                    </svg>
-                </a>
+            <div class="roles-body">
+                <div class="content table-responsive table-scroll table-full-width table-container">
+                    <table class="table table-hover myTable" id="myTable">
+                        <thead data-bs-toggle="collapse" data-bs-target="#section1" style="cursor: pointer;">
+                            <tr class="thead">
+                                <th>PRO GESTOR</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    <div class="d-flex justify-content-end me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                        </svg>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <?php $row_component = 0; ?>
+                        <tbody>
+                            <colgroup class="table-colgroup">
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <?php foreach ($sections_1 as $section_component) { ?>
+                                <?php $row_counter = 1; ?>
+                                <?php foreach ($section_component as $row) { ?>
+                                    <?php $row_component++; ?>
+                                    <tr <?php if ($row_counter == 1) {
+                                            echo "class='collapse show row-first'";
+                                        } else {
+                                            echo "class='collapse show'";
+                                        } ?> id="section1">
+                                        <td class="td-icon">
+                                            <?php echo $row; ?>
+                                        </td>
+                                        <?php $column_component = 1 ?>
+                                        <td colspan="4"></td>
+                                        <?php if ($profile == 'super_admin') { ?>
+                                            <?php $cell_component = ${"super_admin_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php if ($profile == 'admin_junior') { ?>
+                                            <?php $cell_component = ${"admin_junior_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php if ($profile == 'coordinador') { ?>
+                                            <?php $cell_component = ${"coordinador_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php if ($profile == 'operador') { ?>
+                                            <?php $cell_component = ${"operador_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php if ($profile == 'recluta') { ?>
+                                            <?php $cell_component = ${"recluta_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </tr>
+                                    <?php $row_counter++; ?>
+                                <?php } ?>
+                            <?php } ?>
+                        </tbody>
+                        <thead data-bs-toggle="collapse" data-bs-target="#section2" style="cursor: pointer;">
+                            <tr class="thead">
+                                <th>BABY SITE</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    <div class="d-flex justify-content-end me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                        </svg>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($sections_2 as $section_component) { ?>
+                                <?php $row_counter = 1; ?>
+                                <?php foreach ($section_component as $row) { ?>
+                                    <?php $row_component++; ?>
+                                    <tr <?php if ($row_counter == 1) {
+                                            echo "class='collapse show row-first'";
+                                        } else {
+                                            echo "class='collapse show'";
+                                        } ?> id="section2">
+                                        <td class="td-icon">
+                                            <?php echo $row; ?>
+                                        </td>
+                                        <td colspan="4"></td>
+                                        <?php if ($profile == 'super_admin') { ?>
+                                            <?php $column_component = 1 ?>
+                                            <?php $cell_component = ${"super_admin_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php if ($profile == 'admin_junior') { ?>
+                                            <?php $column_component++ ?>
+                                            <?php $cell_component = ${"admin_junior_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php if ($profile == 'coordinador') { ?>
+                                            <?php $column_component++ ?>
+                                            <?php $cell_component = ${"coordinador_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php if ($profile == 'operador') { ?>
+                                            <?php $column_component++ ?>
+                                            <?php $cell_component = ${"operador_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php if ($profile == 'recluta') { ?>
+                                            <?php $column_component++ ?>
+                                            <?php $cell_component = ${"recluta_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                <?php } ?>
+                                                </td>
+                                            <?php } ?>
+                                    </tr>
+                                    <?php $row_counter++; ?>
+                                <?php } ?>
+                            <?php } ?>
+                        </tbody>
+                        <thead data-bs-toggle="collapse" data-bs-target="#section3" style="cursor: pointer;">
+                            <tr class="thead">
+                                <th>RECLUTA</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    <div class="d-flex justify-content-end me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                        </svg>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($sections_3 as $section_component) { ?>
+                                <?php $row_counter = 1; ?>
+                                <?php foreach ($section_component as $row) { ?>
+                                    <?php $row_component++; ?>
+                                    <tr <?php if ($row_counter == 1) {
+                                            echo "class='collapse show row-first'";
+                                        } else {
+                                            echo "class='collapse show'";
+                                        } ?> id="section3">
+                                        <td class="td-icon">
+                                            <?php echo $row; ?>
+                                        </td>
+                                        <?php $column_component = 1 ?>
+                                        <td colspan="4"></td>
+                                        <?php if ($profile == 'super_admin') { ?>
+                                            <?php $cell_component = ${"super_admin_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php if ($profile == 'admin_junior') { ?>
+                                            <?php $cell_component = ${"admin_junior_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php if ($profile == 'coordinador') { ?>
+                                            <?php $cell_component = ${"coordinador_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php if ($profile == 'operador') { ?>
+                                            <?php $cell_component = ${"operador_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php if ($profile == 'recluta') { ?>
+                                            <?php $cell_component = ${"recluta_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </tr>
+                                    <?php $row_counter++; ?>
+                                <?php } ?>
+                            <?php } ?>
+                        </tbody>
+                        <thead data-bs-toggle="collapse" data-bs-target="#section4" style="cursor: pointer;">
+                            <tr class="thead">
+                                <th>Baby Cloud</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    <div class="d-flex justify-content-end me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                        </svg>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($sections_4 as $section_component) { ?>
+                                <?php $row_counter = 1; ?>
+                                <?php foreach ($section_component as $row) { ?>
+                                    <?php $row_component++; ?>
+                                    <tr <?php if ($row_counter == 1) {
+                                            echo "class='collapse show row-first'";
+                                        } else {
+                                            echo "class='collapse show'";
+                                        } ?> id="section4">
+                                        <td class="td-icon">
+                                            <?php echo $row; ?>
+                                        </td>
+                                        <?php $column_component = 1 ?>
+                                        <td colspan="4"></td>
+                                        <?php if ($profile == 'super_admin') { ?>
+                                            <?php $cell_component = ${"super_admin_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php if ($profile == 'admin_junior') { ?>
+                                            <?php $cell_component = ${"admin_junior_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php if ($profile == 'coordinador') { ?>
+                                            <?php $cell_component = ${"coordinador_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php if ($profile == 'operador') { ?>
+                                            <?php $cell_component = ${"operador_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php if ($profile == 'recluta') { ?>
+                                            <?php $cell_component = ${"recluta_" . $row_component};
+                                            if ($cell_component == 0) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye-slash'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 1) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } else if ($cell_component == 2) { ?>
+                                                <td class="td-icon">
+                                                    <div class="buttons-center">
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0, <?php echo $_GET["id"] ?>)'>
+                                                            <i class='fa-solid fa-eye'></i>
+                                                        </button>
+                                                        <button onclick='toggleAccess2(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1, <?php echo $_GET["id"] ?>)'>
+                                                            <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </tr>
+                                    <?php $row_counter++; ?>
+                                <?php } ?>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="roles-body">
-            <div class="content table-responsive table-scroll table-full-width table-container">
-                <table class="table table-hover myTable" id="myTable">
-                    <thead class="header-sticky">
-                        <tr class="thead-roles">
-                            <th></th>
-                            <th>Super Admin</th>
-                            <th>Admin Jr</th>
-                            <th>Coordina</th>
-                            <th>Operador</th>
-                            <th>Recluta</th>
-                        </tr>
-                    </thead>
-                    <thead data-bs-toggle="collapse" data-bs-target="#section1" style="cursor: pointer;">
-                        <tr class="thead">
-                            <th>PRO GESTOR</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>
-                                <div class="d-flex justify-content-end me-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                                    </svg>
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <?php $row_component = 0; ?>
-                    <tbody>
-                        <colgroup class="table-colgroup">
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                        </colgroup>
-                        <?php foreach ($sections_1 as $section_component) { ?>
-                            <?php $row_counter = 1; ?>
-                            <?php foreach ($section_component as $row) { ?>
-                                <?php $row_component++; ?>
-                                <tr <?php if ($row_counter == 1) {
-                                        echo "class='collapse row-first'";
-                                    } else {
-                                        echo "class='collapse'";
-                                    } ?> id="section1">
-                                    <td class="td-icon">
-                                        <?php echo $row; ?>
-                                    </td>
-                                    <?php $column_component = 1 ?>
-                                    <?php $cell_component = ${"super_admin_" . $row_component};
-                                    if ($cell_component == 0) { ?>
+    <?php } else { ?>
+        <div class="content" id="content">
+            <div class="header">
+                <div class="message">
+                    Admin permisos y roles
+                </div>
+                <div class="buttons">
+                    <button>
+                        <a href="users.php">Regresar al listado de usuarios</a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="info">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+                            <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
+                            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
+                            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="roles-body">
+                <div class="content table-responsive table-scroll table-full-width table-container">
+                    <table class="table table-hover myTable" id="myTable">
+                        <thead class="header-sticky">
+                            <tr class="thead-roles">
+                                <th></th>
+                                <th>Super Admin</th>
+                                <th>Admin Jr</th>
+                                <th>Coordina</th>
+                                <th>Operador</th>
+                                <th>Recluta</th>
+                            </tr>
+                        </thead>
+                        <thead data-bs-toggle="collapse" data-bs-target="#section1" style="cursor: pointer;">
+                            <tr class="thead">
+                                <th>PRO GESTOR</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    <div class="d-flex justify-content-end me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                        </svg>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <?php $row_component = 0; ?>
+                        <tbody>
+                            <colgroup class="table-colgroup">
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <?php foreach ($sections_1 as $section_component) { ?>
+                                <?php $row_counter = 1; ?>
+                                <?php foreach ($section_component as $row) { ?>
+                                    <?php $row_component++; ?>
+                                    <tr <?php if ($row_counter == 1) {
+                                            echo "class='collapse show row-first'";
+                                        } else {
+                                            echo "class='collapse show'";
+                                        } ?> id="section1">
                                         <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
+                                            <?php echo $row; ?>
                                         </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"admin_jr_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"coordinator_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"operator_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"recruit_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                </tr>
-                                <?php $row_counter++; ?>
+                                        <?php $column_component = 1 ?>
+                                        <?php $cell_component = ${"super_admin_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"admin_junior_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"coordinador_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"operador_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"recluta_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                    </tr>
+                                    <?php $row_counter++; ?>
+                                <?php } ?>
                             <?php } ?>
-                        <?php } ?>
-                    </tbody>
-                    <thead data-bs-toggle="collapse" data-bs-target="#section2" style="cursor: pointer;">
-                        <tr class="thead">
-                            <th>BABY SITE</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>
-                                <div class="d-flex justify-content-end me-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                                    </svg>
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($sections_2 as $section_component) { ?>
-                            <?php $row_counter = 1; ?>
-                            <?php foreach ($section_component as $row) { ?>
-                                <?php $row_component++; ?>
-                                <tr <?php if ($row_counter == 1) {
-                                        echo "class='collapse row-first'";
-                                    } else {
-                                        echo "class='collapse'";
-                                    } ?> id="section2">
-                                    <td class="td-icon">
-                                        <?php echo $row; ?>
-                                    </td>
-                                    <?php $column_component = 1 ?>
-                                    <?php $cell_component = ${"super_admin_" . $row_component};
-                                    if ($cell_component == 0) { ?>
+                        </tbody>
+                        <thead data-bs-toggle="collapse" data-bs-target="#section2" style="cursor: pointer;">
+                            <tr class="thead">
+                                <th>BABY SITE</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    <div class="d-flex justify-content-end me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                        </svg>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($sections_2 as $section_component) { ?>
+                                <?php $row_counter = 1; ?>
+                                <?php foreach ($section_component as $row) { ?>
+                                    <?php $row_component++; ?>
+                                    <tr <?php if ($row_counter == 1) {
+                                            echo "class='collapse show row-first'";
+                                        } else {
+                                            echo "class='collapse show'";
+                                        } ?> id="section2">
                                         <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
+                                            <?php echo $row; ?>
                                         </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"admin_jr_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"coordinator_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"operator_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"recruit_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                </tr>
-                                <?php $row_counter++; ?>
+                                        <?php $column_component = 1 ?>
+                                        <?php $cell_component = ${"super_admin_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"admin_junior_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"coordinador_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"operador_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"recluta_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                    </tr>
+                                    <?php $row_counter++; ?>
+                                <?php } ?>
                             <?php } ?>
-                        <?php } ?>
-                    </tbody>
-                    <thead data-bs-toggle="collapse" data-bs-target="#section3" style="cursor: pointer;">
-                        <tr class="thead">
-                            <th>RECLUTA</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>
-                                <div class="d-flex justify-content-end me-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                                    </svg>
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($sections_3 as $section_component) { ?>
-                            <?php $row_counter = 1; ?>
-                            <?php foreach ($section_component as $row) { ?>
-                                <?php $row_component++; ?>
-                                <tr <?php if ($row_counter == 1) {
-                                        echo "class='collapse row-first'";
-                                    } else {
-                                        echo "class='collapse'";
-                                    } ?> id="section3">
-                                    <td class="td-icon">
-                                        <?php echo $row; ?>
-                                    </td>
-                                    <?php $column_component = 1 ?>
-                                    <?php $cell_component = ${"super_admin_" . $row_component};
-                                    if ($cell_component == 0) { ?>
+                        </tbody>
+                        <thead data-bs-toggle="collapse" data-bs-target="#section3" style="cursor: pointer;">
+                            <tr class="thead">
+                                <th>RECLUTA</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    <div class="d-flex justify-content-end me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                        </svg>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($sections_3 as $section_component) { ?>
+                                <?php $row_counter = 1; ?>
+                                <?php foreach ($section_component as $row) { ?>
+                                    <?php $row_component++; ?>
+                                    <tr <?php if ($row_counter == 1) {
+                                            echo "class='collapse show row-first'";
+                                        } else {
+                                            echo "class='collapse show'";
+                                        } ?> id="section3">
                                         <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
+                                            <?php echo $row; ?>
                                         </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"admin_jr_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"coordinator_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"operator_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"recruit_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                </tr>
-                                <?php $row_counter++; ?>
+                                        <?php $column_component = 1 ?>
+                                        <?php $cell_component = ${"super_admin_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"admin_junior_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"coordinador_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"operador_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"recluta_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                    </tr>
+                                    <?php $row_counter++; ?>
+                                <?php } ?>
                             <?php } ?>
-                        <?php } ?>
-                    </tbody>
-                    <thead data-bs-toggle="collapse" data-bs-target="#section4" style="cursor: pointer;">
-                        <tr class="thead">
-                            <th>Baby Cloud</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>
-                                <div class="d-flex justify-content-end me-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                                    </svg>
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($sections_4 as $section_component) { ?>
-                            <?php $row_counter = 1; ?>
-                            <?php foreach ($section_component as $row) { ?>
-                                <?php $row_component++; ?>
-                                <tr <?php if ($row_counter == 1) {
-                                        echo "class='collapse row-first'";
-                                    } else {
-                                        echo "class='collapse'";
-                                    } ?> id="section4">
-                                    <td class="td-icon">
-                                        <?php echo $row; ?>
-                                    </td>
-                                    <?php $column_component = 1 ?>
-                                    <?php $cell_component = ${"super_admin_" . $row_component};
-                                    if ($cell_component == 0) { ?>
+                        </tbody>
+                        <thead data-bs-toggle="collapse" data-bs-target="#section4" style="cursor: pointer;">
+                            <tr class="thead">
+                                <th>Baby Cloud</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    <div class="d-flex justify-content-end me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                        </svg>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($sections_4 as $section_component) { ?>
+                                <?php $row_counter = 1; ?>
+                                <?php foreach ($section_component as $row) { ?>
+                                    <?php $row_component++; ?>
+                                    <tr <?php if ($row_counter == 1) {
+                                            echo "class='collapse show row-first'";
+                                        } else {
+                                            echo "class='collapse show'";
+                                        } ?> id="section4">
                                         <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
+                                            <?php echo $row; ?>
                                         </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"admin_jr_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"coordinator_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"operator_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                    <?php $column_component++ ?>
-                                    <?php $cell_component = ${"recruit_" . $row_component};
-                                    if ($cell_component == 0) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <i class='fa-solid fa-eye-slash'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 1) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } else if ($cell_component == 2) { ?>
-                                        <td class="td-icon">
-                                            <div class="buttons-center">
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
-                                                    <i class='fa-solid fa-eye'></i>
-                                                </button>
-                                                <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
-                                                    <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    <?php } ?>
-                                </tr>
-                                <?php $row_counter++; ?>
+                                        <?php $column_component = 1 ?>
+                                        <?php $cell_component = ${"super_admin_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"admin_junior_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"coordinador_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"operador_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                        <?php $column_component++ ?>
+                                        <?php $cell_component = ${"recluta_" . $row_component};
+                                        if ($cell_component == 0) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <i class='fa-solid fa-eye-slash'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 1) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 2)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil-slash.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } else if ($cell_component == 2) { ?>
+                                            <td class="td-icon">
+                                                <div class="buttons-center">
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 0)'>
+                                                        <i class='fa-solid fa-eye'></i>
+                                                    </button>
+                                                    <button onclick='toggleAccess(<?php echo $row_component; ?>, <?php echo $column_component; ?>, 1)'>
+                                                        <img style="cursor:pointer;" src="../../../build/img/svgicons/pencil.webp" alt="icon">
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                    </tr>
+                                    <?php $row_counter++; ?>
+                                <?php } ?>
                             <?php } ?>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
+    <?php } ?>
 </main>
 
 <!-- Boostrap JS -->
@@ -1291,16 +2258,42 @@ $sections_4 = array(
                 columnName = "super_admin_";
                 break;
             case 2:
-                columnName = "admin_jr_";
+                columnName = "admin_junior_";
                 break;
             case 3:
-                columnName = "coordinator_";
+                columnName = "coordinador_";
                 break;
             case 4:
-                columnName = "operator_";
+                columnName = "operador_";
                 break;
             case 5:
-                columnName = "recruit_";
+                columnName = "recluta_";
+                break;
+            default:
+        }
+        column = columnName + row;
+        newValue = state;
+        fetchContent(functionName, id, newValue, column)
+        location.reload();
+    }
+
+    function toggleAccess2(row, column, state, id) {
+        functionName = "toggleAccess2";
+        switch (column) {
+            case 1:
+                columnName = "access_";
+                break;
+            case 2:
+                columnName = "access_";
+                break;
+            case 3:
+                columnName = "access_";
+                break;
+            case 4:
+                columnName = "access_";
+                break;
+            case 5:
+                columnName = "access_";
                 break;
             default:
         }

@@ -72,20 +72,20 @@ while ($row = mysqli_fetch_assoc($result)) {
         ${"super_admin_" . $i} = $row[$column_db];
     }
     for ($i = 1; $i <= 100; $i++) {
-        $column_db = 'admin_jr_' . $i;
-        ${"admin_jr_" . $i} = $row[$column_db];
+        $column_db = 'admin_junior_' . $i;
+        ${"admin_junior_" . $i} = $row[$column_db];
     }
     for ($i = 1; $i <= 100; $i++) {
-        $column_db = 'coordinator_' . $i;
-        ${"coordinator_" . $i} = $row[$column_db];
+        $column_db = 'coordinador_' . $i;
+        ${"coordinador_" . $i} = $row[$column_db];
     }
     for ($i = 1; $i <= 100; $i++) {
-        $column_db = 'operator_' . $i;
-        ${"operator_" . $i} = $row[$column_db];
+        $column_db = 'operador_' . $i;
+        ${"operador_" . $i} = $row[$column_db];
     }
     for ($i = 1; $i <= 100; $i++) {
-        $column_db = 'recruit_' . $i;
-        ${"recruit_" . $i} = $row[$column_db];
+        $column_db = 'recluta_' . $i;
+        ${"recluta_" . $i} = $row[$column_db];
     }
 }
 
@@ -261,6 +261,7 @@ $sections_4 = array(
         <div class="super-admin-body users-body">
             <div class="buttons">
                 <a href="bills/medical.php"> Reporte Médico </a>
+                <a href="bills/itinerary.php"> Itinerario Babymedic </a>
                 <a href="bills/travelMedicalCare.php">Travel Medical Care</a>
                 <a href="bills/nexaTravel.php">Nexa Travel</a>
                 <a href="bills/babyMedic.php">Babymedic</a>
@@ -406,16 +407,16 @@ $sections_4 = array(
                 columnName = "super_admin_";
                 break;
             case 2:
-                columnName = "admin_jr_";
+                columnName = "admin_junior_";
                 break;
             case 3:
-                columnName = "coordinator_";
+                columnName = "coordinador_";
                 break;
             case 4:
-                columnName = "operator_";
+                columnName = "operador_";
                 break;
             case 5:
-                columnName = "recruit_";
+                columnName = "recluta_";
                 break;
             default:
         }
