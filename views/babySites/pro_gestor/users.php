@@ -17,6 +17,9 @@ $sql = "SELECT * FROM users WHERE id=${id_user}";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
     $username_user = $row['username'];
+    for ($i = 1; $i <= 100; $i++) {
+        ${'access_' . $i} = $row['access_' . $i];
+    }
 }
 
 $username_user_trimmed = trim($username_user);
@@ -181,12 +184,14 @@ while ($row = mysqli_fetch_assoc($result)) {
                 Listado de Usuarios
             </div>
             <div class="buttons">
-                <button onclick="newUser()">
-                    Nuevo usuario
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
-                    </svg>
-                </button>
+                <?php if ($access_9 >= 1) { ?>
+                    <button <?php if ($access_9 == 2) { ?> onclick="newUser()" <?php } ?>>
+                        Nuevo usuario
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                        </svg>
+                    </button>
+                <?php } ?>
                 <button>
                     <a href="roles.php">Gestión de roles</a>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">

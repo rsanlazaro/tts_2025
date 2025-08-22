@@ -70,10 +70,10 @@ if ($_POST['currency'] === 'euro') {
 
     if (isset($_POST['description1'])) {
         $html .=
-            '<table width="680px" style="margin-left: -10px; margin-top: 15px;">
+            '<table width="680px" style="margin-left: -10px; margin-top: 13px;">
         <tr>
-            <td width="34%" style="padding-left: 10px;">' . $_POST['description1'] . '</td>
-            <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty1'] . '</td>
+            <td width="39%" style="padding-left: 10px; height: 40px;">' . $_POST['description1'] . '</td>
+            <td width="22%" style="padding-left: 10px; text-align: center;">' . $_POST['qty1'] . '</td>
             <td width="30%" style="text-align: center;">' . $price_1 . ' </td>
             <td width="9%" style="text-align: center   ;">' . $total_1 . ' </td>
         </tr>
@@ -82,10 +82,10 @@ if ($_POST['currency'] === 'euro') {
 
     if (isset($_POST['description2'])) {
         $html .=
-            '<table width="680px" style="margin-left: -10px; margin-top: 35px;">
+            '<table width="680px" style="margin-left: -10px; margin-top: 13px;">
         <tr>
-            <td width="34%" style="padding-left: 10px;">' . $_POST['description2'] . '</td>
-            <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty2'] . '</td>
+            <td width="39%" style="padding-left: 10px; height: 40px;">' . $_POST['description2'] . '</td>
+            <td width="22%" style="padding-left: 10px; text-align: center;">' . $_POST['qty2'] . '</td>
             <td width="30%" style="text-align: center;">' . $price_2 . ' </td>
             <td width="9%" style="text-align: center   ;">' . $total_2 . ' </td>
         </tr>
@@ -94,10 +94,10 @@ if ($_POST['currency'] === 'euro') {
 
     if (isset($_POST['description3'])) {
         $html .=
-            '<table width="680px" style="margin-left: -10px; margin-top: 35px;">
+            '<table width="680px" style="margin-left: -10px; margin-top: 13px;">
         <tr>
-            <td width="34%" style="padding-left: 10px;">' . $_POST['description3'] . '</td>
-            <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty3'] . '</td>
+            <td width="39%" style="padding-left: 10px; height: 40px;">' . $_POST['description3'] . '</td>
+            <td width="22%" style="padding-left: 10px; text-align: center;">' . $_POST['qty3'] . '</td>
             <td width="30%" style="text-align: center;">' . $price_3 . ' </td>
             <td width="9%" style="text-align: center   ;">' . $total_3 . ' </td>
         </tr>
@@ -106,10 +106,10 @@ if ($_POST['currency'] === 'euro') {
 
     if (isset($_POST['description4'])) {
         $html .=
-            '<table width="680px" style="margin-left: -10px; margin-top: 35px;">
+            '<table width="680px" style="margin-left: -10px; margin-top: 13px;">
         <tr>
-            <td width="34%" style="padding-left: 10px;">' . $_POST['description4'] . '</td>
-            <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty4'] . '</td>
+            <td width="39%" style="padding-left: 10px; height: 40px;">' . $_POST['description4'] . '</td>
+            <td width="22%" style="padding-left: 10px; text-align: center;">' . $_POST['qty4'] . '</td>
             <td width="30%" style="text-align: center;">' . $price_4 . ' </td>
             <td width="9%" style="text-align: center   ;">' . $total_4 . ' </td>
         </tr>
@@ -152,8 +152,8 @@ if ($_POST['currency'] === 'euro') {
         $html .=
             '<table width="680px" style="margin-left: -10px; margin-top: 15px;">
         <tr>
-            <td width="34%" style="padding-left: 10px;">' . $_POST['description1'] . '</td>
-            <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty1'] . '</td>
+            <td width="39%" style="padding-left: 10px; height: 40px;">' . $_POST['description1'] . '</td>
+            <td width="22%" style="padding-left: 10px; text-align: center;">' . $_POST['qty1'] . '</td>
             <td width="30%" style="text-align: center;">' . $price_1 . ' </td>
             <td width="9%" style="text-align: center   ;">' . $total_1 . ' </td>
         </tr>
@@ -162,10 +162,10 @@ if ($_POST['currency'] === 'euro') {
 
     if (isset($_POST['description2'])) {
         $html .=
-            '<table width="680px" style="margin-left: -10px; margin-top: 35px;">
+            '<table width="680px" style="margin-left: -10px; margin-top: 13px;">
         <tr>
-            <td width="34%" style="padding-left: 10px;">' . $_POST['description2'] . '</td>
-            <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty2'] . '</td>
+            <td width="39%" style="padding-left: 10px; height: 40px;">' . $_POST['description2'] . '</td>
+            <td width="22%" style="padding-left: 10px; text-align: center;">' . $_POST['qty2'] . '</td>
             <td width="30%" style="text-align: center;">' . $price_2 . ' </td>
             <td width="9%" style="text-align: center   ;">' . $total_2 . ' </td>
         </tr>
@@ -174,10 +174,10 @@ if ($_POST['currency'] === 'euro') {
 
     if (isset($_POST['description3'])) {
         $html .=
-            '<table width="680px" style="margin-left: -10px; margin-top: 35px;">
+            '<table width="680px" style="margin-left: -10px; margin-top: 13px;">
         <tr>
-            <td width="34%" style="padding-left: 10px;">' . $_POST['description3'] . '</td>
-            <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty3'] . '</td>
+            <td width="39%" style="padding-left: 10px; height: 40px;">' . $_POST['description3'] . '</td>
+            <td width="22%" style="padding-left: 10px; text-align: center;">' . $_POST['qty3'] . '</td>
             <td width="30%" style="text-align: center;">' . $price_3 . ' </td>
             <td width="9%" style="text-align: center   ;">' . $total_3 . ' </td>
         </tr>
@@ -186,10 +186,10 @@ if ($_POST['currency'] === 'euro') {
 
     if (isset($_POST['description4'])) {
         $html .=
-            '<table width="680px" style="margin-left: -10px; margin-top: 35px;">
+            '<table width="680px" style="margin-left: -10px; margin-top: 13px;">
         <tr>
-            <td width="34%" style="padding-left: 10px;">' . $_POST['description4'] . '</td>
-            <td width="27%" style="padding-left: 50px; text-align: center;">' . $_POST['qty4'] . '</td>
+            <td width="39%" style="padding-left: 10px; height: 40px;">' . $_POST['description4'] . '</td>
+            <td width="22%" style="padding-left: 10px; text-align: center;">' . $_POST['qty4'] . '</td>
             <td width="30%" style="text-align: center;">' . $price_4 . ' </td>
             <td width="9%" style="text-align: center   ;">' . $total_4 . ' </td>
         </tr>
