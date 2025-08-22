@@ -13,7 +13,7 @@ include '../../../../includes/templates/sessionStart.php';
 include '../../../../includes/templates/validateAccessInternal.php';
 
 var_dump($_SESSION);
-if (!isset($_SESSION['super_admin']) || $_SESSION['super_admin'] !== true) {
+if (!isset($_SESSION['super_admin']) || $_SESSION['super_admin'] !== true || !isset($_SESSION['admin_junior']) || $_SESSION['admin_junior'] !== true || !isset($_SESSION['coordinador']) || $_SESSION['coordinador'] !== true) {
     header("Location: ../../../../index.php?error=Acceso denegado");
     exit();
 }
