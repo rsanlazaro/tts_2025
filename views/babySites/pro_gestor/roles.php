@@ -126,7 +126,7 @@ $baby_site_5 = ['Dash Boards'];
 
 $recluta_s_1 = ['Inicio'];
 
-$baby_cloud_1 = ['Agregar e tapa', 'Modificar estado', 'Modificar underway', 'Modificar info 1', 'Modificar info 2', 'Subir archivo 1', 'Subir archivo 2', 'Subir archivo 3', 'Habilitar 1', 'Habilitar 2', 'Habilitar 3', 'Habilitar vista de la etapa'];
+$baby_cloud_1 = ['Agregar etapa', 'Modificar estado', 'Modificar underway', 'Modificar info 1', 'Modificar info 2', 'Subir archivo 1', 'Subir archivo 2', 'Subir archivo 3', 'Habilitar 1', 'Habilitar 2', 'Habilitar 3', 'Habilitar vista de la etapa'];
 // $baby_cloud_1 = ['Inicio'];
 
 $sections_1 = array(
@@ -289,9 +289,9 @@ $sections_4 = array(
                     Permisos y roles para el usuario <?php echo $user; ?> con el perfil
                     <?php
                     if ($profile == 'super_admin') {
-                        echo 'Generación de reportes y facturas';
+                        echo 'Super admin';
                     } else if ($profile == 'admin_junior') {
-                        echo 'Admin Junior';
+                        echo 'Senior';
                     } else if ($profile == 'coordinador') {
                         echo 'Coordinador';
                     } else if ($profile == 'operador') {
@@ -1265,8 +1265,8 @@ $sections_4 = array(
                         <thead class="header-sticky">
                             <tr class="thead-roles">
                                 <th></th>
-                                <th>Generación de reportes y facturas</th>
-                                <th>Admin Jr</th>
+                                <th>Super admin</th>
+                                <th>Senior</th>
                                 <th>Coordina</th>
                                 <th>Operador</th>
                                 <th>Recluta</th>

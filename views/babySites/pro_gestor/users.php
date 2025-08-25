@@ -66,6 +66,11 @@ while ($row = mysqli_fetch_assoc($result)) {
     $mail[$index] = $row['mail'];
     $pass[$index] = $row['password'];
     $profile[$index] = $row['profile'];
+    // if ($row['profile'] == 'admin_junior') {
+    //     $profile[$index] = 'senior';
+    // } else {
+        $profile[$index] = $row['profile'];
+    // }
     $enabled[$index] = $row['enabled'];
     $created_on[$index] = $row['created_on'];
 }
@@ -311,31 +316,31 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                                                                                                                                 } ?>>
                                                     <?php if ($profile[$i] == 'super_admin') { ?>
                                                         <option value="super_admin" selected>super-admin</option>
-                                                        <option value="admin_junior">admin-junior</option>
+                                                        <option value="admin_junior">senior</option>
                                                         <option value="coordinador">coordinador</option>
                                                         <option value="operador">operador</option>
                                                         <option value="recluta">recluta</option>
                                                     <?php } else if ($profile[$i] == 'admin_junior') { ?>
                                                         <option value="super_admin">super-admin</option>
-                                                        <option value="admin_junior" selected>admin-junior</option>
+                                                        <option value="admin_junior" selected>senior</option>
                                                         <option value="coordinador">coordinador</option>
                                                         <option value="operador">operador</option>
                                                         <option value="recluta">recluta</option>
                                                     <?php } else if ($profile[$i] == 'coordinador') { ?>
                                                         <option value="super_admin">super-admin</option>
-                                                        <option value="admin_junior">admin-junior</option>
+                                                        <option value="admin_junior">senior</option>
                                                         <option value="coordinador" selected>coordinador</option>
                                                         <option value="operador">operador</option>
                                                         <option value="recluta">recluta</option>
                                                     <?php } else if ($profile[$i] == 'operador') { ?>
                                                         <option value="super_admin">super-admin</option>
-                                                        <option value="admin_junior">admin-junior</option>
+                                                        <option value="admin_junior">senior</option>
                                                         <option value="coordinador">coordinador</option>
                                                         <option value="operador" selected>operador</option>
                                                         <option value="recluta">recluta</option>
                                                     <?php } else { ?>
                                                         <option value="super_admin">super-admin</option>
-                                                        <option value="admin_junior">admin-junior</option>
+                                                        <option value="admin_junior">senior</option>
                                                         <option value="coordinador">coordinador</option>
                                                         <option value="operador">operador</option>
                                                         <option value="recluta" selected>recluta</option>
