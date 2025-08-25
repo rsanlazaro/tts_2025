@@ -11,6 +11,18 @@ include '../../../includes/templates/header_end.php';
 include '../../../includes/app.php';
 include '../../../includes/templates/sessionStart.php';
 
+// For access information
+
+$id_user = $_SESSION['id'];
+$sql = "SELECT * FROM users WHERE id=${id_user}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $username_user = $row['username'];
+    for ($i = 1; $i <= 100; $i++) {
+        ${'access_' . $i} = $row['access_' . $i];
+    }
+}
+
 $id_user = $_GET['user'] ?? $_SESSION['id'] ?? null;
 
 $sql = "SELECT * FROM users WHERE id=${id_user}";
@@ -96,9 +108,17 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item" href="superadmin.php">Super Admin</a>
-                    <a class="dropdown-item active" href="users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item" href="guests.php">Listado de Guests</a>
+                    <?php if ($access_20 >= 1) { ?>
+                        <a class="dropdown-item" href="reports.php">Generación de reportes y facturas</a>
+                    <?php } ?>
+                    <?php if ($access_8 >= 1) { ?>
+                        <?php if ($access_8 >= 1) { ?>
+                            <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+                        <?php } ?>
+                    <?php } ?>
+                    <?php if ($access_14 >= 1) { ?>
+<a class="dropdown-item" href="guests.php">Listado de Guests</a>
+<?php } ?>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -193,12 +213,14 @@ while ($row = mysqli_fetch_assoc($result)) {
                             </svg>
                         </button>
                     <?php } ?>
+                    <?php if ($access_12 > 0) { ?>
                     <button>
-                        <a href="roles.php">Gestión de roles</a>
+                        <a href=<?php if ($access_12 > 1) { echo "roles.php"; } else { echo "#"; } ?>>Gestión de roles</a>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
                             <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
                         </svg>
                     </button>
+                    <?php } ?>
                 </div>
                 <div class="info">
                     <a href="#">
@@ -215,7 +237,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <div class="panel">
                         <div class="body">
                             <div class="input-group">
-                                <button id="delete_selected" onclick="deleteSelected()">Borrar selección </button>
+                                <?php if ($access_13 > 0) { ?>
+                                    <button id="delete_selected" <?php if ($access_13 > 1) { echo "onclick='deleteSelected()'"; } ?>>Borrar selección </button>
+                                <?php } ?>
                                 <div class="searchBox">
                                     <label for="searchBox"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
@@ -266,11 +290,25 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     <?php if ($id[$i] != $id_user) { ?>
                                         <tr id="<?php echo $id[$i]; ?>">
                                             <td class="td-center"><input id="checkbox_<?php echo $id[$i]; ?>" type="checkbox" onclick="selectRows(this, <?php echo $id[$i] ?>)"> </td>
-                                            <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
-                                            <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
-                                            <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
+                                            <td contenteditable=<?php if ($access_10 > 1) {
+                                                                    echo "true";
+                                                                } else {
+                                                                    echo "false";
+                                                                } ?> onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
+                                            <td contenteditable=<?php if ($access_10 > 1) {
+                                                                    echo "true";
+                                                                } else {
+                                                                    echo "false";
+                                                                } ?> onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
+                                            <td contenteditable=<?php if ($access_11 > 1) {
+                                                                    echo "true";
+                                                                } else {
+                                                                    echo "false";
+                                                                } ?> onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
                                             <td>
-                                                <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>">
+                                                <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>" <?php if (!($access_10 > 1)) {
+                                                                                                                                                                    echo "disabled";
+                                                                                                                                                                } ?>>
                                                     <?php if ($profile[$i] == 'super_admin') { ?>
                                                         <option value="super_admin" selected>super-admin</option>
                                                         <option value="admin_junior">admin-junior</option>
@@ -308,25 +346,47 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                 <?php echo $created_on[$i]; ?>
                                             </td>
                                             <td class="td-center td-icon">
+                                                <?php if ($access_12 > 0) { ?>
                                                 <?php if ($enabled[$i] == 'true') { ?>
-                                                    <button onclick='toggle("false",<?php echo $id[$i] ?>,"enabled")'>
+                                                    <button onclick='toggle("false",<?php echo $id[$i] ?>,"enabled")' <?php if (!($access_12 > 1)) {
+                                                                                                                            echo "disabled";
+                                                                                                                        } ?>>
                                                         <i class='fa-solid fa-toggle-on false'></i>
                                                     </button>
                                                 <?php } else { ?>
-                                                    <button onclick='toggle("true",<?php echo $id[$i] ?>,"enabled")'>
+                                                    <button onclick='toggle("true",<?php echo $id[$i] ?>,"enabled")' <?php if (!($access_12 > 1)) {
+                                                                                                                            echo "disabled";
+                                                                                                                        } ?>>
                                                         <i class='fa-solid fa-toggle-off false'></i>
                                                     </button>
                                                 <?php } ?>
+                                                <?php } else { ?>
+                                                    <p>-</p>
+                                                <?php } ?>
                                             </td>
                                             <td class="td-center">
-                                                <a class="td-delete td-center" href="<?php echo "roles.php?id=" . $id[$i]; ?>">
-                                                    Ver
-                                                </a>
+                                                <?php if ($access_12 > 0) { ?>
+                                                    <a class="td-delete td-center" href="<?php if ($access_12 > 1) {
+                                                                                                echo 'roles.php?id=' . $id[$i];
+                                                                                            } else {
+                                                                                                echo '#';
+                                                                                            } ?>">
+                                                        Ver
+                                                    </a>
+                                                <?php } else { ?>
+                                                    <p>
+                                                        -
+                                                    </p>
+                                                <?php } ?>
                                             </td>
                                             <td class="td-center">
-                                                <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)">
-                                                    Eliminar
-                                                </button>
+                                                <?php if ($access_13 > 0) { ?>
+                                                    <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)" <?php if ($access_13 < 2) { echo "disabled"; } ?>>
+                                                        Eliminar
+                                                    </button>
+                                                <?php } else { ?>
+                                                    <p>-</p>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                     <?php } else { ?>

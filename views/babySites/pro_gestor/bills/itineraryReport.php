@@ -1,5 +1,5 @@
 <?php
-
+include '../../../../includes/templates/validatePost.php';
 require_once '../../../../vendor/autoload.php';
 $period = ucfirst($_POST['period']);
 $name = ucfirst($_POST['name']);

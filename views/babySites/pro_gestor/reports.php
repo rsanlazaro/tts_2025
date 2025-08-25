@@ -12,8 +12,20 @@ include '../../../includes/app.php';
 include '../../../includes/templates/sessionStart.php';
 include '../../../includes/templates/validateAccessInternal.php';
 
-if (!isset($_SESSION['super_admin']) || $_SESSION['super_admin'] !== true) {
-    header("Location: superadmin.php?error=Acceso denegado");
+// For access information
+
+$id_user = $_SESSION['id'];
+$sql = "SELECT * FROM users WHERE id=${id_user}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $username_user = $row['username'];
+    for ($i = 1; $i <= 100; $i++) {
+        ${'access_' . $i} = $row['access_' . $i];
+    }
+}
+
+if ($access_20 < 1) {
+    header("Location: ../../../../index.php?error=Acceso denegado");
     exit();
 }
 
@@ -170,9 +182,13 @@ $sections_4 = array(
                 <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item active" href="superadmin.php">Super Admin</a>
-                    <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item" href="guests.php">Listado de Guests</a>
+                    <a class="dropdown-item active" href="reports.php">Generación de reportes y facturas</a>
+                    <?php if ($access_8 >= 1){ ?>
+<a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+<?php } ?>
+                    <?php if ($access_14 >= 1) { ?>
+<a class="dropdown-item" href="guests.php">Listado de Guests</a>
+<?php } ?>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -255,16 +271,26 @@ $sections_4 = array(
     <div class="content" id="content">
         <div class="header">
             <div class="message">
-                Super Admin
+                Generación de reportes y facturas
             </div>
         </div>
         <div class="super-admin-body users-body">
             <div class="buttons">
-                <a href="bills/medical.php"> Reporte Médico </a>
-                <a href="bills/itinerary.php"> Itinerario Babymedic </a>
-                <a href="bills/travelMedicalCare.php">Travel Medical Care</a>
-                <a href="bills/nexaTravel.php">Nexa Travel</a>
-                <a href="bills/babyMedic.php">Babymedic</a>
+                <?php if ($access_21 >= 1) { ?>
+                    <a href="bills/medical.php"> Reporte Médico </a>
+                <?php } ?>
+                <?php if ($access_22 >= 1) { ?>
+                    <a href="bills/itinerary.php"> Itinerario Babymedic </a>
+                <?php } ?>
+                <?php if ($access_23 >= 1) { ?>
+                    <a href="bills/travelMedicalCare.php">Travel Medical Care</a>
+                <?php } ?>
+                <?php if ($access_24 >= 1) { ?>
+                    <a href="bills/nexaTravel.php">Nexa Travel</a>
+                <?php } ?>
+                <?php if ($access_25 >= 1) { ?>
+                    <a href="bills/babyMedic.php">Babymedic</a>
+                <?php } ?>
             </div>
         </div>
     </div>

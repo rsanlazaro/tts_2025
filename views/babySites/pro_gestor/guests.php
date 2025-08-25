@@ -11,6 +11,18 @@ include '../../../includes/templates/header_end.php';
 include '../../../includes/app.php';
 include '../../../includes/templates/sessionStart.php';
 
+// For access information
+
+$id_user = $_SESSION['id'];
+$sql = "SELECT * FROM users WHERE id=${id_user}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $username_user = $row['username'];
+    for ($i = 1; $i <= 100; $i++) {
+        ${'access_' . $i} = $row['access_' . $i];
+    }
+}
+
 $id_user = $_GET['user'] ?? $_SESSION['id'] ?? null;
 
 $sql = "SELECT * FROM users WHERE id=${id_user}";
@@ -93,8 +105,12 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item" href="superadmin.php">Super Admin</a>
-                    <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+                    <?php if ($access_20 >= 1) { ?>
+                        <a class="dropdown-item" href="reports.php">Generación de reportes y facturas</a>
+                    <?php } ?>
+                    <?php if ($access_8 >= 1) { ?>
+                        <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+                    <?php } ?>
                     <a class="dropdown-item active" href="guests.php">Listado de Guests</a>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
@@ -181,12 +197,16 @@ while ($row = mysqli_fetch_assoc($result)) {
                 Listado de Guests
             </div>
             <div class="buttons">
-                <button onclick="newUser()">
-                    Nuevo Guest
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
-                    </svg>
-                </button>
+                <?php if ($access_15 > 0) { ?>
+                    <button <?php if ($access_15 > 1) {
+                                echo "onclick='newUser()'";
+                            } ?>>
+                        Nuevo Guest
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                        </svg>
+                    </button>
+                <?php } ?>
             </div>
             <div class="info">
                 <a href="#">
@@ -203,7 +223,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <div class="panel">
                     <div class="body">
                         <div class="input-group">
-                            <button id="delete_selected" onclick="deleteSelected()">Borrar selección </button>
+                            <?php if ($access_19 > 0) { ?>
+                                <button id="delete_selected" <?php if ($access_19 > 1) { echo "onclick='deleteSelected()'"; } ?>>Borrar selección </button>
+                            <?php } ?>
                             <div class="searchBox">
                                 <label for="searchBox"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
@@ -234,10 +256,12 @@ while ($row = mysqli_fetch_assoc($result)) {
                             </th>
                             <th>Status</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <colgroup class="table-colgroup">
+                            <col>
                             <col>
                             <col>
                             <col>
@@ -251,11 +275,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <?php if ($user[$i] != 'AdminBabyCloud') { ?>
                                 <tr id="<?php echo $id[$i]; ?>">
                                     <td class="td-center"><input id="checkbox_<?php echo $id[$i]; ?>" type="checkbox" onclick="selectRows(this, <?php echo $id[$i] ?>)"> </td>
-                                    <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
-                                    <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
-                                    <td contenteditable='true' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
+                                    <td <?php if ($access_16 > 0) { echo "contenteditable='true'"; } else { echo "contenteditable='false'"; } ?> onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
+                                    <td <?php if ($access_16 > 0) { echo "contenteditable='true'"; } else { echo "contenteditable='false'"; } ?> onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
+                                    <td <?php if ($access_17 > 0) { echo "contenteditable='true'"; } else { echo "contenteditable='false'"; } ?> onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
                                     <td>
-                                        <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>">
+                                        <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>" <?php if (!($access_16 > 0)) { echo "disabled"; } ?>>
                                             <?php if ($profile[$i] == 'ip') { ?>
                                                 <option value="ip" selected>IP</option>
                                                 <option value="agency">Agency</option>
@@ -269,20 +293,33 @@ while ($row = mysqli_fetch_assoc($result)) {
                                         <?php echo $created_on[$i]; ?>
                                     </td>
                                     <td class="td-center td-icon">
-                                        <?php if ($enabled[$i] == 'true') { ?>
-                                            <button onclick='toggle("false",<?php echo $id[$i] ?>,"enabled")'>
-                                                <i class='fa-solid fa-toggle-on false'></i>
-                                            </button>
+                                        <?php if ($access_18 > 0) { ?>
+                                            <?php if ($enabled[$i] == 'true') { ?>
+                                                <button onclick='toggle("false",<?php echo $id[$i] ?>,"enabled")' <?php if (!($access_18 > 1)) {
+                                                                                                                            echo "disabled";
+                                                                                                                        } ?>>
+                                                    <i class='fa-solid fa-toggle-on false'></i>
+                                                </button>
+                                            <?php } else { ?>
+                                                <button onclick='toggle("true",<?php echo $id[$i] ?>,"enabled")' <?php if (!($access_18 > 1)) {
+                                                                                                                            echo "disabled";
+                                                                                                                        } ?>>
+                                                    <i class='fa-solid fa-toggle-off false'></i>
+                                                </button>
+                                            <?php } ?>
                                         <?php } else { ?>
-                                            <button onclick='toggle("true",<?php echo $id[$i] ?>,"enabled")'>
-                                                <i class='fa-solid fa-toggle-off false'></i>
-                                            </button>
+                                            <p>-</p>
                                         <?php } ?>
                                     </td>
+                                    <td></td>
                                     <td class="td-center">
-                                        <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)">
-                                            Eliminar
-                                        </button>
+                                        <?php if ($access_19 > 0) { ?>
+                                            <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)" <?php if ($access_19 < 2) { echo "disabled"; } ?>>
+                                                Eliminar
+                                            </button>
+                                        <?php } else { ?>
+                                            <p>-</p>
+                                        <?php } ?>
                                     </td>
                                 </tr>
                             <?php } ?>

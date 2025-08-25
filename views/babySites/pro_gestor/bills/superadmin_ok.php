@@ -13,7 +13,7 @@ include '../../../includes/templates/sessionStart.php';
 include '../../../includes/templates/validateAccessInternal.php';
 
 if (!isset($_SESSION['super_admin']) || $_SESSION['super_admin'] !== true) {
-    header("Location: superadmin.php?error=Acceso denegado");
+    header("Location: reports.php?error=Acceso denegado");
     exit();
 }
 
@@ -170,9 +170,13 @@ $sections_4 = array(
                 <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item active" href="superadmin.php">Super Admin</a>
-                    <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item" href="guests.php">Listado de Guests</a>
+                    <a class="dropdown-item active" href="reports.php">Generación de reportes y facturas</a>
+                    <?php if ($access_8 >= 1){ ?>
+<a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+<?php } ?>
+                    <?php if ($access_14 >= 1) { ?>
+<a class="dropdown-item" href="guests.php">Listado de Guests</a>
+<?php } ?>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -255,7 +259,7 @@ $sections_4 = array(
     <div class="content" id="content">
         <div class="header">
             <div class="message">
-                Super Admin
+                Generación de reportes y facturas
             </div>
         </div>
         <div class="super-admin-body users-body">

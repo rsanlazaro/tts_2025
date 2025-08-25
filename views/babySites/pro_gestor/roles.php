@@ -12,6 +12,18 @@ include '../../../includes/app.php';
 include '../../../includes/templates/sessionStart.php';
 include '../../../includes/templates/validateAccessInternal.php';
 
+// For access information
+
+$id_user = $_SESSION['id'];
+$sql = "SELECT * FROM users WHERE id=${id_user}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $username_user = $row['username'];
+    for ($i = 1; $i <= 100; $i++) {
+        ${'access_' . $i} = $row['access_' . $i];
+    }
+}
+
 $id_user = $_GET['user'] ?? $_SESSION['id'] ?? null;
 
 $sql = "SELECT * FROM users WHERE id=${id_user}";
@@ -103,24 +115,27 @@ $pro_gestor_1 = ['Listado de Nota de Atención', 'Abrir de Nota de Atención'];
 $pro_gestor_2 = ['Listado de Nota Pendiente', 'Abrir Nota Pendiente'];
 $pro_gestor_3 = ['Listado de Pagos', 'Registro de Pagos', 'Editar/Alterar Pagos Registrados'];
 $pro_gestor_4 = ['Listado de Usuarios', 'Crear usuario', 'Editar usuario', 'Contraseña de Usuario', 'Permisos de Usuario', 'Borrar Usuario'];
-$pro_gestor_5 = ['Listado de Guests', 'Crear Guests', 'Editar Guests', 'Contraseña de Guests', 'Permisos de Guests', 'Borrar Guests', 'Dash Boards'];
+$pro_gestor_5 = ['Listado de Guests', 'Crear Guests', 'Editar Guests', 'Contraseña de Guests', 'Permisos de Guests', 'Borrar Guests'];
+$pro_gestor_6 = ['Generación de reportes y facturas', 'Generar reporte médico', 'Generar Itinerario', 'Generar factura (Travel Medical Care)', 'Generar factura (Nexa Travel)', 'Generar factura (Babymedic)', 'Dash Boards'];
 
 $baby_site_1 = ['Listado Sort_GES', 'Alta Sort_GES', 'Documentación', 'Alterar Documentación', 'Start Programa', 'Alta Seguro'];
-$baby_site_2 = ['Listado Sort_IP', 'Editar Sort_IP', 'Documentación', 'Alterar/Borrar Documentación', 'Start Crio Embrio', 'Actualizar Seguimiento'];
+$baby_site_2 = ['Listado Sort_IP', 'Alta Sort_IP', 'Editar Sort_IP', 'Documentación', 'Alterar/Borrar Documentación', 'Start Crio Embrio', 'Actualizar Seguimiento'];
 $baby_site_3 = ['Programas', 'Crioembrio', 'Asignar/Editar Donante', 'Editar Material Genético', 'Seleccionar Material Genético', 'Asignar/Editar Gestante', 'Iniciales', 'Perfil Psicológico', 'Agregar Sesión Psicológica', 'Alterar datos Sesión Psicológica', 'Socio Económico', 'Agregar Visita ESE', 'Alterar Datos ESE', 'Alta Citas', 'Agregar Tratamientos', 'Enviar a Pizarrón', 'Pizarrón', 'Agregar ACO', 'Detener ACO', 'Comenzar Preparación', 'Detener Preparación', 'Enviar a Transfer', 'Registrar Beta', 'Registrar Saco Gestacional', 'Registrar Latido', 'Confirmar GESTA', 'Comenzar SDG GESTA', 'Agenda de Seguro'];
 $baby_site_4 = ['Listado Egg Donor'];
 $baby_site_5 = ['Dash Boards'];
 
-$baby_cloud_1 = ['Inicio'];
+$recluta_s_1 = ['Inicio'];
 
-$alta_1 = ['Inicio'];
+$baby_cloud_1 = ['Agregar e tapa', 'Modificar estado', 'Modificar underway', 'Modificar info 1', 'Modificar info 2', 'Subir archivo 1', 'Subir archivo 2', 'Subir archivo 3', 'Habilitar 1', 'Habilitar 2', 'Habilitar 3', 'Habilitar vista de la etapa'];
+// $baby_cloud_1 = ['Inicio'];
 
 $sections_1 = array(
     $pro_gestor_1,
     $pro_gestor_2,
     $pro_gestor_3,
     $pro_gestor_4,
-    $pro_gestor_5
+    $pro_gestor_5,
+    $pro_gestor_6
 );
 
 $sections_2 = array(
@@ -132,11 +147,11 @@ $sections_2 = array(
 );
 
 $sections_3 = array(
-    $baby_cloud_1
+    $recluta_s_1
 );
 
 $sections_4 = array(
-    $alta_1
+    $baby_cloud_1
 );
 
 ?>
@@ -177,9 +192,17 @@ $sections_4 = array(
                 <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item" href="superadmin.php">Super Admin</a>
-                    <a class="dropdown-item active" href="users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item" href="guests.php">Listado de Guests</a>
+                    <?php if ($access_20 >= 1){ ?>
+<a class="dropdown-item" href="reports.php">Generación de reportes y facturas</a>
+<?php } ?>
+                    <?php if ($access_8 >= 1){ ?>
+<?php if ($access_8 >= 1){ ?>
+<a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+<?php } ?>
+<?php } ?>
+                    <?php if ($access_14 >= 1) { ?>
+<a class="dropdown-item" href="guests.php">Listado de Guests</a>
+<?php } ?>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -266,7 +289,7 @@ $sections_4 = array(
                     Permisos y roles para el usuario <?php echo $user; ?> con el perfil
                     <?php
                     if ($profile == 'super_admin') {
-                        echo 'Super Admin';
+                        echo 'Generación de reportes y facturas';
                     } else if ($profile == 'admin_junior') {
                         echo 'Admin Junior';
                     } else if ($profile == 'coordinador') {
@@ -1242,7 +1265,7 @@ $sections_4 = array(
                         <thead class="header-sticky">
                             <tr class="thead-roles">
                                 <th></th>
-                                <th>Super Admin</th>
+                                <th>Generación de reportes y facturas</th>
                                 <th>Admin Jr</th>
                                 <th>Coordina</th>
                                 <th>Operador</th>

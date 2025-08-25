@@ -14,9 +14,15 @@ include '../../../includes/templates/validateAccessInternal.php';
 
 $id_user = $_GET['user'] ?? $_SESSION['id'] ?? null;
 
-if (isset($_SESSION['super_admin'])) {
-    if ($_SESSION['super_admin'] === true) {
-        header("Location: superadmin_ok.php");
+// For access information
+
+$id_user = $_SESSION['id'];
+$sql = "SELECT * FROM users WHERE id=${id_user}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $username_user = $row['username'];
+    for ($i = 1; $i <= 100; $i++) {
+        ${'access_' . $i} = $row['access_' . $i];
     }
 }
 
@@ -60,6 +66,16 @@ while ($row = mysqli_fetch_assoc($result)) {
     $profile[$index] = $row['profile'];
     $enabled[$index] = $row['enabled'];
     $created_on[$index] = $row['created_on'];
+}
+
+$id_user = $_SESSION['id'];
+$sql = "SELECT * FROM users WHERE id=${id_user}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $username_user = $row['username'];
+    for ($i = 1; $i <= 100; $i++) {
+        ${'access_' . $i} = $row['access_' . $i];
+    }
 }
 
 // For access_default fetch information 
@@ -171,9 +187,13 @@ $sections_4 = array(
                 <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item active" href="superadmin.php">Super Admin</a>
-                    <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item" href="guests.php">Listado de Guests</a>
+                    <a class="dropdown-item active" href="reports.php">Generación de reportes y facturas</a>
+                    <?php if ($access_8 >= 1){ ?>
+<a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+<?php } ?>
+                    <?php if ($access_14 >= 1) { ?>
+<a class="dropdown-item" href="guests.php">Listado de Guests</a>
+<?php } ?>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -256,7 +276,7 @@ $sections_4 = array(
     <div class="content" id="content">
         <div class="header">
             <div class="message">
-                Super Admin
+                Generación de reportes y facturas
             </div>
         </div>
         <div class="super-admin-body users-body">

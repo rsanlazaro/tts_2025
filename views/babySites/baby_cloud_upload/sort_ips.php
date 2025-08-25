@@ -12,6 +12,18 @@ include '../../../includes/app.php';
 include '../../../includes/templates/sessionStart.php';
 include '../../../includes/templates/validateAccessInternal.php';
 
+// For access information
+
+$id_user = $_SESSION['id'];
+$sql = "SELECT * FROM users WHERE id=${id_user}";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $username_user = $row['username'];
+    for ($i = 1; $i <= 100; $i++) {
+        ${'access_' . $i} = $row['access_' . $i];
+    }
+}
+
 $id_user = $_GET['user'] ?? $_SESSION['id'] ?? null;
 
 $sql = "SELECT * FROM users WHERE id=${id_user}";
@@ -94,9 +106,15 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <a class="dropdown-item" href="../pro_gestor/superadmin.php">Super Admin</a>
-                    <a class="dropdown-item" href="../pro_gestor/users.php">Listado de Usuarios</a>
-                    <a class="dropdown-item" href="../pro_gestor/guests.php">Listado de Guests</a>
+                    <?php if ($access_20 >= 1){ ?>
+<a class="dropdown-item" href="../pro_gestor/reports.php">Generación de reportes y facturas</a>
+<?php } ?>
+                    <?php if ($access_8 >= 1){ ?>
+<a class="dropdown-item" href="../pro_gestor/users.php">Listado de Usuarios</a>
+<?php } ?>
+                    <?php if ($access_14 >= 1) { ?>
+<a class="dropdown-item" href="../pro_gestor/guests.php">Listado de Guests</a>
+<?php } ?>
                     <a class="dropdown-item" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>

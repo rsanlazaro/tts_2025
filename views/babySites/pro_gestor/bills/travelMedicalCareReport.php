@@ -1,6 +1,7 @@
 <?php
-
+include '../../../../includes/templates/validatePost.php';
 require_once '../../../../vendor/autoload.php';
+
 // Create an instance of mPDF
 $mpdf = new \Mpdf\Mpdf();
 
