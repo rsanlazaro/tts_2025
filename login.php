@@ -21,12 +21,12 @@ $remembered_username = isset($_COOKIE['remembered_username']) ? $_COOKIE['rememb
             <a href="index.php"><img src="build/img/logos/babySite.webp" alt="TTS logo"></a>
         </div>
     </header>
-    <?php if (isset($_GET['error'])) { ?>
-        <p class="error"><?php echo $_GET['error']; ?></p>
-    <?php } ?>
     <div class="login-form">
         <form class="blue-form" action="validate.php" method="POST">
             <input type="hidden" name="section" value='<?php echo "babySites"; ?>' />
+            <?php if (isset($_GET['error'])) { ?>
+                <p class="error"><?php echo $_GET['error']; ?></p>
+            <?php } ?>
             <div class="col-md-12">
                 <input class="form-control" type="text" name="username" placeholder="Usuario" value="<?php echo htmlspecialchars($remembered_username); ?>" required />
             </div>

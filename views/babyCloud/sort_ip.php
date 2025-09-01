@@ -23,6 +23,12 @@ while ($row = mysqli_fetch_assoc($result)) {
     $profile_user = $row['profile'];
 }
 
+if (isset($username_user)) {
+    $_SESSION['user'] = $username_user;
+} else {
+    $username_user = "";
+}
+
 $username_user_trimmed = trim($username_user);
 if (str_contains($username_user_trimmed, ' ')) {
     if (preg_match('/\S+\s+\S+/', $username_user_trimmed)) {
@@ -65,7 +71,11 @@ if (!($_SESSION['login'])) {
 
 if (isset($_GET['id'])) {
     $ip_id = $_GET['id'];
+} else {
+    $ip_id = $_SESSION['id'];
 }
+
+var_dump($ip_id);
 
 $sql = "SELECT * FROM guests WHERE id=${ip_id}";
 $result = mysqli_query($conn, $sql);
@@ -1030,7 +1040,7 @@ function tableStage2(
                     <div class="body">
                         <div class="input-group">
                             <div></div>
-                            <?php if ($_SESSION['type'] != 'recluta') { ?>
+                            <?php if (($_SESSION['type'] != 'ip') && ($_SESSION['type'] != 'agency')) { ?>
                                 <button onclick="returnIP(<?php $_GET['id'] ?>)">Regresar </button>
                             <?php } ?>
                         </div>
