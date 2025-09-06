@@ -112,7 +112,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
                     <?php } ?>
                     <a class="dropdown-item active" href="guests.php">Listado de Guests</a>
-                    <a class="dropdown-item" href="#">Listado de Pagos</a>
+                    <a class="dropdown-item" href="payments.php">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>

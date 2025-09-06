@@ -1,5 +1,5 @@
 <?php
-include '../../../../includes/templates/validatePost.php';
+// include '../../../../includes/templates/validatePost.php';
 require_once '../../../../vendor/autoload.php';
 $period = ucfirst($_POST['period']);
 $name = ucfirst($_POST['name']);
@@ -53,27 +53,31 @@ $activity_6_2 = ucfirst($_POST['activity_6_2']);
 $activity_6_3 = ucfirst($_POST['activity_6_3']);
 $activity_6_4 = ucfirst($_POST['activity_6_4']);
 
-$defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
-$fontDirs = $defaultConfig['fontDir'];
+// $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
+// $fontDirs = $defaultConfig['fontDir'];
 
-$defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
-$fontData = $defaultFontConfig['fontdata'];
+// $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
+// $fontData = $defaultFontConfig['fontdata'];
 
 /* Configuracion */
+// $mpdf = new \Mpdf\Mpdf([
+//     'mode' => 'utf-8',
+//     'fontDir' => array_merge($fontDirs, [
+//         __DIR__ . '../../../../../custom/font/directory',
+//     ]),
+//     'fontdata' => $fontData + [ // lowercase letters only in font key
+//         'poppins_black' => [
+//             'R' => 'Poppins-Bold.ttf'
+//         ],
+//         'poppins' => [
+//             'R' => 'Poppins-Medium.ttf'
+//         ]
+//     ],
+//     'default_font' => 'poppins'
+// ]);
+
 $mpdf = new \Mpdf\Mpdf([
-    'mode' => 'utf-8',
-    'fontDir' => array_merge($fontDirs, [
-        __DIR__ . '../../../../../custom/font/directory',
-    ]),
-    'fontdata' => $fontData + [ // lowercase letters only in font key
-        'poppins_black' => [
-            'R' => 'Poppins-Bold.ttf'
-        ],
-        'poppins' => [
-            'R' => 'Poppins-Medium.ttf'
-        ]
-    ],
-    'default_font' => 'poppins'
+    'mode' => 'utf-8'
 ]);
 
 $activity_1 = '';

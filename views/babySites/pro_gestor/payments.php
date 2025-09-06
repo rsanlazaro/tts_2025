@@ -1,16 +1,16 @@
 <?php
-include '../../../../includes/templates/header_begin.php';
+include '../../../includes/templates/header_begin.php';
 ?>
 
-<link rel="stylesheet" href="../../../../build/css/app.css" />
-<link href="../../../../assets/css/paper-dashboard.css" rel="stylesheet" />
-<link href="../../../../assets/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../../build/css/app.css" />
+<link href="../../../assets/css/paper-dashboard.css" rel="stylesheet" />
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" />
 
 <?php
-include '../../../../includes/templates/header_end.php';
-include '../../../../includes/app.php';
-include '../../../../includes/templates/sessionStart.php';
-include '../../../../includes/templates/validateAccessInternal.php';
+include '../../../includes/templates/header_end.php';
+include '../../../includes/app.php';
+include '../../../includes/templates/sessionStart.php';
+include '../../../includes/templates/validateAccessInternal.php';
 
 // For access information
 
@@ -24,7 +24,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     }
 }
 
-if ($access_22 < 1) {
+if ($access_20 < 1) {
     header("Location: ../../../../index.php?error=Acceso denegado");
     exit();
 }
@@ -147,7 +147,7 @@ $sections_4 = array(
 ?>
 
 <main class="dashboard">
-    <header class="d-flex justify-content-end align-items-center header-bills">
+    <header class="d-flex justify-content-end align-items-center">
         <div class="icons">
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -165,9 +165,9 @@ $sections_4 = array(
             <div class="last-name"><?php echo $last_name_user; ?></div>
         </div>
         <div class="profile-pic">
-            <img style="cursor:pointer;" onclick="toggleDropdown()" src="../../../../build/img/testImg/profilepic.webp" alt="Profile Picture">
+            <img style="cursor:pointer;" onclick="toggleDropdown()" src="../../../build/img/testImg/profilepic.webp" alt="Profile Picture">
             <div id="myDropdown-profile" class="dropdown-content-profile">
-                <a href="../../../../logout.php">Cerrar sesión
+                <a href="../../../logout.php">Cerrar sesión
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
                         <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
@@ -179,25 +179,23 @@ $sections_4 = array(
     <div class="sidebar">
         <div class="lateral">
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../../build/img/icons/babySite-admin.webp" alt="icon">
+                <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
-                    <?php if ($access_20 >= 1){ ?>
-<a class="dropdown-item active" href="../reports.php">Generación de reportes y facturas</a>
-<?php } ?>
-                    <?php if ($access_8 >= 1){ ?>
-<a class="dropdown-item" href="../users.php">Listado de Usuarios</a>
-<?php } ?>
+                    <a class="dropdown-item" href="reports.php">Generación de reportes y facturas</a>
+                    <?php if ($access_8 >= 1) { ?>
+                        <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+                    <?php } ?>
                     <?php if ($access_14 >= 1) { ?>
-<a class="dropdown-item" href="../guests.php">Listado de Guests</a>
-<?php } ?>
-                    <a class="dropdown-item" href="payments.php">Listado de Pagos</a>
+                        <a class="dropdown-item" href="guests.php">Listado de Guests</a>
+                    <?php } ?>
+                    <a class="dropdown-item active" href="#">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../../build/img/icons/babySite-user.webp" alt="icon">
+                <img class="icon-img" src="../../../build/img/icons/babySite-user.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">BABY SITE</div>
                     <a class="dropdown-item" href="#">Listado Sort_GES</a>
@@ -208,7 +206,7 @@ $sections_4 = array(
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../../build/img/icons/babySite-recluta.webp" alt="icon">
+                <img class="icon-img" src="../../../build/img/icons/babySite-recluta.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">RECLUTA</div>
                     <a class="dropdown-item" href="#">Nueva Candidata</a>
@@ -218,10 +216,10 @@ $sections_4 = array(
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../../build/img/icons/babySite-upload.webp" alt="icon">
+                <img class="icon-img" src="../../../build/img/icons/babySite-upload.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">Baby Cloud</div>
-                    <a class="dropdown-item" href="../../baby_cloud_upload/sort_ips.php">Cloud_IPS Upload</a>
+                    <a class="dropdown-item" href="../baby_cloud_upload/sort_ips.php">Cloud_IPS Upload</a>
                     <a class="dropdown-item" href="#">Cloud_GES Upload</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
@@ -229,7 +227,7 @@ $sections_4 = array(
         </div>
         <div class="lateral-info">
             <div class="logo">
-                <a href="../home.php"><img src="../../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
+                <a href="../home.php"><img src="../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
             </div>
             <div class="date">
                 <div>
@@ -273,184 +271,18 @@ $sections_4 = array(
     <div class="content" id="content">
         <div class="header">
             <div class="message">
-                Itinerario para Baby Medic
+                Listado de pagos
             </div>
         </div>
-        <div class="super-admin-body bills users-body">
-            <form class="pink-form" action="itineraryReport.php" method="POST" enctype="multipart/form-data">
-                <div class="form-info">
-                    <div class="bills-info bills-info-3">
-                        <div>
-                            <label for="period" class="form-label">Periodo *</label>
-                            <input class="form-control" id="period" type="text" name="period" required />
-                        </div>
-                        <div>
-                            <label for="name" class="form-label">Nombre *</label>
-                            <input class="form-control" id="name" type="text" name="name" required />
-                        </div>
-                    </div>
-                    <div class="title">Información sobre los días:</div>
-                    <h4>Día 1:</h4><br>
-                    <div class="bills-info bills-info-1">
-                        <label for="date_1" class="form-label">Fecha</label>
-                        <input class="form-control" id="date_1" type="date" name="date_1"/>
-                    </div>
-                    <div class="bills-info-3 bills-info">
-                        <div>
-                            <label for="activity_1_1" class="form-label">Actividad 1:</label>
-                            <input class="form-control" id="activity_1_1" type="text" name="activity_1_1" />
-                        </div>
-                        <div>
-                            <label for="activity_1_2" class="form-label">Actividad 2:</label>
-                            <input class="form-control" id="activity_1_2" type="text" name="activity_1_2" />
-                        </div>
-                    </div>
-                    <div class="bills-info-3 bills-info">
-                        <div>
-                            <label for="activity_1_3" class="form-label">Actividad 3:</label>
-                            <input class="form-control" id="activity_1_3" type="text" name="activity_1_3" />
-                        </div>
-                        <div>
-                            <label for="activity_1_4" class="form-label">Actividad 4:</label>
-                            <input class="form-control" id="activity_1_4" type="text" name="activity_1_4" />
-                        </div>
-                    </div>
-                    <br>
-                    <h4>Día 2:</h4><br>
-                    <div class="bills-info bills-info-1">
-                        <label for="date_2" class="form-label">Fecha</label>
-                        <input class="form-control" id="date_2" type="date" name="date_2"/>
-                    </div>
-                    <div class="bills-info-3 bills-info">
-                        <div>
-                            <label for="activity_2_1" class="form-label">Actividad 1:</label>
-                            <input class="form-control" id="activity_2_1" type="text" name="activity_2_1" />
-                        </div>
-                        <div>
-                            <label for="activity_2_2" class="form-label">Actividad 2:</label>
-                            <input class="form-control" id="activity_2_2" type="text" name="activity_2_2" />
-                        </div>
-                    </div>
-                    <div class="bills-info-3 bills-info">
-                        <div>
-                            <label for="activity_2_3" class="form-label">Actividad 3:</label>
-                            <input class="form-control" id="activity_2_3" type="text" name="activity_2_3" />
-                        </div>
-                        <div>
-                            <label for="activity_2_4" class="form-label">Actividad 4:</label>
-                            <input class="form-control" id="activity_2_4" type="text" name="activity_2_4" />
-                        </div>
-                    </div>
-                    <h4>Día 3:</h4><br>
-                    <div class="bills-info bills-info-1">
-                        <label for="date_3" class="form-label">Fecha</label>
-                        <input class="form-control" id="date_3" type="date" name="date_3"/>
-                    </div>
-                    <div class="bills-info-3 bills-info">
-                        <div>
-                            <label for="activity_3_1" class="form-label">Actividad 1:</label>
-                            <input class="form-control" id="activity_3_1" type="text" name="activity_3_1" />
-                        </div>
-                        <div>
-                            <label for="activity_3_2" class="form-label">Actividad 2:</label>
-                            <input class="form-control" id="activity_3_2" type="text" name="activity_3_2" />
-                        </div>
-                    </div>
-                    <div class="bills-info-3 bills-info">
-                        <div>
-                            <label for="activity_3_3" class="form-label">Actividad 3:</label>
-                            <input class="form-control" id="activity_3_3" type="text" name="activity_3_3" />
-                        </div>
-                        <div>
-                            <label for="activity_3_4" class="form-label">Actividad 4:</label>
-                            <input class="form-control" id="activity_3_4" type="text" name="activity_3_4" />
-                        </div>
-                    </div>
-                    <h4>Día 4:</h4><br>
-                    <div class="bills-info bills-info-1">
-                        <label for="date_4" class="form-label">Fecha</label>
-                        <input class="form-control" id="date_4" type="date" name="date_4"/>
-                    </div>
-                    <div class="bills-info-3 bills-info">
-                        <div>
-                            <label for="activity_4_1" class="form-label">Actividad 1:</label>
-                            <input class="form-control" id="activity_4_1" type="text" name="activity_4_1" />
-                        </div>
-                        <div>
-                            <label for="activity_4_2" class="form-label">Actividad 2:</label>
-                            <input class="form-control" id="activity_4_2" type="text" name="activity_4_2" />
-                        </div>
-                    </div>
-                    <div class="bills-info-3 bills-info">
-                        <div>
-                            <label for="activity_4_3" class="form-label">Actividad 3:</label>
-                            <input class="form-control" id="activity_4_3" type="text" name="activity_4_3" />
-                        </div>
-                        <div>
-                            <label for="activity_4_4" class="form-label">Actividad 4:</label>
-                            <input class="form-control" id="activity_4_4" type="text" name="activity_4_4" />
-                        </div>
-                    </div>
-                    <h4>Día 5:</h4><br>
-                    <div class="bills-info bills-info-1">
-                        <label for="date_5" class="form-label">Fecha</label>
-                        <input class="form-control" id="date_5" type="date" name="date_5"/>
-                    </div>
-                    <div class="bills-info-3 bills-info">
-                        <div>
-                            <label for="activity_5_1" class="form-label">Actividad 1:</label>
-                            <input class="form-control" id="activity_5_1" type="text" name="activity_5_1" />
-                        </div>
-                        <div>
-                            <label for="activity_5_2" class="form-label">Actividad 2:</label>
-                            <input class="form-control" id="activity_5_2" type="text" name="activity_5_2" />
-                        </div>
-                    </div>
-                    <div class="bills-info-3 bills-info">
-                        <div>
-                            <label for="activity_5_3" class="form-label">Actividad 3:</label>
-                            <input class="form-control" id="activity_5_3" type="text" name="activity_5_3" />
-                        </div>
-                        <div>
-                            <label for="activity_5_4" class="form-label">Actividad 4:</label>
-                            <input class="form-control" id="activity_5_4" type="text" name="activity_5_4" />
-                        </div>
-                    </div>
-                    <h4>Día 6:</h4><br>
-                    <div class="bills-info bills-info-1">
-                        <label for="date_6" class="form-label">Fecha</label>
-                        <input class="form-control" id="date_6" type="date" name="date_6"/>
-                    </div>
-                    <div class="bills-info-3 bills-info">
-                        <div>
-                            <label for="activity_6_1" class="form-label">Actividad 1:</label>
-                            <input class="form-control" id="activity_6_1" type="text" name="activity_6_1" />
-                        </div>
-                        <div>
-                            <label for="activity_6_2" class="form-label">Actividad 2:</label>
-                            <input class="form-control" id="activity_6_2" type="text" name="activity_6_2" />
-                        </div>
-                    </div>
-                    <div class="bills-info-3 bills-info">
-                        <div>
-                            <label for="activity_6_3" class="form-label">Actividad 3:</label>
-                            <input class="form-control" id="activity_6_3" type="text" name="activity_6_3" />
-                        </div>
-                        <div>
-                            <label for="activity_6_4" class="form-label">Actividad 4:</label>
-                            <input class="form-control" id="activity_6_4" type="text" name="activity_6_4" />
-                        </div>
-                    </div>
-                    <div class="bills-info bills-info-2 required-fields">
-                        <p>*Required fields</p>
-                    </div>
-                </div>
-                <div class="form-btn d-flex justify-content-center">
-                    <button class="btn btn-pink btn-send" type="submit">
-                        <div>Generate PDF</div>
-                    </button>
-                </div>
-            </form>
+        <div class="super-admin-body users-body">
+            <div class="buttons">
+                <?php if (1) { ?>
+                    <a href="payments/schemes.php">Listado de Esquemas</a>
+                <?php } ?>
+                <?php if (1) { ?>
+                    <a href="payments/assurances.php">Listado de Seguros</a>
+                <?php } ?>
+            </div>
         </div>
     </div>
 </main>
@@ -459,7 +291,7 @@ $sections_4 = array(
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Custom JS -->
-<script src="../../../../build/js/bundle.min.js"></script>
+<script src="../../../build/js/bundle.min.js"></script>
 <script>
     // Clock functionality
     function updateClock() {
@@ -531,7 +363,7 @@ $sections_4 = array(
     }
 </script>
 <!-- Custom JS -->
-<script src="../../../../build/js/paginationFilter.min.js"></script>
+<script src="../../../build/js/paginationFilter.min.js"></script>
 <!-- Pagination -->
 <script>
     let options = {

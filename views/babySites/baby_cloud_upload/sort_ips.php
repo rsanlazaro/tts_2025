@@ -115,7 +115,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <?php if ($access_14 >= 1) { ?>
 <a class="dropdown-item" href="../pro_gestor/guests.php">Listado de Guests</a>
 <?php } ?>
-                    <a class="dropdown-item" href="#">Listado de Pagos</a>
+                    <a class="dropdown-item" href="payments.php">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>

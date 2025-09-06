@@ -1,15 +1,15 @@
 <?php
-include '../../../includes/templates/header_begin.php';
+include '../../../../includes/templates/header_begin.php';
 ?>
 
-<link rel="stylesheet" href="../../../build/css/app.css" />
-<link href="../../../assets/css/paper-dashboard.css" rel="stylesheet" />
-<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../../../build/css/app.css" />
+<link href="../../../../assets/css/paper-dashboard.css" rel="stylesheet" />
+<link href="../../../../assets/css/bootstrap.min.css" rel="stylesheet" />
 
 <?php
-include '../../../includes/templates/header_end.php';
-include '../../../includes/app.php';
-include '../../../includes/templates/sessionStart.php';
+include '../../../../includes/templates/header_end.php';
+include '../../../../includes/app.php';
+include '../../../../includes/templates/sessionStart.php';
 
 // For access information
 
@@ -69,7 +69,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     // if ($row['profile'] == 'admin_junior') {
     //     $profile[$index] = 'senior';
     // } else {
-        $profile[$index] = $row['profile'];
+    $profile[$index] = $row['profile'];
     // }
     $enabled[$index] = $row['enabled'];
     $created_on[$index] = $row['created_on'];
@@ -96,9 +96,9 @@ while ($row = mysqli_fetch_assoc($result)) {
             <div class="last-name"><?php echo $last_name_user; ?></div>
         </div>
         <div class="profile-pic">
-            <img style="cursor:pointer;" onclick="toggleDropdown()" src="../../../build/img/testImg/profilepic.webp" alt="Profile Picture">
+            <img style="cursor:pointer;" onclick="toggleDropdown()" src="../../../../build/img/testImg/profilepic.webp" alt="Profile Picture">
             <div id="myDropdown-profile" class="dropdown-content-profile">
-                <a href="../../../logout.php">Cerrar sesión
+                <a href="../../../../logout.php">Cerrar sesión
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
                         <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
@@ -110,7 +110,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <div class="sidebar">
         <div class="lateral">
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../build/img/icons/babySite-admin.webp" alt="icon">
+                <img class="icon-img" src="../../../../build/img/icons/babySite-admin.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
                     <?php if ($access_20 >= 1) { ?>
@@ -122,15 +122,15 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <?php } ?>
                     <?php } ?>
                     <?php if ($access_14 >= 1) { ?>
-<a class="dropdown-item" href="guests.php">Listado de Guests</a>
-<?php } ?>
-                    <a class="dropdown-item" href="payments.php">Listado de Pagos</a>
+                        <a class="dropdown-item" href="guests.php">Listado de Guests</a>
+                    <?php } ?>
+                    <a class="dropdown-item active" href="payments.php">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../build/img/icons/babySite-user.webp" alt="icon">
+                <img class="icon-img" src="../../../../build/img/icons/babySite-user.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">BABY SITE</div>
                     <a class="dropdown-item" href="#">Listado Sort_GES</a>
@@ -141,7 +141,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../build/img/icons/babySite-recluta.webp" alt="icon">
+                <img class="icon-img" src="../../../../build/img/icons/babySite-recluta.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">RECLUTA</div>
                     <a class="dropdown-item" href="#">Nueva Candidata</a>
@@ -151,7 +151,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </div>
             </div>
             <div href="#" class="icon-container">
-                <img class="icon-img" src="../../../build/img/icons/babySite-upload.webp" alt="icon">
+                <img class="icon-img" src="../../../../build/img/icons/babySite-upload.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">Baby Cloud</div>
                     <a class="dropdown-item" href="../baby_cloud_upload/sort_ips.php">Cloud_IPS Upload</a>
@@ -162,7 +162,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         </div>
         <div class="lateral-info">
             <div class="logo">
-                <a href="../home.php"><img src="../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
+                <a href="../home.php"><img src="../../../../build/img/logos/babySite.webp" alt="Baby Site Logo"></a>
             </div>
             <div class="date">
                 <div>
@@ -207,24 +207,28 @@ while ($row = mysqli_fetch_assoc($result)) {
         <?php if ($access_8 >= 1) { ?>
             <div class="header">
                 <div class="message">
-                    Listado de Usuarios
+                    Listado de Esquemas
                 </div>
                 <div class="buttons">
                     <?php if ($access_9 >= 1) { ?>
                         <button <?php if ($access_9 == 2) { ?> onclick="newUser()" <?php } ?>>
-                            Nuevo usuario
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                            Generar hoja de pago
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                <path d="M128 128C128 92.7 156.7 64 192 64L341.5 64C358.5 64 374.8 70.7 386.8 82.7L493.3 189.3C505.3 201.3 512 217.6 512 234.6L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 128zM336 122.5L336 216C336 229.3 346.7 240 360 240L453.5 240L336 122.5zM192 152C192 165.3 202.7 176 216 176L264 176C277.3 176 288 165.3 288 152C288 138.7 277.3 128 264 128L216 128C202.7 128 192 138.7 192 152zM192 248C192 261.3 202.7 272 216 272L264 272C277.3 272 288 261.3 288 248C288 234.7 277.3 224 264 224L216 224C202.7 224 192 234.7 192 248zM304 324L304 328C275.2 328.3 252 351.7 252 380.5C252 406.2 270.5 428.1 295.9 432.3L337.6 439.3C343.6 440.3 348 445.5 348 451.6C348 458.5 342.4 464.1 335.5 464.1L280 464C269 464 260 473 260 484C260 495 269 504 280 504L304 504L304 508C304 519 313 528 324 528C335 528 344 519 344 508L344 503.3C369 499.2 388 477.6 388 451.5C388 425.8 369.5 403.9 344.1 399.7L302.4 392.7C296.4 391.7 292 386.5 292 380.4C292 373.5 297.6 367.9 304.5 367.9L352 367.9C363 367.9 372 358.9 372 347.9C372 336.9 363 327.9 352 327.9L344 327.9L344 323.9C344 312.9 335 303.9 324 303.9C313 303.9 304 312.9 304 323.9z" />
                             </svg>
                         </button>
                     <?php } ?>
                     <?php if ($access_12 > 0) { ?>
-                    <button>
-                        <a href=<?php if ($access_12 > 1) { echo "roles.php"; } else { echo "#"; } ?>>Gestión de roles</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
-                            <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
-                        </svg>
-                    </button>
+                        <button>
+                            <a href=<?php if ($access_12 > 1) {
+                                        echo "roles.php";
+                                    } else {
+                                        echo "#";
+                                    } ?>>Registrar pagos</a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                <path d="M128 128C92.7 128 64 156.7 64 192L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 192C576 156.7 547.3 128 512 128L128 128zM360 352L488 352C501.3 352 512 362.7 512 376C512 389.3 501.3 400 488 400L360 400C346.7 400 336 389.3 336 376C336 362.7 346.7 352 360 352zM336 264C336 250.7 346.7 240 360 240L488 240C501.3 240 512 250.7 512 264C512 277.3 501.3 288 488 288L360 288C346.7 288 336 277.3 336 264zM212 208C223 208 232 217 232 228L232 232L240 232C251 232 260 241 260 252C260 263 251 272 240 272L192.5 272C185.6 272 180 277.6 180 284.5C180 290.6 184.4 295.8 190.4 296.8L232.1 303.8C257.4 308 276 329.9 276 355.6C276 381.7 257 403.3 232 407.4L232 412.1C232 423.1 223 432.1 212 432.1C201 432.1 192 423.1 192 412.1L192 408.1L168 408.1C157 408.1 148 399.1 148 388.1C148 377.1 157 368.1 168 368.1L223.5 368.1C230.4 368.1 236 362.5 236 355.6C236 349.5 231.6 344.3 225.6 343.3L183.9 336.3C158.5 332 140 310.1 140 284.5C140 255.7 163.2 232.3 192 232L192 228C192 217 201 208 212 208z" />
+                            </svg>
+                        </button>
                     <?php } ?>
                 </div>
                 <div class="info">
@@ -237,13 +241,15 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </a>
                 </div>
             </div>
-            <div class="users-body">
+            <div class="scheme-body">
                 <div class="content table-responsive table-scroll table-full-width table-container">
                     <div class="panel">
                         <div class="body">
                             <div class="input-group">
                                 <?php if ($access_13 > 0) { ?>
-                                    <button id="delete_selected" <?php if ($access_13 > 1) { echo "onclick='deleteSelected()'"; } ?>>Borrar selección </button>
+                                    <button id="delete_selected" <?php if ($access_13 > 1) {
+                                                                        echo "onclick='deleteSelected()'";
+                                                                    } ?>>Borrar selección </button>
                                 <?php } ?>
                                 <div class="searchBox">
                                     <label for="searchBox"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -258,23 +264,23 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <thead aria-expanded="true" style="cursor: pointer;">
                             <tr class="thead">
                                 <th></th>
-                                <th>Usuario
+                                <th>GESTA/GESCA
                                     <img onclick="sortTable(0)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
                                 </th>
-                                <th>Email
+                                <th>Status Gral
                                     <img onclick="sortTable(1)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
                                 </th>
-                                <th>Password
+                                <th>SEG SDG
                                     <img onclick="sortTable(2)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
                                 </th>
-                                <th>Perfil
+                                <th>Último Pgto
                                     <img onclick="sortTable(3)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
                                 </th>
-                                <th>Fecha de creación
+                                <th>Fecha
                                     <img onclick="sortTable(4)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVR4nO2TsQrAMAgF31931DF/bSl06BBC1PegQw5c74hE4EDGAQylPN4ZSnmwIz6R0yK+kLcjO/KoRjLyyEYq8lD9rn9yNVZkyogpX2LpPSUiVpXvRKwrX0Vo8lmELv9e+TMH0LgBO+h/i4EUhhsAAAAASUVORK5CYII=" alt="sort">
                                 </th>
-                                <th>Status</th>
-                                <th>Roles</th>
+                                <th>Prox. Pgto</th>
+                                <th>Concept</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -291,67 +297,66 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 <col>
                             </colgroup>
                             <?php for ($i = 1; $i <= $index; $i++) { ?>
-                                <?php if ($user[$i] != 'AdminBabyCloud') { ?>
-                                    <?php if ($id[$i] != $id_user) { ?>
-                                        <tr id="<?php echo $id[$i]; ?>">
-                                            <td class="td-center"><input id="checkbox_<?php echo $id[$i]; ?>" type="checkbox" onclick="selectRows(this, <?php echo $id[$i] ?>)"> </td>
-                                            <td contenteditable=<?php if ($access_10 > 1) {
-                                                                    echo "true";
-                                                                } else {
-                                                                    echo "false";
-                                                                } ?> onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
-                                            <td contenteditable=<?php if ($access_10 > 1) {
-                                                                    echo "true";
-                                                                } else {
-                                                                    echo "false";
-                                                                } ?> onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
-                                            <td contenteditable=<?php if ($access_11 > 1) {
-                                                                    echo "true";
-                                                                } else {
-                                                                    echo "false";
-                                                                } ?> onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
-                                            <td>
-                                                <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>" <?php if (!($access_10 > 1)) {
-                                                                                                                                                                    echo "disabled";
-                                                                                                                                                                } ?>>
-                                                    <?php if ($profile[$i] == 'super_admin') { ?>
-                                                        <option value="super_admin" selected>super-admin</option>
-                                                        <option value="admin_junior">senior</option>
-                                                        <option value="coordinador">coordinador</option>
-                                                        <option value="operador">operador</option>
-                                                        <option value="recluta">recluta</option>
-                                                    <?php } else if ($profile[$i] == 'admin_junior') { ?>
-                                                        <option value="super_admin">super-admin</option>
-                                                        <option value="admin_junior" selected>senior</option>
-                                                        <option value="coordinador">coordinador</option>
-                                                        <option value="operador">operador</option>
-                                                        <option value="recluta">recluta</option>
-                                                    <?php } else if ($profile[$i] == 'coordinador') { ?>
-                                                        <option value="super_admin">super-admin</option>
-                                                        <option value="admin_junior">senior</option>
-                                                        <option value="coordinador" selected>coordinador</option>
-                                                        <option value="operador">operador</option>
-                                                        <option value="recluta">recluta</option>
-                                                    <?php } else if ($profile[$i] == 'operador') { ?>
-                                                        <option value="super_admin">super-admin</option>
-                                                        <option value="admin_junior">senior</option>
-                                                        <option value="coordinador">coordinador</option>
-                                                        <option value="operador" selected>operador</option>
-                                                        <option value="recluta">recluta</option>
-                                                    <?php } else { ?>
-                                                        <option value="super_admin">super-admin</option>
-                                                        <option value="admin_junior">senior</option>
-                                                        <option value="coordinador">coordinador</option>
-                                                        <option value="operador">operador</option>
-                                                        <option value="recluta" selected>recluta</option>
-                                                    <?php } ?>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <?php echo $created_on[$i]; ?>
-                                            </td>
-                                            <td class="td-center td-icon">
-                                                <?php if ($access_12 > 0) { ?>
+                                <?php if ($id[$i] != $id_user) { ?>
+                                    <tr id="<?php echo $id[$i]; ?>">
+                                        <td class="td-center"><input id="checkbox_<?php echo $id[$i]; ?>" type="checkbox" onclick="selectRows(this, <?php echo $id[$i] ?>)"> </td>
+                                        <td contenteditable=<?php if ($access_10 > 1) {
+                                                                echo "true";
+                                                            } else {
+                                                                echo "false";
+                                                            } ?> onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
+                                        <td contenteditable=<?php if ($access_10 > 1) {
+                                                                echo "true";
+                                                            } else {
+                                                                echo "false";
+                                                            } ?> onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
+                                        <td contenteditable=<?php if ($access_11 > 1) {
+                                                                echo "true";
+                                                            } else {
+                                                                echo "false";
+                                                            } ?> onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
+                                        <td>
+                                            <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>" <?php if (!($access_10 > 1)) {
+                                                                                                                                                                echo "disabled";
+                                                                                                                                                            } ?>>
+                                                <?php if ($profile[$i] == 'super_admin') { ?>
+                                                    <option value="super_admin" selected>super-admin</option>
+                                                    <option value="admin_junior">senior</option>
+                                                    <option value="coordinador">coordinador</option>
+                                                    <option value="operador">operador</option>
+                                                    <option value="recluta">recluta</option>
+                                                <?php } else if ($profile[$i] == 'admin_junior') { ?>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior" selected>senior</option>
+                                                    <option value="coordinador">coordinador</option>
+                                                    <option value="operador">operador</option>
+                                                    <option value="recluta">recluta</option>
+                                                <?php } else if ($profile[$i] == 'coordinador') { ?>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior">senior</option>
+                                                    <option value="coordinador" selected>coordinador</option>
+                                                    <option value="operador">operador</option>
+                                                    <option value="recluta">recluta</option>
+                                                <?php } else if ($profile[$i] == 'operador') { ?>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior">senior</option>
+                                                    <option value="coordinador">coordinador</option>
+                                                    <option value="operador" selected>operador</option>
+                                                    <option value="recluta">recluta</option>
+                                                <?php } else { ?>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior">senior</option>
+                                                    <option value="coordinador">coordinador</option>
+                                                    <option value="operador">operador</option>
+                                                    <option value="recluta" selected>recluta</option>
+                                                <?php } ?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <?php echo $created_on[$i]; ?>
+                                        </td>
+                                        <td class="td-center td-icon">
+                                            <?php if ($access_12 > 0) { ?>
                                                 <?php if ($enabled[$i] == 'true') { ?>
                                                     <button onclick='toggle("false",<?php echo $id[$i] ?>,"enabled")' <?php if (!($access_12 > 1)) {
                                                                                                                             echo "disabled";
@@ -365,102 +370,107 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                         <i class='fa-solid fa-toggle-off false'></i>
                                                     </button>
                                                 <?php } ?>
-                                                <?php } else { ?>
-                                                    <p>-</p>
-                                                <?php } ?>
-                                            </td>
-                                            <td class="td-center">
-                                                <?php if ($access_12 > 0) { ?>
-                                                    <a class="td-delete td-center" href="<?php if ($access_12 > 1) {
-                                                                                                echo 'roles.php?id=' . $id[$i];
-                                                                                            } else {
-                                                                                                echo '#';
-                                                                                            } ?>">
-                                                        Ver
-                                                    </a>
-                                                <?php } else { ?>
-                                                    <p>
-                                                        -
-                                                    </p>
-                                                <?php } ?>
-                                            </td>
-                                            <td class="td-center">
-                                                <?php if ($access_13 > 0) { ?>
-                                                    <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)" <?php if ($access_13 < 2) { echo "disabled"; } ?>>
-                                                        Eliminar
-                                                    </button>
-                                                <?php } else { ?>
-                                                    <p>-</p>
-                                                <?php } ?>
-                                            </td>
-                                        </tr>
-                                    <?php } else { ?>
-                                        <tr id="<?php echo $id[$i]; ?>" class="disabled-row">
-                                            <td class="td-center"><input id="checkbox_<?php echo $id[$i]; ?>" type="checkbox" onclick="selectRows(this, <?php echo $id[$i] ?>)" disabled> </td>
-                                            <td contenteditable='false' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
-                                            <td contenteditable='false' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
-                                            <td contenteditable='false' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
-                                            <td>
-                                                <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>" disabled>
-                                                    <?php if ($profile[$i] == 'super_admin') { ?>
-                                                        <option value="super_admin" selected>super-admin</option>
-                                                        <option value="admin_junior">admin-junior</option>
-                                                        <option value="coordinador">coordinador</option>
-                                                        <option value="operador">operador</option>
-                                                        <option value="recluta">recluta</option>
-                                                    <?php } else if ($profile[$i] == 'admin_junior') { ?>
-                                                        <option value="super_admin">super-admin</option>
-                                                        <option value="admin_junior" selected>admin-junior</option>
-                                                        <option value="coordinador">coordinador</option>
-                                                        <option value="operador">operador</option>
-                                                        <option value="recluta">recluta</option>
-                                                    <?php } else if ($profile[$i] == 'coordinador') { ?>
-                                                        <option value="super_admin">super-admin</option>
-                                                        <option value="admin_junior">admin-junior</option>
-                                                        <option value="coordinador" selected>coordinador</option>
-                                                        <option value="operador">operador</option>
-                                                        <option value="recluta">recluta</option>
-                                                    <?php } else if ($profile[$i] == 'operador') { ?>
-                                                        <option value="super_admin">super-admin</option>
-                                                        <option value="admin_junior">admin-junior</option>
-                                                        <option value="coordinador">coordinador</option>
-                                                        <option value="operador" selected>operador</option>
-                                                        <option value="recluta">recluta</option>
-                                                    <?php } else { ?>
-                                                        <option value="super_admin">super-admin</option>
-                                                        <option value="admin_junior">admin-junior</option>
-                                                        <option value="coordinador">coordinador</option>
-                                                        <option value="operador">operador</option>
-                                                        <option value="recluta" selected>recluta</option>
-                                                    <?php } ?>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <?php echo $created_on[$i]; ?>
-                                            </td>
-                                            <td class="td-center td-icon">
-                                                <?php if ($enabled[$i] == 'true') { ?>
-                                                    <button onclick='toggle("false",<?php echo $id[$i] ?>,"enabled")' disabled>
-                                                        <i class='fa-solid fa-toggle-on false'></i>
-                                                    </button>
-                                                <?php } else { ?>
-                                                    <button onclick='toggle("true",<?php echo $id[$i] ?>,"enabled")' disabled>
-                                                        <i class='fa-solid fa-toggle-off false'></i>
-                                                    </button>
-                                                <?php } ?>
-                                            </td>
-                                            <td class="td-center">
-                                                <a class="td-delete td-center" href="<?php echo "roles.php?id=" . $id[$i]; ?>">
-                                                    Ver
-                                                </a>
-                                            </td>
-                                            <td class="td-center">
-                                                <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)">
-                                                    Eliminar
+                                            <?php } else { ?>
+                                                <p>-</p>
+                                            <?php } ?>
+                                        </td>
+                                        <td class="td-center">
+                                            <?php if ($access_12 > 0) { ?>
+                                                <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)" <?php if ($access_13 < 2) {
+                                                                                                                            echo "disabled";
+                                                                                                                        } ?>>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+                                                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1" />
+                                                    </svg>
                                                 </button>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
+                                            <?php } else { ?>
+                                                <p>
+                                                    -
+                                                </p>
+                                            <?php } ?>
+                                        </td>
+                                        <td class="td-center">
+                                            <?php if ($access_13 > 0) { ?>
+                                                <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)" <?php if ($access_13 < 2) {
+                                                                                                                            echo "disabled";
+                                                                                                                        } ?>>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                                        <path d="M128 128C128 92.7 156.7 64 192 64L341.5 64C358.5 64 374.8 70.7 386.8 82.7L493.3 189.3C505.3 201.3 512 217.6 512 234.6L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 128zM336 122.5L336 216C336 229.3 346.7 240 360 240L453.5 240L336 122.5zM192 152C192 165.3 202.7 176 216 176L264 176C277.3 176 288 165.3 288 152C288 138.7 277.3 128 264 128L216 128C202.7 128 192 138.7 192 152zM192 248C192 261.3 202.7 272 216 272L264 272C277.3 272 288 261.3 288 248C288 234.7 277.3 224 264 224L216 224C202.7 224 192 234.7 192 248zM304 324L304 328C275.2 328.3 252 351.7 252 380.5C252 406.2 270.5 428.1 295.9 432.3L337.6 439.3C343.6 440.3 348 445.5 348 451.6C348 458.5 342.4 464.1 335.5 464.1L280 464C269 464 260 473 260 484C260 495 269 504 280 504L304 504L304 508C304 519 313 528 324 528C335 528 344 519 344 508L344 503.3C369 499.2 388 477.6 388 451.5C388 425.8 369.5 403.9 344.1 399.7L302.4 392.7C296.4 391.7 292 386.5 292 380.4C292 373.5 297.6 367.9 304.5 367.9L352 367.9C363 367.9 372 358.9 372 347.9C372 336.9 363 327.9 352 327.9L344 327.9L344 323.9C344 312.9 335 303.9 324 303.9C313 303.9 304 312.9 304 323.9z" />
+                                                    </svg>
+                                                </button>
+                                            <?php } else { ?>
+                                                <p>-</p>
+                                            <?php } ?>
+                                        </td>
+                                    </tr>
+                                <?php } else { ?>
+                                    <tr id="<?php echo $id[$i]; ?>" class="disabled-row">
+                                        <td class="td-center"><input id="checkbox_<?php echo $id[$i]; ?>" type="checkbox" onclick="selectRows(this, <?php echo $id[$i] ?>)" disabled> </td>
+                                        <td contenteditable='false' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"username")'><?php echo $user[$i] ?></td>
+                                        <td contenteditable='false' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"mail")'><?php echo $mail[$i] ?></td>
+                                        <td contenteditable='false' onkeyup='updateContent(this,<?php echo $id[$i] ?>,"password")'><?php echo $pass[$i] ?></td>
+                                        <td>
+                                            <select onchange='updateContent2(this,<?php echo $id[$i] ?>,"profile")' id="<?php echo 'select_' . $id[$i]; ?>" disabled>
+                                                <?php if ($profile[$i] == 'super_admin') { ?>
+                                                    <option value="super_admin" selected>super-admin</option>
+                                                    <option value="admin_junior">admin-junior</option>
+                                                    <option value="coordinador">coordinador</option>
+                                                    <option value="operador">operador</option>
+                                                    <option value="recluta">recluta</option>
+                                                <?php } else if ($profile[$i] == 'admin_junior') { ?>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior" selected>admin-junior</option>
+                                                    <option value="coordinador">coordinador</option>
+                                                    <option value="operador">operador</option>
+                                                    <option value="recluta">recluta</option>
+                                                <?php } else if ($profile[$i] == 'coordinador') { ?>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior">admin-junior</option>
+                                                    <option value="coordinador" selected>coordinador</option>
+                                                    <option value="operador">operador</option>
+                                                    <option value="recluta">recluta</option>
+                                                <?php } else if ($profile[$i] == 'operador') { ?>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior">admin-junior</option>
+                                                    <option value="coordinador">coordinador</option>
+                                                    <option value="operador" selected>operador</option>
+                                                    <option value="recluta">recluta</option>
+                                                <?php } else { ?>
+                                                    <option value="super_admin">super-admin</option>
+                                                    <option value="admin_junior">admin-junior</option>
+                                                    <option value="coordinador">coordinador</option>
+                                                    <option value="operador">operador</option>
+                                                    <option value="recluta" selected>recluta</option>
+                                                <?php } ?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <?php echo $created_on[$i]; ?>
+                                        </td>
+                                        <td class="td-center td-icon">
+                                            <?php if ($enabled[$i] == 'true') { ?>
+                                                <button onclick='toggle("false",<?php echo $id[$i] ?>,"enabled")' disabled>
+                                                    <i class='fa-solid fa-toggle-on false'></i>
+                                                </button>
+                                            <?php } else { ?>
+                                                <button onclick='toggle("true",<?php echo $id[$i] ?>,"enabled")' disabled>
+                                                    <i class='fa-solid fa-toggle-off false'></i>
+                                                </button>
+                                            <?php } ?>
+                                        </td>
+                                        <td class="td-center">
+                                            <a class="td-delete td-center" href="<?php echo "roles.php?id=" . $id[$i]; ?>">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+                                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1" />
+                                                </svg>
+                                            </a>
+                                        </td>
+                                        <td class="td-center">
+                                            <button class="td-delete" onclick="deteleOne(<?php echo $id[$i] ?>)">
+                                                Eliminar
+                                            </button>
+                                        </td>
+                                    </tr>
                                 <?php } ?>
                             <?php } ?>
                         </tbody>
@@ -474,7 +484,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 <!-- Boostrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <!-- Custom JS -->
-<script src="../../../build/js/bundle.min.js"></script>
+<script src="../../../../build/js/bundle.min.js"></script>
 <script>
     // Clock functionality
     function updateClock() {
@@ -546,7 +556,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     }
 </script>
 <!-- Custom JS -->
-<script src="../../../build/js/paginationFilter.min.js"></script>
+<script src="../../../../build/js/paginationFilter.min.js"></script>
 <!-- Pagination -->
 <script>
     let options = {
