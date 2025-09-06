@@ -63,7 +63,7 @@ $activity_6_4 = ucfirst($_POST['activity_6_4']);
 // $mpdf = new \Mpdf\Mpdf([
 //     'mode' => 'utf-8',
 //     'fontDir' => array_merge($fontDirs, [
-//         __DIR__ . '../../../../../custom/font/directory',
+//         '../../../../custom/font/directory',
 //     ]),
 //     'fontdata' => $fontData + [ // lowercase letters only in font key
 //         'poppins_black' => [
@@ -76,8 +76,40 @@ $activity_6_4 = ucfirst($_POST['activity_6_4']);
 //     'default_font' => 'poppins'
 // ]);
 
-$mpdf = new \Mpdf\Mpdf([
-    'mode' => 'utf-8'
+// JUST PDF WITHOUT CUSTOM FONTS
+
+// $mpdf = new \Mpdf\Mpdf([
+//     'mode' => 'utf-8'
+// ]);
+
+// NEW APPROACH TO INCLUDE CUSTOM FONTS
+
+use Mpdf\Mpdf;
+use Mpdf\Config\ConfigVariables;
+use Mpdf\Config\FontVariables;
+
+// Define your custom font directory
+$customFontDir = __DIR__ . '/fonts/'; // Path to your custom fonts
+
+$defaultConfig = (new ConfigVariables())->getDefaults();
+$fontDirs = $defaultConfig['fontDir'];
+
+$defaultFontConfig = (new FontVariables())->getDefaults();
+$fontData = $defaultFontConfig['fontdata'];
+
+$mpdf = new Mpdf([
+    'fontDir' => array_merge($fontDirs, [
+        $customFontDir,
+    ]),
+    'fontdata' => $fontData + [ // lowercase letters only in font key
+        'poppins_black' => [
+            'R' => 'Poppins-Bold.ttf'
+        ],
+        'poppins' => [
+            'R' => 'Poppins-Medium.ttf'
+        ]
+    ],
+    'tempDir' => __DIR__ . '/tmp', // Ensure this directory is writable
 ]);
 
 $activity_1 = '';
