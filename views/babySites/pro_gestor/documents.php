@@ -203,7 +203,7 @@ $sections_4 = array(
                 <img class="icon-img" src="../../../build/img/icons/babySite-user.webp" alt="icon">
                 <div class="dropdown">
                     <div class="dropdown-title">BABY SITE</div>
-                    <a class="dropdown-item" href="#">Listado Sort_GES</a>
+                    <a class="dropdown-item" href="../baby_site/sortGESC_list.php">Listado Sort_GES</a>
                     <a class="dropdown-item" href="#">Listado Sort_IPS</a>
                     <a class="dropdown-item" href="#">Listado Sort_DON</a>
                     <a class="dropdown-item" href="#">Programas</a>
